@@ -1,0 +1,572 @@
+{
+    "state-others": {
+        "precision": 0.85,
+        "recall": 0.5368421052631579,
+        "f1": 0.6580645161290322,
+        "support": 95
+    },
+    "spacial_concept": {
+        "precision": 0.9076923076923077,
+        "recall": 0.8805970149253731,
+        "f1": 0.8939393939393939,
+        "support": 134
+    },
+    "action": {
+        "precision": 0.5,
+        "recall": 0.6666666666666666,
+        "f1": 0.5714285714285715,
+        "support": 3
+    },
+    "PN-Negative-others": {
+        "precision": 1.0,
+        "recall": 0.9090909090909091,
+        "f1": 0.9523809523809523,
+        "support": 22
+    },
+    "tissue-others": {
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "support": 4
+    },
+    "allergy-patient": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+    },
+    "time_span": {
+        "precision": 0.7714285714285715,
+        "recall": 0.75,
+        "f1": 0.7605633802816902,
+        "support": 36
+    },
+    "quantity_progress-no_change-patient": {
+        "precision": 0.3333333333333333,
+        "recall": 0.5,
+        "f1": 0.4,
+        "support": 2
+    },
+    "function-others": {
+        "precision": 0.25,
+        "recall": 0.3333333333333333,
+        "f1": 0.28571428571428575,
+        "support": 3
+    },
+    "activity-patient": {
+        "precision": 0.5625,
+        "recall": 0.75,
+        "f1": 0.6428571428571429,
+        "support": 12
+    },
+    "quantity_progress-decrease-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 1
+    },
+    "MedicationHistory": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "support": 4
+    },
+    "time": {
+        "precision": 0.9436813186813187,
+        "recall": 0.9744680851063829,
+        "f1": 0.9588276343335659,
+        "support": 705
+    },
+    "info": {
+        "precision": 0.8571428571428571,
+        "recall": 0.5,
+        "f1": 0.631578947368421,
+        "support": 12
+    },
+    "person-patient": {
+        "precision": 0.9245283018867925,
+        "recall": 0.98,
+        "f1": 0.9514563106796116,
+        "support": 50
+    },
+    "smoking-current-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 1
+    },
+    "quantity_evaluation-Low-patient": {
+        "precision": 0.92,
+        "recall": 0.8518518518518519,
+        "f1": 0.8846153846153846,
+        "support": 27
+    },
+    "age-patient": {
+        "precision": 0.9809523809523809,
+        "recall": 0.9809523809523809,
+        "f1": 0.9809523809523809,
+        "support": 105
+    },
+    "quantity_progress-decrease-patient": {
+        "precision": 0.7727272727272727,
+        "recall": 0.9444444444444444,
+        "f1": 0.85,
+        "support": 18
+    },
+    "PresentHistory": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 32
+    },
+    "explain": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "support": 1
+    },
+    "detail": {
+        "precision": 0.7,
+        "recall": 0.7,
+        "f1": 0.7,
+        "support": 20
+    },
+    "incident": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 1
+    },
+    "intention-OK": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 2
+    },
+    "quantity_progress-no_change-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 2
+    },
+    "quantity_evaluation-High-patient": {
+        "precision": 0.9272727272727272,
+        "recall": 0.9107142857142857,
+        "f1": 0.918918918918919,
+        "support": 56
+    },
+    "drug": {
+        "precision": 0.9482758620689655,
+        "recall": 0.9053497942386831,
+        "f1": 0.9263157894736841,
+        "support": 243
+    },
+    "judge-None-patient": {
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75,
+        "support": 4
+    },
+    "pose": {
+        "precision": 1.0,
+        "recall": 0.42857142857142855,
+        "f1": 0.6,
+        "support": 7
+    },
+    "function-patient": {
+        "precision": 0.879245283018868,
+        "recall": 0.8629629629629629,
+        "f1": 0.8710280373831776,
+        "support": 270
+    },
+    "PN-Negative-patient": {
+        "precision": 0.9798387096774194,
+        "recall": 0.9566929133858267,
+        "f1": 0.9681274900398407,
+        "support": 254
+    },
+    "state-patient": {
+        "precision": 0.9135737009544008,
+        "recall": 0.9430760810071155,
+        "f1": 0.928090492862914,
+        "support": 1827
+    },
+    "quality_progress-start-patient": {
+        "precision": 0.926605504587156,
+        "recall": 0.9528301886792453,
+        "f1": 0.9395348837209303,
+        "support": 106
+    },
+    "SocialHistory": {
+        "precision": 0.8888888888888888,
+        "recall": 1.0,
+        "f1": 0.9411764705882353,
+        "support": 8
+    },
+    "item": {
+        "precision": 0.928136419001218,
+        "recall": 0.9214026602176542,
+        "f1": 0.924757281553398,
+        "support": 827
+    },
+    "food": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 3
+    },
+    "judge-Suspicious-others": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 3
+    },
+    "value-patient": {
+        "precision": 0.9323116219667944,
+        "recall": 0.9681697612732095,
+        "f1": 0.9499024072869225,
+        "support": 754
+    },
+    "smoking-current-patient": {
+        "precision": 0.875,
+        "recall": 1.0,
+        "f1": 0.9333333333333333,
+        "support": 7
+    },
+    "quality_progress-no_change-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 1
+    },
+    "treatment": {
+        "precision": 0.9261744966442953,
+        "recall": 0.9345372460496614,
+        "f1": 0.9303370786516854,
+        "support": 443
+    },
+    "quantity_evaluation-normal-patient": {
+        "precision": 0.6842105263157895,
+        "recall": 0.8666666666666667,
+        "f1": 0.7647058823529413,
+        "support": 15
+    },
+    "quality_evaluation-patient": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 2
+    },
+    "person-others": {
+        "precision": 0.6666666666666666,
+        "recall": 0.5714285714285714,
+        "f1": 0.6153846153846153,
+        "support": 7
+    },
+    "body-others": {
+        "precision": 0.5,
+        "recall": 0.29411764705882354,
+        "f1": 0.37037037037037035,
+        "support": 17
+    },
+    "quality_progress-improve-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 1
+    },
+    "quality_progress-patient": {
+        "precision": 0.8936170212765957,
+        "recall": 0.9545454545454546,
+        "f1": 0.9230769230769231,
+        "support": 44
+    },
+    "quality_evaluation-mild-patient": {
+        "precision": 0.9411764705882353,
+        "recall": 0.9411764705882353,
+        "f1": 0.9411764705882353,
+        "support": 34
+    },
+    "judge-future-others": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1": 0.4,
+        "support": 3
+    },
+    "drinking-current-patient": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 6
+    },
+    "PresentCondition": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 23
+    },
+    "organization": {
+        "precision": 0.9782608695652174,
+        "recall": 0.9507042253521126,
+        "f1": 0.9642857142857143,
+        "support": 142
+    },
+    "gene-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 2
+    },
+    "judge-Positive-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 2
+    },
+    "quantity_evaluation-High-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 1
+    },
+    "quality_progress-recover-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 1
+    },
+    "quality_evaluation-moderate-patient": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 2
+    },
+    "quality_progress-no_change-patient": {
+        "precision": 0.6153846153846154,
+        "recall": 0.8888888888888888,
+        "f1": 0.7272727272727274,
+        "support": 9
+    },
+    "value-others": {
+        "precision": 0.35,
+        "recall": 0.18421052631578946,
+        "f1": 0.24137931034482757,
+        "support": 38
+    },
+    "PN-None-patient": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 1
+    },
+    "tissue-patient": {
+        "precision": 0.8051948051948052,
+        "recall": 0.8611111111111112,
+        "f1": 0.8322147651006712,
+        "support": 144
+    },
+    "quality_progress-recover-patient": {
+        "precision": 0.72,
+        "recall": 0.782608695652174,
+        "f1": 0.7499999999999999,
+        "support": 23
+    },
+    "person-family": {
+        "precision": 1.0,
+        "recall": 0.9565217391304348,
+        "f1": 0.9777777777777777,
+        "support": 23
+    },
+    "judge-Negative-patient": {
+        "precision": 1.0,
+        "recall": 0.625,
+        "f1": 0.7692307692307693,
+        "support": 8
+    },
+    "judge-Positive-patient": {
+        "precision": 0.9080459770114943,
+        "recall": 0.9080459770114943,
+        "f1": 0.9080459770114943,
+        "support": 87
+    },
+    "judge-Suspicious-patient": {
+        "precision": 0.7941176470588235,
+        "recall": 0.8709677419354839,
+        "f1": 0.8307692307692308,
+        "support": 31
+    },
+    "gene-patient": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1": 0.8571428571428571,
+        "support": 12
+    },
+    "quality_progress-start-others": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 2
+    },
+    "quantity_progress-increase-patient": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1": 0.888888888888889,
+        "support": 16
+    },
+    "judge-future-patient": {
+        "precision": 0.4,
+        "recall": 0.4,
+        "f1": 0.4000000000000001,
+        "support": 5
+    },
+    "body-patient": {
+        "precision": 0.9271217712177122,
+        "recall": 0.9481132075471698,
+        "f1": 0.9375000000000001,
+        "support": 1060
+    },
+    "quantity_progress-increase-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 1
+    },
+    "smoking-stop-patient": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1
+    },
+    "sex-patient": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 36
+    },
+    "quantity_progress-patient": {
+        "precision": 0.8333333333333334,
+        "recall": 0.625,
+        "f1": 0.7142857142857143,
+        "support": 8
+    },
+    "device": {
+        "precision": 0.78125,
+        "recall": 0.7575757575757576,
+        "f1": 0.7692307692307692,
+        "support": 33
+    },
+    "consultation": {
+        "precision": 0.9846153846153847,
+        "recall": 0.9896907216494846,
+        "f1": 0.9871465295629821,
+        "support": 194
+    },
+    "quality_progress-improve-patient": {
+        "precision": 0.9166666666666666,
+        "recall": 0.9482758620689655,
+        "f1": 0.9322033898305084,
+        "support": 58
+    },
+    "PN-Positive-others": {
+        "precision": 0.375,
+        "recall": 0.1875,
+        "f1": 0.25,
+        "support": 16
+    },
+    "quality_progress-worsen-patient": {
+        "precision": 0.7857142857142857,
+        "recall": 0.9705882352941176,
+        "f1": 0.8684210526315789,
+        "support": 34
+    },
+    "FamilyHistory": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 30
+    },
+    "ChiefComplaint": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 27
+    },
+    "clinical_test": {
+        "precision": 0.9382151029748284,
+        "recall": 0.9382151029748284,
+        "f1": 0.9382151029748284,
+        "support": 437
+    },
+    "unit": {
+        "precision": 0.9803328290468987,
+        "recall": 0.9818181818181818,
+        "f1": 0.9810749432248297,
+        "support": 660
+    },
+    "execute": {
+        "precision": 0.9798488664987406,
+        "recall": 0.958128078817734,
+        "f1": 0.9688667496886675,
+        "support": 406
+    },
+    "frequency": {
+        "precision": 0.8333333333333334,
+        "recall": 0.8333333333333334,
+        "f1": 0.8333333333333334,
+        "support": 6
+    },
+    "PN-Positive-patient": {
+        "precision": 0.9548780487804878,
+        "recall": 0.9654747225647349,
+        "f1": 0.9601471489883506,
+        "support": 811
+    },
+    "intention-NG": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 1
+    },
+    "quality_evaluation-severe-patient": {
+        "precision": 0.9655172413793104,
+        "recall": 0.9655172413793104,
+        "f1": 0.9655172413793104,
+        "support": 58
+    },
+    "PastHistory": {
+        "precision": 0.9714285714285714,
+        "recall": 1.0,
+        "f1": 0.9855072463768115,
+        "support": 34
+    },
+    "laterality": {
+        "precision": 0.9586206896551724,
+        "recall": 0.9586206896551724,
+        "f1": 0.9586206896551724,
+        "support": 145
+    },
+    "quality_progress-worsen-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 4
+    },
+    "quality_evaluation-severe-others": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1": 0,
+        "support": 1
+    },
+    "macro avg": {
+        "precision": 0.684321078297124,
+        "recall": 0.6716100247035692,
+        "f1": 0.6682691033181474,
+        "support": 10869
+    },
+    "micro avg": {
+        "precision": 0.9273876018679608,
+        "recall": 0.9318244548716533,
+        "f1": 0.9296007342817805,
+        "support": 10869
+    }
+}

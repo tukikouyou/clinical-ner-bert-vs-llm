@@ -1,0 +1,38 @@
+# === Clinical / licensed data — NEVER commit ===
+*.csv
+*.tsv
+corpus/
+data/
+predicted*data/
+**/entities*.json
+**/raw_outputs*.json
+**/token_pred*
+*.dic
+
+# === Model weights & checkpoints ===
+*.bin
+*.pt
+*.pth
+*.safetensors
+*.ckpt*
+*.gguf
+model.ckpt*
+vocab.txt
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# === Logs / scratch ===
+*.log
+logs/
+scratch/
+results_olddata_buggy/
+
+# === OS ===
+.DS_Store
+Thumbs.db

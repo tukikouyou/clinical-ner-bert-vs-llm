@@ -1,0 +1,132 @@
+{
+  "BERT-UTH": {
+    "precision": 0.7954,
+    "recall": 0.6681,
+    "f1": 0.7262,
+    "tp": 7578,
+    "fp": 1949,
+    "fn": 3764,
+    "scope": "test36",
+    "note": "finetuned held-out, relaxed(type+surface)"
+  },
+  "BERT-NICT": {
+    "precision": 0.7634,
+    "recall": 0.651,
+    "f1": 0.7028,
+    "tp": 7384,
+    "fp": 2288,
+    "fn": 3958,
+    "scope": "test36",
+    "note": "finetuned held-out, relaxed(type+surface)"
+  },
+  "qwen3.6:35b": {
+    "precision": 0.4026,
+    "recall": 0.2136,
+    "f1": 0.2791,
+    "tp": 11862,
+    "fp": 17602,
+    "fn": 43676,
+    "scope": "all183",
+    "engine": "ollama",
+    "parse_fail": 1,
+    "sec": 4147.3,
+    "test36_f1": 0.2918,
+    "test36": {
+      "precision": 0.415,
+      "recall": 0.225,
+      "f1": 0.2918,
+      "tp": 2552,
+      "fp": 3598,
+      "fn": 8790
+    },
+    "note": "zero-shot, relaxed(type+surface)"
+  },
+  "llama3.3:70b": {
+    "precision": 0.4786,
+    "recall": 0.1839,
+    "f1": 0.2657,
+    "tp": 10214,
+    "fp": 11127,
+    "fn": 45324,
+    "scope": "all183",
+    "engine": "ollama",
+    "parse_fail": 1,
+    "sec": 11223.4,
+    "test36_f1": 0.2709,
+    "test36": {
+      "precision": 0.4932,
+      "recall": 0.1867,
+      "f1": 0.2709,
+      "tp": 2118,
+      "fp": 2176,
+      "fn": 9224
+    },
+    "note": "zero-shot, relaxed(type+surface)"
+  },
+  "SIP-jmed-llm-3-13b": {
+    "precision": 0.126,
+    "recall": 0.002,
+    "f1": 0.0039,
+    "tp": 110,
+    "fp": 763,
+    "fn": 55428,
+    "scope": "all183",
+    "engine": "vllm",
+    "parse_fail": 1925,
+    "sec": 1700.3,
+    "test36_f1": 0.0055,
+    "test36": {
+      "precision": 0.1538,
+      "recall": 0.0028,
+      "f1": 0.0055,
+      "tp": 32,
+      "fp": 176,
+      "fn": 11310
+    },
+    "note": "zero-shot, relaxed(type+surface)"
+  },
+  "llm-jp-4-32b": {
+    "precision": 0.1408,
+    "recall": 0.0299,
+    "f1": 0.0493,
+    "tp": 1658,
+    "fp": 10118,
+    "fn": 53880,
+    "scope": "all183",
+    "engine": "vllm",
+    "parse_fail": 5,
+    "sec": 217.7,
+    "test36_f1": 0.0488,
+    "test36": {
+      "precision": 0.1399,
+      "recall": 0.0295,
+      "f1": 0.0488,
+      "tp": 335,
+      "fp": 2060,
+      "fn": 11007
+    },
+    "note": "zero-shot, relaxed(type+surface)"
+  },
+  "llm-jp-4-32b-natural": {
+    "precision": 0.3266,
+    "recall": 0.0511,
+    "f1": 0.0884,
+    "tp": 2838,
+    "fp": 5851,
+    "fn": 52700,
+    "scope": "all183",
+    "engine": "vllm",
+    "parse_fail": 1377,
+    "sec": 1745.3,
+    "test36_f1": 0.0943,
+    "test36": {
+      "precision": 0.3511,
+      "recall": 0.0545,
+      "f1": 0.0943,
+      "tp": 618,
+      "fp": 1142,
+      "fn": 10724
+    },
+    "note": "zero-shot, relaxed(type+surface)"
+  }
+}
