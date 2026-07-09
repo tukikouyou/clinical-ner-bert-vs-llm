@@ -32,36 +32,52 @@ test-36 subset is reported for the head-to-head.
 
 | Method | Type | Test-36 F1 | Precision | Recall |
 |--------|------|:----------:|:---------:|:------:|
-| **UTH-BERT** (fine-tuned) | encoder, clinical pretraining | **0.726** | 0.796 | 0.669 |
-| **NICT-BERT** (fine-tuned) | encoder, Wikipedia pretraining | **0.703** | 0.763 | 0.653 |
+| **UTH-BERT** (fine-tuned) | encoder, clinical pretraining | **0.725** | 0.794 | 0.667 |
+| **NICT-BERT** (fine-tuned) | encoder, Wikipedia pretraining | **0.703** | 0.763 | 0.651 |
 | Qwen3.6 35B | LLM, zero-shot | 0.292 | 0.415 | 0.225 |
 | Llama3.3 70B | LLM, zero-shot | 0.271 | 0.493 | 0.187 |
-| LLM-jp-4 32B (natural reasoning) | LLM, zero-shot | 0.094 | 0.351 | 0.055 |
-| LLM-jp-4 32B (forced JSON) | LLM, zero-shot | 0.049 | 0.140 | 0.030 |
-| SIP-jmed-LLM-3 13B | LLM, zero-shot | *(finalizing)* | | |
-| GPT-OSS 120B | LLM, zero-shot | *(finalizing)* | | |
+| LLM-jp-4 32B | LLM, zero-shot (reasoning) | 0.094 | 0.351 | 0.054 |
+| GPT-OSS 120B | LLM, zero-shot (reasoning) | 0.052 | 0.584 | 0.027 |
+| SIP-jmed-LLM-3 13B | LLM, zero-shot (reasoning, **medical**) | 0.018 | 0.066 | 0.011 |
 
-> Snapshot — the SIP-jmed-LLM, GPT-OSS, and an extended-length LLM-jp-4 run were
-> still in progress at the time this README was written; see
-> [`results/testset_scores.json`](results/testset_scores.json) for the live numbers.
+Metric: relaxed entity match (type + surface containment, NFKC). BERT on the
+held-out 36-doc test split; LLMs run zero-shot (reasoning models with thinking
+enabled and a large token budget — see [Notes](#notes-on-the-llm-numbers)).
+Full numbers: [`results/testset_scores.json`](results/testset_scores.json).
 
 ### Takeaways
 
-- **Fine-tuned BERT vastly outperforms zero-shot LLMs** on this fine-grained,
-  domain-specific NER task (~0.73 vs. ≤0.29). The task capability comes almost
-  entirely from fine-tuning on the 100+-label annotation scheme; general LLMs
-  cannot match it zero-shot.
-- **LLMs are precision-decent but recall-poor** (P ≈ 0.4–0.5, R ≈ 0.19–0.23).
-  The corpus annotation is exhaustive ("網羅的"); LLMs do not extract that densely
-  and struggle to apply 100+ unfamiliar label names.
+- **Fine-tuned BERT vastly outperforms every zero-shot LLM** on this fine-grained,
+  domain-specific NER task (~0.71 vs. ≤0.29 — a 2.5×+ gap). The task capability
+  comes almost entirely from fine-tuning on the 100+-label annotation scheme;
+  general LLMs cannot match it zero-shot.
+- **LLMs are recall-poor.** The corpus annotation is exhaustive ("網羅的");
+  LLMs do not extract that densely and struggle to apply 100+ unfamiliar label
+  names (R ≈ 0.19–0.23 for the best LLMs, far below BERT's ~0.66).
+- **The medical-specialized model scored *worst***. SIP-jmed-LLM-3 (13B, Japanese
+  clinical) landed at 0.018 — last among all LLMs — because it is a
+  *reasoning-tuned* model that rambles indefinitely and fails to emit parseable
+  JSON for **75% of inputs even with a 12k-token budget**. Domain knowledge does
+  not help when the model cannot produce structured output.
+- **"Thinking"/reasoning LLMs are a poor fit for structured extraction** and
+  cluster at the bottom (SIP-jmed 0.018, GPT-OSS 0.052, LLM-jp-4 0.094).
+  Forcing immediate JSON (guided decoding) discards their reasoning and degrades
+  output (e.g. LLM-jp-4 drops to 0.049); letting them reason freely overruns the
+  token budget before the JSON. Models that emit an answer directly (Qwen/Llama
+  with thinking disabled) do much better (0.27–0.29).
 - **UTH-BERT (clinical pretraining) > NICT-BERT (Wikipedia pretraining)**,
   as expected. NICT's vocabulary also lacks many clinical kanji (they become
-  `[UNK]`), which is a real limitation on clinical text.
-- **"Thinking"/reasoning LLMs are awkward for structured extraction.** Forcing
-  immediate JSON output (guided decoding) discards their reasoning advantage and
-  degrades output; letting them reason freely is slow and often overruns the
-  token budget before emitting parseable JSON. Non-reasoning output (thinking
-  disabled) tends to work better here.
+  `[UNK]`), a real limitation on clinical text.
+
+### Notes on the LLM numbers
+
+- Qwen / Llama / GPT-OSS run via **ollama with reasoning disabled** (`think:false`).
+- LLM-jp-4 and SIP-jmed are reasoning models with no reliable "thinking-off"
+  switch; they were run via **vLLM in natural-reasoning mode** with a large token
+  budget (up to 12k). SIP-jmed still truncated on 75% of inputs; a longer budget
+  did not change its score (0.018 at 6k ≈ 0.018 at 12k).
+- The LLM-jp-4 12k-token run hit a vLLM detokenizer crash mid-way; the reported
+  0.094 is its completed 6k-token natural run.
 
 ---
 

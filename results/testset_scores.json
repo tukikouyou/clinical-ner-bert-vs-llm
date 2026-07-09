@@ -1,21 +1,21 @@
 {
   "BERT-UTH": {
-    "precision": 0.7954,
-    "recall": 0.6681,
-    "f1": 0.7262,
-    "tp": 7578,
-    "fp": 1949,
-    "fn": 3764,
+    "precision": 0.794,
+    "recall": 0.6669,
+    "f1": 0.7249,
+    "tp": 7564,
+    "fp": 1963,
+    "fn": 3778,
     "scope": "test36",
     "note": "finetuned held-out, relaxed(type+surface)"
   },
   "BERT-NICT": {
-    "precision": 0.7634,
-    "recall": 0.651,
-    "f1": 0.7028,
-    "tp": 7384,
-    "fp": 2288,
-    "fn": 3958,
+    "precision": 0.7631,
+    "recall": 0.6508,
+    "f1": 0.7025,
+    "tp": 7381,
+    "fp": 2291,
+    "fn": 3961,
     "scope": "test36",
     "note": "finetuned held-out, relaxed(type+surface)"
   },
@@ -126,6 +126,50 @@
       "tp": 618,
       "fp": 1142,
       "fn": 10724
+    },
+    "note": "zero-shot, relaxed(type+surface)"
+  },
+  "SIP-jmed-llm-3-13b-natural": {
+    "precision": 0.0857,
+    "recall": 0.0103,
+    "f1": 0.0183,
+    "tp": 570,
+    "fp": 6080,
+    "fn": 54968,
+    "scope": "all183",
+    "engine": "vllm",
+    "parse_fail": 1653,
+    "sec": 21869.4,
+    "test36_f1": 0.0182,
+    "test36": {
+      "precision": 0.0656,
+      "recall": 0.0106,
+      "f1": 0.0182,
+      "tp": 120,
+      "fp": 1710,
+      "fn": 11222
+    },
+    "note": "zero-shot, relaxed(type+surface)"
+  },
+  "gpt-oss-120b": {
+    "precision": 0.5643,
+    "recall": 0.0283,
+    "f1": 0.0538,
+    "tp": 1570,
+    "fp": 1212,
+    "fn": 53968,
+    "scope": "all183",
+    "engine": "ollama",
+    "parse_fail": 1194,
+    "sec": 87461.5,
+    "test36_f1": 0.0524,
+    "test36": {
+      "precision": 0.5835,
+      "recall": 0.0274,
+      "f1": 0.0524,
+      "tp": 311,
+      "fp": 222,
+      "fn": 11031
     },
     "note": "zero-shot, relaxed(type+surface)"
   }
