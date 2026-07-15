@@ -45,7 +45,33 @@ held-out 36-doc test split; LLMs run zero-shot (reasoning models with thinking
 enabled and a large token budget — see [Notes](#notes-on-the-llm-numbers)).
 Full numbers: [`results/testset_scores.json`](results/testset_scores.json).
 
-### Takeaways
+### Fine-tuning the LLMs (QLoRA) — the ranking reverses
+
+The same LLMs, QLoRA-fine-tuned on the **same 146-document training split** as
+BERT (SFT: prompt → gold-JSON) and evaluated identically:
+
+| Method | Zero-shot F1 | **Fine-tuned F1** | Δ |
+|--------|:-----------:|:-----------------:|:--:|
+| **SIP-jmed-LLM-3 13B** (medical) | 0.018 *(last)* | **0.857** *(best)* | **+0.839** |
+| **LLM-jp-3.1 1.8B** | ≈0 | **0.792** | +0.79 |
+| UTH-BERT (fine-tuned encoder) | — | 0.725 | — |
+| NICT-BERT (fine-tuned encoder) | — | 0.703 | — |
+| LLM-jp-4 32B | 0.094 | *(training)* | |
+| Qwen / Llama / GPT-OSS | 0.27–0.29 / 0.05 | *(pending)* | |
+
+**Fine-tuning reverses the entire ranking.** Zero-shot, BERT beats every LLM and
+the medical model is *worst*; after QLoRA, LLMs beat BERT and the medical model
+is *best* (0.857 vs. BERT's 0.725). Even a tiny 1.8B model (≈0 zero-shot) reaches
+0.792. The zero-shot gap was about **task/format adaptation, not capability** —
+once the model learns to emit the structured output, the LLM's richer
+representation (and the medical model's domain knowledge) surpasses BERT. Domain
+pretraining that was a *liability* zero-shot (a reasoning model that could not
+produce JSON) becomes the decisive *advantage* after fine-tuning.
+
+Method: QLoRA (4-bit NF4 + LoRA r=16 on attention+MLP), 3 epochs, single-GPU.
+See [`llm/qlora_train.py`](llm/qlora_train.py) and [`llm/build_sft_data.py`](llm/build_sft_data.py).
+
+### Takeaways (zero-shot)
 
 - **Fine-tuned BERT vastly outperforms every zero-shot LLM** on this fine-grained,
   domain-specific NER task (~0.71 vs. ≤0.29 — a 2.5×+ gap). The task capability
