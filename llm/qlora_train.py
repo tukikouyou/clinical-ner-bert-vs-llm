@@ -62,15 +62,15 @@ def main():
         per_device_train_batch_size=args.batch,
         gradient_accumulation_steps=args.grad_accum,
         learning_rate=args.lr, lr_scheduler_type="cosine", warmup_ratio=0.03,
-        logging_steps=20, save_strategy="epoch", eval_strategy="epoch",
+        logging_steps=20, save_strategy="epoch", save_total_limit=1,
+        eval_strategy="no",  # 学習中の評価は無効(epoch境界でOOMするため)。評価は別途テスト集で
         bf16=True, max_seq_length=args.max_seq_len, packing=False,
         gradient_checkpointing=True,
         gradient_checkpointing_kwargs={"use_reentrant": False},
         report_to="none",
     )
     trainer = SFTTrainer(model=model, args=cfg, peft_config=lora,
-                         train_dataset=ds["train"], eval_dataset=ds["val"],
-                         processing_class=tok)
+                         train_dataset=ds["train"], processing_class=tok)
     trainer.train()
     trainer.save_model(args.out_dir)  # LoRAアダプタのみ保存(tokenizerは保存しない:
     # 評価側の古いtransformersで読めない不整合を避ける。評価はbaseのtokenizerを使う)

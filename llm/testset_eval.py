@@ -204,15 +204,17 @@ def run_llm(model, hosts, per_host, data, label_block, max_tokens):
 
 
 def run_llm_vllm(model_path, tp, data, label_block, max_tokens, max_model_len,
-                 guided=False, prefill=False, enforce_eager=False):
+                 guided=False, prefill=False, enforce_eager=False, lora=None):
     """vLLM で一括生成(HF形式モデル: llm-jp-4, SIP-jmed 等)。
     guided=True: JSONスキーマで制約(パース失敗を防ぐが思考を殺す)。
     prefill=True: 空<think></think>で思考スキップ。
-    両方False(自然モード): 自然に推論させ、末尾のJSONをパース(max_tokensを大きく)。"""
+    lora=<path>: QLoRAアダプタを付けて評価(ファインチューニング済みモデル)。"""
     from transformers import AutoTokenizer
     from vllm import LLM, SamplingParams
     from vllm.sampling_params import GuidedDecodingParams
     keys = list(data)
+    # tokenizerは常にbaseから(QLoRAは分詞器を変えない。アダプタ側はFT環境の
+    # 新しいtransformersで保存されており評価環境で読めないことがある)
     tok = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
     prompts = []
     for k in keys:
@@ -230,7 +232,12 @@ def run_llm_vllm(model_path, tp, data, label_block, max_tokens, max_model_len,
     # キャッシュ競合回避用。単独実行なら不要でcudagraphの方が高速)
     llm = LLM(model=model_path, dtype="bfloat16", tensor_parallel_size=tp,
               gpu_memory_utilization=0.90, max_model_len=max_model_len,
-              trust_remote_code=True, enforce_eager=enforce_eager)
+              trust_remote_code=True, enforce_eager=enforce_eager,
+              enable_lora=bool(lora), max_lora_rank=64)
+    lora_req = None
+    if lora:
+        from vllm.lora.request import LoRARequest
+        lora_req = LoRARequest("ft", 1, lora)
     gd = None
     if guided:
         # text は minLength=1 で空文字を禁止(思考モデルの「全ラベル空文字列挙」退化を防ぐ)
@@ -242,7 +249,7 @@ def run_llm_vllm(model_path, tp, data, label_block, max_tokens, max_model_len,
         gd = GuidedDecodingParams(json=schema)
     sp = SamplingParams(temperature=0.0, max_tokens=max_tokens, guided_decoding=gd)
     t0 = time.time()
-    outs = llm.generate(prompts, sp)
+    outs = llm.generate(prompts, sp, lora_request=lora_req)
     sec = round(time.time() - t0, 1)
     preds, fails = {}, 0
     for k, o in zip(keys, outs):
@@ -277,6 +284,7 @@ def main():
     p.add_argument("--prefill", action="store_true", help="vLLM: 空<think>で思考スキップ")
     p.add_argument("--enforce_eager", action="store_true",
                    help="vLLM: cudagraph無効(複数vLLM同時実行時のみ推奨)")
+    p.add_argument("--lora", default=None, help="vLLM: QLoRAアダプタのパス(FT評価)")
     args = p.parse_args()
 
     data, test_keys = load_alldocs()
@@ -304,7 +312,8 @@ def main():
             preds, fails, sec = run_llm_vllm(args.model, args.tp, data, label_block,
                                              args.max_new_tokens, args.max_model_len,
                                              guided=args.guided, prefill=args.prefill,
-                                             enforce_eager=args.enforce_eager)
+                                             enforce_eager=args.enforce_eager,
+                                             lora=args.lora)
         else:
             hosts = [h.strip() for h in args.hosts.split(",") if h.strip()]
             print(f"LLM(ollama) {args.model} を全{len(data)}文 / {len(hosts)}×{args.per_host}並列...")
