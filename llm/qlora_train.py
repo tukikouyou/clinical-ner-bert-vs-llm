@@ -29,6 +29,8 @@ def main():
     p.add_argument("--max_seq_len", type=int, default=4096)
     p.add_argument("--batch", type=int, default=1)
     p.add_argument("--grad_accum", type=int, default=8)
+    p.add_argument("--device_map", default="single",
+                   help="single=単一GPU({'':0}) / auto=複数GPUにモデル並列(70B等)")
     args = p.parse_args()
 
     tok = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
@@ -38,8 +40,9 @@ def main():
     bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
                              bnb_4bit_compute_dtype=torch.bfloat16,
                              bnb_4bit_use_double_quant=True)
+    dev_map = {"": 0} if args.device_map == "single" else args.device_map
     model = AutoModelForCausalLM.from_pretrained(
-        args.model, quantization_config=bnb, device_map={"": 0},  # 全部を単一GPUに載せる
+        args.model, quantization_config=bnb, device_map=dev_map,  # single=単一GPU / auto=モデル並列
         trust_remote_code=True, torch_dtype=torch.bfloat16)
     model.config.use_cache = False
 

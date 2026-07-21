@@ -36,13 +36,16 @@ def convert(corpus_dir, bert_type, vocab_file, out_csv, **kw):
             two = tok.tokenize_with_offsets("".join(rec["chars"]))
             if not two:
                 continue
-            labels = entities_to_iob(two, rec["entities"])
+            # iCorpusのendは閉区間(最後の文字位置)。ここで end+1 に正規化して
+            # 以降の [start,end) 前提の処理を正しくする(単字entityも幅1として含む)。
+            ents = [{**e, "end": e["end"] + 1} for e in rec["entities"]]
+            labels = entities_to_iob(two, ents)
             for (word, _s, _e), iob in zip(two, labels):
                 rows.append((serial, word, iob, name, uno, "None"))
                 serial += 1
             # カバレッジ集計
             spans = _decode(two, labels)
-            for e in rec["entities"]:
+            for e in ents:
                 total += 1
                 if any(p[0] == e["type"] and p[1] < max(e["end"], e["start"] + 1)
                        and p[2] > e["start"] for p in spans):

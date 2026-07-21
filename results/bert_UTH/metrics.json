@@ -1,37 +1,37 @@
 {
     "bert_type": "UTH",
-    "data_path": "./data/csv/icorpus_UTH.csv",
-    "best_epoch": 64,
-    "best_val_F": 0.9096267190569745,
+    "data_path": "data/csv/icorpus_UTH.csv",
+    "best_epoch": 35,
+    "best_val_F": 0.9122011036174126,
     "stopped_early": true,
-    "train_total_sec": 8321.8,
-    "predict_sec": 6.2,
+    "train_total_sec": 5392.3,
+    "predict_sec": 6.5,
     "n_train_sent": 1323,
     "n_val_sent": 344,
     "n_test_sent": 408,
-    "n_tags": 193,
+    "n_tags": 203,
     "test_strict_micro": {
-        "precision": 0.8923569794050343,
-        "recall": 0.8969546416413654,
-        "f1": 0.8946499036432046,
-        "support": 10869
+        "precision": 0.8931511806749299,
+        "recall": 0.9085219952144303,
+        "f1": 0.9007710205757562,
+        "support": 10866
     },
     "test_strict_macro": {
-        "precision": 0.6672846452050553,
-        "recall": 0.6541937686038757,
-        "f1": 0.651155319259707,
-        "support": 10869
+        "precision": 0.6770482008719763,
+        "recall": 0.6513776716172108,
+        "f1": 0.6525413071404362,
+        "support": 10866
     },
     "test_soft_micro": {
-        "precision": 0.9273876018679608,
-        "recall": 0.9318244548716533,
-        "f1": 0.9296007342817805,
-        "support": 10869
+        "precision": 0.9279941886860983,
+        "recall": 0.9405484999079698,
+        "f1": 0.9342291695232873,
+        "support": 10866
     },
     "test_soft_macro": {
-        "precision": 0.684321078297124,
-        "recall": 0.6716100247035692,
-        "f1": 0.6682691033181474,
-        "support": 10869
+        "precision": 0.6930567030485079,
+        "recall": 0.6665439321752856,
+        "f1": 0.6676462712032027,
+        "support": 10866
     }
 }

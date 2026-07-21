@@ -1,37 +1,37 @@
 {
     "bert_type": "NICT",
-    "data_path": "./data/csv/icorpus_NICT.csv",
-    "best_epoch": 47,
-    "best_val_F": 0.8996718237224567,
+    "data_path": "data/csv/icorpus_NICT.csv",
+    "best_epoch": 41,
+    "best_val_F": 0.8993791730115966,
     "stopped_early": true,
-    "train_total_sec": 6591.4,
-    "predict_sec": 6.0,
+    "train_total_sec": 6047.9,
+    "predict_sec": 6.3,
     "n_train_sent": 1308,
     "n_val_sent": 344,
     "n_test_sent": 405,
-    "n_tags": 188,
+    "n_tags": 206,
     "test_strict_micro": {
-        "precision": 0.8885171790235081,
-        "recall": 0.8884368501943767,
-        "f1": 0.8884770127932733,
-        "support": 11061
+        "precision": 0.8955790615676702,
+        "recall": 0.895741025409169,
+        "f1": 0.8956600361663652,
+        "support": 11059
     },
     "test_strict_macro": {
-        "precision": 0.6655688926500529,
-        "recall": 0.6222212509717174,
-        "f1": 0.6305102582191009,
-        "support": 11061
+        "precision": 0.6678550622146138,
+        "recall": 0.6320711785009492,
+        "f1": 0.6354853942994855,
+        "support": 11059
     },
     "test_soft_micro": {
-        "precision": 0.9236593059936908,
-        "recall": 0.9264985082723081,
-        "f1": 0.9250767286513811,
-        "support": 11061
+        "precision": 0.9275087909115499,
+        "recall": 0.9301926033095217,
+        "f1": 0.9288487584650114,
+        "support": 11059
     },
     "test_soft_macro": {
-        "precision": 0.6921877679513154,
-        "recall": 0.6427446698564515,
-        "f1": 0.652793937368254,
-        "support": 11061
+        "precision": 0.6843807047365277,
+        "recall": 0.6522217981590334,
+        "f1": 0.6535924041916255,
+        "support": 11059
     }
 }

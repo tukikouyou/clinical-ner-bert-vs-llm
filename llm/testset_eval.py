@@ -17,6 +17,7 @@ iCorpus テスト分割(gold有)での BERT vs LLM 精度比較。
 """
 import os
 import re
+import csv as csvmod
 import json
 import glob
 import time
@@ -80,8 +81,9 @@ def load_alldocs():
             key = f"{stem}_{rec['sentence_id']}"
             gold = set()
             for e in rec["entities"]:
-                if e["end"] > e["start"]:
-                    gold.add((e["type"], nfkc("".join(chars[e["start"]:e["end"]]))))
+                # iCorpusのendは閉区間。end+1で全表層。end==startは1文字entity。
+                if e["end"] >= e["start"]:
+                    gold.add((e["type"], nfkc("".join(chars[e["start"]:e["end"] + 1]))))
             data[key] = {"text": "".join(chars), "gold": gold}
             if is_test:
                 test_keys.add(key)
@@ -142,6 +144,80 @@ def prf(pred_by_sent, gold_by_sent, keys=None):
     F = 2 * P * R / (P + R) if P + R else 0.0
     return {"precision": round(P, 4), "recall": round(R, 4), "f1": round(F, 4),
             "tp": tp, "fp": fp, "fn": fn}
+
+
+def _sent_sort_key(key):
+    """sent_key 'stem_sentid' を (文書stem, 文ID数値) に分解して読み順ソート用に。"""
+    stem, _, sid = key.rpartition("_")
+    try:
+        return (stem, int(sid))
+    except ValueError:
+        return (key, 0)
+
+
+def dump_comparison(pred_by_sent, gold_by_sent, data, path, keys=None):
+    """予測と gold を突き合わせ、1エンティティ=1行の比較CSVを書き出す。
+    列: 文ID / 原文 / 単語 / 黄金正解(gold label) / 予測ラベル(pred label) / 判定。
+    ★並び順は原文どおり: 文は(文書→文ID)、文内はエンティティの出現位置順。
+    突合は4段階:
+      1) 正解    : 同ラベル かつ 表層が含意一致(TP)
+      2) ラベル誤: 表層は一致するがラベルが違う(gold/pred 両方を1行に)
+      3) 未抽出  : gold にあるが対応する予測が無い(FN)
+      4) 誤抽出  : 予測にあるが対応する gold が無い(FP)"""
+    # iCorpus は大半の文が形態素分割済み(token間に空白)。表示は空白を除いた素の原文にする。
+    # ※突合(スコア)は元の表層のまま。空白除去は表示・並び用の位置計算にのみ適用。
+    def clean(s):
+        return s.replace(" ", "").replace("　", "")
+
+    sel = [k for k in gold_by_sent if keys is None or k in keys]
+    sel.sort(key=_sent_sort_key)
+    rows = []
+    for key in sel:
+        text = data[key]["text"]
+        text_disp = clean(text)          # 表示用: 空白除去した原文
+        ntext = clean(nfkc(text))        # 位置探索用: NFKC + 空白除去
+
+        def pos_of(s):
+            i = ntext.find(clean(s))
+            return i if i >= 0 else len(ntext) + 1
+
+        golds = list(gold_by_sent.get(key, set()))
+        preds = list(pred_by_sent.get(key, set()))
+        gused = [False] * len(golds)
+        pused = [False] * len(preds)
+        srows = []  # (出現位置, 行)
+        # 1) 同ラベル + 含意一致
+        for pi, (pl, ps) in enumerate(preds):
+            for gi, (gl, gs) in enumerate(golds):
+                if not gused[gi] and pl == gl and (gs in ps or ps in gs):
+                    gused[gi] = pused[pi] = True
+                    srows.append((pos_of(gs), [key, text_disp, clean(gs), gl, pl, "正解"]))
+                    break
+        # 2) 表層一致だがラベル違い(ラベル誤り)
+        for pi, (pl, ps) in enumerate(preds):
+            if pused[pi]:
+                continue
+            for gi, (gl, gs) in enumerate(golds):
+                if not gused[gi] and (gs in ps or ps in gs):
+                    gused[gi] = pused[pi] = True
+                    srows.append((pos_of(gs), [key, text_disp, clean(gs), gl, pl, "ラベル誤り"]))
+                    break
+        # 3) 残った gold = 未抽出(FN)
+        for gi, (gl, gs) in enumerate(golds):
+            if not gused[gi]:
+                srows.append((pos_of(gs), [key, text_disp, clean(gs), gl, "", "未抽出(FN)"]))
+        # 4) 残った pred = 誤抽出(FP)
+        for pi, (pl, ps) in enumerate(preds):
+            if not pused[pi]:
+                srows.append((pos_of(ps), [key, text_disp, clean(ps), "", pl, "誤抽出(FP)"]))
+        srows.sort(key=lambda r: r[0])  # 文内は出現位置順(安定ソートで同位置は上の段階順)
+        rows.extend(r for _, r in srows)
+    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
+    with open(path, "w", newline="", encoding="utf-8-sig") as f:
+        w = csvmod.writer(f)
+        w.writerow(["文ID", "原文", "単語", "黄金正解", "予測ラベル", "判定"])
+        w.writerows(rows)
+    print(f"  比較CSV書出: {path} ({len(rows)}行)")
 
 
 def parse_entities(raw):
@@ -263,6 +339,58 @@ def run_llm_vllm(model_path, tp, data, label_block, max_tokens, max_model_len,
     return preds, fails, sec
 
 
+def run_llm_hf(model_path, data, label_block, max_tokens, lora=None, batch=8):
+    """transformers + 4bit(+LoRA) で単一GPU生成。vLLMのtp=2/OOM脆弱性を回避。
+    FT評価は訓練時と同じ 4bit base + LoRA アダプタ構成(30B/32B MoEでも単一GPUに載る)。"""
+    import torch
+    from transformers import (AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig)
+    keys = list(data)
+    tok = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+    if tok.pad_token is None:
+        tok.pad_token = tok.eos_token
+    tok.padding_side = "left"
+    bnb = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
+                             bnb_4bit_compute_dtype=torch.bfloat16,
+                             bnb_4bit_use_double_quant=True)
+    model = AutoModelForCausalLM.from_pretrained(
+        model_path, quantization_config=bnb, device_map={"": 0},
+        trust_remote_code=True, torch_dtype=torch.bfloat16)
+    if lora:
+        from peft import PeftModel
+        model = PeftModel.from_pretrained(model, lora)
+    model.eval()
+    prompts = []
+    for k in keys:
+        msg = [{"role": "user",
+                "content": PROMPT_TEMPLATE.format(labels=label_block, text=data[k]["text"])}]
+        try:
+            s = tok.apply_chat_template(msg, add_generation_prompt=True,
+                                        tokenize=False, enable_thinking=False)
+        except TypeError:
+            s = tok.apply_chat_template(msg, add_generation_prompt=True, tokenize=False)
+        prompts.append(s)
+    preds, fails = {}, 0
+    t0 = time.time()
+    for i in range(0, len(keys), batch):
+        bk, bp = keys[i:i + batch], prompts[i:i + batch]
+        enc = tok(bp, return_tensors="pt", padding=True, truncation=True,
+                  max_length=4096).to(model.device)
+        with torch.no_grad():
+            out = model.generate(**enc, max_new_tokens=max_tokens, do_sample=False,
+                                  pad_token_id=tok.pad_token_id)
+        for j, k in enumerate(bk):
+            txt = tok.decode(out[j][enc["input_ids"].shape[1]:], skip_special_tokens=True)
+            ents = parse_entities(txt)
+            if ents is None:
+                fails += 1
+                preds[k] = set()
+            else:
+                preds[k] = {(str(e["label"]), nfkc(e["text"])) for e in ents
+                            if nfkc(e["text"]) not in ("", "なし")}
+        print(f"  hf {min(i + batch, len(keys))}/{len(keys)}", flush=True)
+    return preds, fails, round(time.time() - t0, 1)
+
+
 def save_score(name, score, extra=None):
     os.makedirs(os.path.dirname(RESULT_JSON), exist_ok=True)
     allsc = json.load(open(RESULT_JSON)) if os.path.exists(RESULT_JSON) else {}
@@ -274,7 +402,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--model", default=None, help="LLMモデル(ollama名 or HFパス)。省略時はBERTのみ")
     p.add_argument("--name", default=None, help="結果保存名(省略時は--model)")
-    p.add_argument("--engine", default="ollama", choices=["ollama", "vllm"])
+    p.add_argument("--engine", default="ollama", choices=["ollama", "vllm", "hf"])
     p.add_argument("--hosts", default="http://127.0.0.1:11434")
     p.add_argument("--per_host", type=int, default=3)
     p.add_argument("--tp", type=int, default=1, help="vLLM tensor_parallel_size")
@@ -285,6 +413,10 @@ def main():
     p.add_argument("--enforce_eager", action="store_true",
                    help="vLLM: cudagraph無効(複数vLLM同時実行時のみ推奨)")
     p.add_argument("--lora", default=None, help="vLLM: QLoRAアダプタのパス(FT評価)")
+    p.add_argument("--dump_csv", default=None,
+                   help="比較CSV(原文/単語/黄金正解/予測ラベル/判定)の出力ディレクトリ")
+    p.add_argument("--only_test", action="store_true",
+                   help="test36のみ推論(CSV再生成の省時間用。scoreは保存しない)")
     args = p.parse_args()
 
     data, test_keys = load_alldocs()
@@ -301,33 +433,61 @@ def main():
                        {"scope": "test36", "note": "finetuned held-out, relaxed(type+surface)"})
             print(f"[BERT-{bt}] test36 relaxed F1={sc['f1']} "
                   f"(P={sc['precision']} R={sc['recall']})")
+            if args.dump_csv:
+                dump_comparison(bp, gold, data,
+                                os.path.join(args.dump_csv, f"BERT-{bt}_test36.csv"),
+                                test_keys)
 
     # LLM(指定時): 全183文で実行し、全183とテスト36の両方で集計
+    # --only_test 指定時は test36 のみ推論(CSV再生成用の省時間モード。scoreは保存しない)
     if args.model:
         name = args.name or args.model
         label_block = "\n".join(f"- {x}" for x in load_labels())
-        if args.engine == "vllm":
+        infer = {k: data[k] for k in test_keys} if args.only_test else data
+        if args.engine == "hf":
+            print(f"LLM(hf/4bit{'+LoRA' if args.lora else ''}) {args.model} を{len(infer)}文で実行...")
+            preds, fails, sec = run_llm_hf(args.model, infer, label_block,
+                                           args.max_new_tokens, lora=args.lora)
+        elif args.engine == "vllm":
             mode = "guided" if args.guided else ("prefill" if args.prefill else "natural")
-            print(f"LLM(vLLM/{mode}) {args.model} tp={args.tp} を全{len(data)}文で実行...")
-            preds, fails, sec = run_llm_vllm(args.model, args.tp, data, label_block,
+            print(f"LLM(vLLM/{mode}) {args.model} tp={args.tp} を{len(infer)}文で実行...")
+            preds, fails, sec = run_llm_vllm(args.model, args.tp, infer, label_block,
                                              args.max_new_tokens, args.max_model_len,
                                              guided=args.guided, prefill=args.prefill,
                                              enforce_eager=args.enforce_eager,
                                              lora=args.lora)
         else:
             hosts = [h.strip() for h in args.hosts.split(",") if h.strip()]
-            print(f"LLM(ollama) {args.model} を全{len(data)}文 / {len(hosts)}×{args.per_host}並列...")
-            preds, fails, sec = run_llm(args.model, hosts, args.per_host, data,
+            print(f"LLM(ollama) {args.model} を{len(infer)}文 / {len(hosts)}×{args.per_host}並列...")
+            preds, fails, sec = run_llm(args.model, hosts, args.per_host, infer,
                                         label_block, args.max_new_tokens)
-        sc_all = prf(preds, gold)                 # 全183
-        sc_test = prf(preds, gold, test_keys)     # テスト36(BERTと同一データ)
-        save_score(name, sc_all,
-                   {"scope": "all183", "engine": args.engine, "parse_fail": fails,
-                    "sec": sec, "test36_f1": sc_test["f1"],
-                    "test36": sc_test, "note": "zero-shot, relaxed(type+surface)"})
-        print(f"[{name}] all183 F1={sc_all['f1']} (P={sc_all['precision']} R={sc_all['recall']}) | "
-              f"test36 F1={sc_test['f1']} (P={sc_test['precision']} R={sc_test['recall']}) | "
-              f"parse失敗{fails} {sec}s")
+        safe = name.replace("/", "_").replace(":", "_")
+        if args.only_test:
+            sc_test = prf(preds, gold, test_keys)
+            save_score(name, sc_test,
+                       {"scope": "test36", "engine": args.engine, "parse_fail": fails,
+                        "sec": sec, "gold": "corrected(end+1)",
+                        "note": "test36-only, relaxed(type+surface)"})
+            print(f"[{name}] test36 F1={sc_test['f1']} "
+                  f"(P={sc_test['precision']} R={sc_test['recall']}) parse失敗{fails} {sec}s [保存]")
+            if args.dump_csv:
+                dump_comparison(preds, gold, data,
+                                os.path.join(args.dump_csv, f"{safe}_test36.csv"), test_keys)
+        else:
+            sc_all = prf(preds, gold)                 # 全183
+            sc_test = prf(preds, gold, test_keys)     # テスト36(BERTと同一データ)
+            save_score(name, sc_all,
+                       {"scope": "all183", "engine": args.engine, "parse_fail": fails,
+                        "sec": sec, "test36_f1": sc_test["f1"],
+                        "test36": sc_test, "note": "zero-shot, relaxed(type+surface)"})
+            print(f"[{name}] all183 F1={sc_all['f1']} (P={sc_all['precision']} R={sc_all['recall']}) | "
+                  f"test36 F1={sc_test['f1']} (P={sc_test['precision']} R={sc_test['recall']}) | "
+                  f"parse失敗{fails} {sec}s")
+            if args.dump_csv:
+                dump_comparison(preds, gold, data,
+                                os.path.join(args.dump_csv, f"{safe}_test36.csv"), test_keys)
+                dump_comparison(preds, gold, data,
+                                os.path.join(args.dump_csv, f"{safe}_all183.csv"))
 
 
 if __name__ == "__main__":

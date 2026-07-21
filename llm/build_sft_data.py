@@ -60,9 +60,11 @@ def build(split_key, label_block):
             text = "".join(chars)
             ents = []
             for e in rec["entities"]:
-                if e["end"] > e["start"]:  # 表層のあるentityのみ
+                # iCorpusのendは閉区間(最後の文字位置)。end+1で全表層を取る。
+                # end==startは1文字entity(丢弃しない)。
+                if e["end"] >= e["start"]:
                     ents.append({"label": e["type"],
-                                 "text": "".join(chars[e["start"]:e["end"]])})
+                                 "text": "".join(chars[e["start"]:e["end"] + 1])})
             gold = json.dumps(ents, ensure_ascii=False)
             examples.append({"messages": [
                 {"role": "user", "content": PROMPT_TEMPLATE.format(

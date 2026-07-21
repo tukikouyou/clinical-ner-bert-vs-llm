@@ -32,13 +32,14 @@ test-36 subset is reported for the head-to-head.
 
 | Method | Type | Test-36 F1 | Precision | Recall |
 |--------|------|:----------:|:---------:|:------:|
-| **UTH-BERT** (fine-tuned) | encoder, clinical pretraining | **0.725** | 0.794 | 0.667 |
-| **NICT-BERT** (fine-tuned) | encoder, Wikipedia pretraining | **0.703** | 0.763 | 0.651 |
-| Qwen3.6 35B | LLM, zero-shot | 0.292 | 0.415 | 0.225 |
-| Llama3.3 70B | LLM, zero-shot | 0.271 | 0.493 | 0.187 |
-| LLM-jp-4 32B | LLM, zero-shot (reasoning) | 0.094 | 0.351 | 0.054 |
-| GPT-OSS 120B | LLM, zero-shot (reasoning) | 0.052 | 0.584 | 0.027 |
-| SIP-jmed-LLM-3 13B | LLM, zero-shot (reasoning, **medical**) | 0.018 | 0.066 | 0.011 |
+| **UTH-BERT** (fine-tuned) | encoder, clinical pretraining | **0.752** | 0.871 | 0.661 |
+| **NICT-BERT** (fine-tuned) | encoder, Wikipedia pretraining | **0.742** | 0.861 | 0.651 |
+| Qwen3.6 35B | LLM, zero-shot | 0.288 | 0.446 | 0.212 |
+| Llama3.3 70B | LLM, zero-shot | 0.261 | 0.522 | 0.174 |
+| Qwen3-30B-A3B | LLM, zero-shot | 0.244 | 0.316 | 0.199 |
+| LLM-jp-4 32B | LLM, zero-shot (reasoning) | 0.068 | 0.324 | 0.038 |
+| GPT-OSS 120B | LLM, zero-shot (reasoning) | 0.040 | 0.606 | 0.021 |
+| SIP-jmed-LLM-3 13B | LLM, zero-shot (reasoning, **medical**) | 0.012 | 0.119 | 0.006 |
 
 Metric: relaxed entity match (type + surface containment, NFKC). BERT on the
 held-out 36-doc test split; LLMs run zero-shot (reasoning models with thinking
@@ -52,17 +53,19 @@ BERT (SFT: prompt → gold-JSON) and evaluated identically:
 
 | Method | Zero-shot F1 | **Fine-tuned F1** | Δ |
 |--------|:-----------:|:-----------------:|:--:|
-| **SIP-jmed-LLM-3 13B** (medical) | 0.018 *(last)* | **0.857** *(best)* | **+0.839** |
-| **LLM-jp-3.1 1.8B** | ≈0 | **0.792** | +0.79 |
-| UTH-BERT (fine-tuned encoder) | — | 0.725 | — |
-| NICT-BERT (fine-tuned encoder) | — | 0.703 | — |
-| LLM-jp-4 32B | 0.094 | *(training)* | |
-| Qwen / Llama / GPT-OSS | 0.27–0.29 / 0.05 | *(pending)* | |
+| **Llama-3.3 70B** | 0.261 | **0.822** *(best)* | +0.561 |
+| **SIP-jmed-LLM-3 13B** (medical, 13B only) | 0.012 *(zero-shot last)* | **0.819** | **+0.807** |
+| **Qwen3-30B-A3B** | 0.244 | **0.812** | +0.568 |
+| **LLM-jp-4 32B** | 0.068 | **0.811** | +0.743 |
+| **LLM-jp-3.1 1.8B** | ≈0 | **0.777** | +0.78 |
+| UTH-BERT (fine-tuned encoder) | — | 0.752 | — |
+| NICT-BERT (fine-tuned encoder) | — | 0.742 | — |
 
-**Fine-tuning reverses the entire ranking.** Zero-shot, BERT beats every LLM and
-the medical model is *worst*; after QLoRA, LLMs beat BERT and the medical model
-is *best* (0.857 vs. BERT's 0.725). Even a tiny 1.8B model (≈0 zero-shot) reaches
-0.792. The zero-shot gap was about **task/format adaptation, not capability** —
+**Fine-tuning reverses the entire ranking.** Zero-shot, BERT (0.752) beats every LLM and
+the medical model is *worst* (0.012); after QLoRA, **all 5 LLMs (0.777–0.822) beat BERT**.
+Even a tiny 1.8B model (≈0 zero-shot) reaches 0.777. Most striking: **the 13B medical
+SIP-jmed (0.819) essentially ties the 70B general Llama-3.3 (0.822)** — domain pretraining
+lets 13B match 70B. The zero-shot gap was about **task/format adaptation, not capability** —
 once the model learns to emit the structured output, the LLM's richer
 representation (and the medical model's domain knowledge) surpasses BERT. Domain
 pretraining that was a *liability* zero-shot (a reasoning model that could not
@@ -80,13 +83,13 @@ See [`llm/qlora_train.py`](llm/qlora_train.py) and [`llm/build_sft_data.py`](llm
 - **LLMs are recall-poor.** The corpus annotation is exhaustive ("網羅的");
   LLMs do not extract that densely and struggle to apply 100+ unfamiliar label
   names (R ≈ 0.19–0.23 for the best LLMs, far below BERT's ~0.66).
-- **The medical-specialized model scored *worst***. SIP-jmed-LLM-3 (13B, Japanese
-  clinical) landed at 0.018 — last among all LLMs — because it is a
+- **The medical-specialized model scored *worst* zero-shot***. SIP-jmed-LLM-3 (13B,
+  Japanese clinical) landed at 0.012 — last among all LLMs — because it is a
   *reasoning-tuned* model that rambles indefinitely and fails to emit parseable
-  JSON for **75% of inputs even with a 12k-token budget**. Domain knowledge does
-  not help when the model cannot produce structured output.
+  JSON for **~74% of inputs**. Domain knowledge does not help when the model cannot
+  produce structured output. (Yet after fine-tuning it becomes tied-for-best.)
 - **"Thinking"/reasoning LLMs are a poor fit for structured extraction** and
-  cluster at the bottom (SIP-jmed 0.018, GPT-OSS 0.052, LLM-jp-4 0.094).
+  cluster at the bottom (SIP-jmed 0.012, GPT-OSS 0.040, LLM-jp-4 0.068).
   Forcing immediate JSON (guided decoding) discards their reasoning and degrades
   output (e.g. LLM-jp-4 drops to 0.049); letting them reason freely overruns the
   token budget before the JSON. Models that emit an answer directly (Qwen/Llama

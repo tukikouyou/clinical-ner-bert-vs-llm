@@ -16,7 +16,7 @@ find "$REPO/bert/lib" -name __pycache__ -type d -exec rm -rf {} + 2>/dev/null ||
 
 echo "== LLM スクリプト =="
 cp "$WORK/llm/"{llm_extract.py,llm_extract_vllm.py,llm_extract_ollama.py,\
-testset_eval.py,qlora_train.py,build_sft_data.py} "$REPO/llm/" 2>/dev/null || true
+testset_eval.py,qlora_train.py,build_sft_data.py,merge_lora.py} "$REPO/llm/" 2>/dev/null || true
 
 echo "== 集計指標(数値のみ・データ無し) =="
 cp "$WORK/llm/results/ehr/testset_scores.json" "$REPO/results/testset_scores.json" 2>/dev/null || true
