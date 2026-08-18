@@ -2,8 +2,8 @@
 
 **中文** | [日本語](RESULTS.ja.md)
 
-日语临床 NER：微调 BERT vs. 零样本/微调 LLM。截至 2026-07-16 的完整记录。
-（部分微调模型仍在训练，见表内标注。）
+日语临床 NER：微调 BERT vs. 零样本/微调 LLM。截至 2026-08-18 的完整记录。
+（含新增医学模型 Med42-70B / MedGemma-27B 的零样本 + 微调结果。）
 
 ---
 
@@ -56,7 +56,7 @@ JSON 数组 `[{"label":…,"text":…}]`。temperature=0（贪婪）。
 | 引擎 | 模型 | 关键设置 |
 |------|------|---------|
 | ollama | qwen3.6:35b, llama3.3:70b, gpt-oss:120b | `think:false`（关思考）, `num_ctx=4096`, `num_predict=1024`；qwen/llama 用 **4-GPU 数据并行**（每卡一个 ollama 实例，端口 11434-11437，请求轮询），gpt-oss 单实例 4 卡 |
-| vLLM | llm-jp-4-32b, SIP-jmed-13b | 推理模型无可靠关思考开关；试了 ①guided JSON（schema+minLength）②预填 `<think></think>` ③自然推理（max_tokens 最大 12000）。报告值取最好的自然推理版 |
+| vLLM | llm-jp-4-32b, SIP-jmed-13b, **Med42-70B**, **MedGemma-27B** | 推理模型无可靠关思考开关；试了 ①guided JSON（schema+minLength）②预填 `<think></think>` ③自然推理（max_tokens 最大 12000）。报告值取最好的自然推理版。Med42/MedGemma 权重先从移动硬盘拷到本地 NVMe（`/opt/llm/models/`）再加载（FUSE/ntfs 扛不住 vLLM 多 worker 并发读） |
 
 **踩坑**：qwen3.6/llm-jp-4/gpt-oss/SIP-jmed 都是「思考型」模型；关不掉思考时会一直推理、
 在 max_tokens 内吐不出 JSON（parse 失败率见结果表）。
@@ -64,7 +64,7 @@ JSON 数组 `[{"label":…,"text":…}]`。temperature=0（贪婪）。
 ### 2.3 微调 LLM（QLoRA）— `llm/qlora_train.py` + `llm/build_sft_data.py`
 
 **SFT 数据**：146 篇训练文档 → **1672 训练 / 88 验证** 对（`prompt → gold JSON`）。
-gold 用字符级原始表层，和 BERT 训练同源。平均每例 29.4 个实体。
+gold 用字符级原始表层，和 BERT 训练同源。平均每例 33.2 个实体（`end+1` 修正后）。
 
 **QLoRA 配置**：
 - 量化：4-bit **NF4**，double quant，compute dtype bf16
@@ -83,7 +83,9 @@ gold 用字符级原始表层，和 BERT 训练同源。平均每例 29.4 个实
 - **dense 模型**（SIP-jmed-13B、1.8B）：vLLM tp=1 + `--lora`（Llama 架构支持 LoRA）
 - **MoE 模型**（Qwen3-30B、LLM-jp-4-32B，架构=Qwen3-MoE）：vLLM **不支持 MoE 的 LoRA**，
   故先把 LoRA **合并进 base**（`merge_lora.py`）再用 **vLLM V0 引擎 tp=2** 服务
-- **Llama-3.3-70B-ft**：dense，vLLM **V0 tp=4** + `--lora`（4 卡放 bf16 70B）
+- **Llama-3.3-70B-ft / Med42-70B-ft**：dense，vLLM **V0 tp=4** + `--lora`（4 卡放 bf16 70B）
+- **MedGemma-27B-ft**：dense（Gemma 架构，vLLM 支持 LoRA），vLLM **V0 tp=2** + `--lora`
+- **Med42-70B 微调**：70B 单卡 `logits.float()` 会 OOM → 2 卡模型并行（`--device_map auto`）
 - **零样本**：ollama（qwen3.6/llama3.3/gpt-oss，`think:false`）、vLLM V0 tp=2（MoE）
 - 关键坑：vLLM **V1 引擎 tp≥2 有 triton 缓存竞争**（`FileExistsError`）→ 用 **V0 引擎**（`VLLM_USE_V1=0`）+ `enforce_eager` 规避
 
@@ -106,18 +108,25 @@ gold 用字符级原始表层，和 BERT 训练同源。平均每例 29.4 个实
 |------|:--:|:---------:|:------:|:--------:|
 | **UTH-BERT**（微调编码器） | **0.752** | 0.871 | 0.661 | — |
 | **NICT-BERT**（微调编码器） | **0.742** | 0.861 | 0.651 | — |
+| MedGemma-27B（医学） | 0.319 | 0.457 | 0.245 | 0 |
 | Qwen3.6-35B (ollama) | 0.288 | 0.446 | 0.212 | 0 |
 | Llama3.3-70B (ollama) | 0.261 | 0.522 | 0.174 | 0 |
 | Qwen3-30B-A3B (vLLM) | 0.244 | 0.316 | 0.199 | 1 |
+| Med42-70B（医学） | 0.136 | 0.300 | 0.088 | 11 |
 | LLM-jp-4-32B | 0.068 | 0.324 | 0.038 | 66% |
 | GPT-OSS-120B | 0.040 | 0.606 | 0.021 | 59% |
 | SIP-jmed-13B（医学） | 0.012 | 0.119 | 0.006 | 74% |
+
+> 医学模型的双面性：instruct 型 **MedGemma-27B 零样本最高（0.319）**，但同为医学的 **SIP-jmed
+> 零样本最低（0.012）**——差别在于会不会按指定格式输出，不在领域知识本身。
 
 ### QLoRA 微调后（全部反超 BERT）
 
 | 方法 | 零样本 F1 | **微调 F1** | P | R | parse失败 |
 |------|:--------:|:----------:|:---:|:---:|:--------:|
-| **Llama-3.3-70B** | 0.261 | **0.822（最高）** | 0.921 | 0.743 | 0 |
+| **Med42-70B**（医学·70B） | 0.136 | **0.825（最高）** | 0.925 | 0.745 | 0 |
+| **Llama-3.3-70B** | 0.261 | **0.822** | 0.921 | 0.743 | 0 |
+| **MedGemma-27B**（医学·27B） | 0.319 | **0.822** | 0.917 | 0.746 | 0 |
 | **SIP-jmed-13B**（医学·仅13B） | 0.012（零样本最差） | **0.819** | 0.918 | 0.740 | 0 |
 | **Qwen3-30B-A3B** | 0.244 | **0.812** | 0.910 | 0.733 | 0 |
 | **LLM-jp-4-32B** | 0.068 | **0.811** | 0.902 | 0.737 | 0 |
@@ -125,11 +134,12 @@ gold 用字符级原始表层，和 BERT 训练同源。平均每例 29.4 个实
 | UTH-BERT | — | 0.752 | — | — | — |
 | NICT-BERT | — | 0.742 | — | — | — |
 
-**核心结论（修正数据上依然成立）**：微调让排名完全反转。零样本 BERT（0.752）≫ 所有 LLM、
-医学模型最差（0.012）；QLoRA 后**全部 5 个微调 LLM（0.777–0.822）＞ BERT（0.752）**。
+**核心结论（修正数据上依然成立）**：微调让排名完全反转。零样本 BERT（0.752）≫ 所有 LLM；
+QLoRA 后**全部 7 个微调 LLM（0.777–0.825）＞ BERT（0.752）**。
 零样本差距是「格式/任务适配」问题，不是「能力」问题。
-**最亮眼**：13B 的医学 SIP-jmed（0.819）几乎追平 70B 通用 Llama-3.3（0.822）——
-领域预训练让 13B 抵得上 70B。
+**最亮眼**：微调后 **Top-4 里有 3 个是医学模型**——13B 的 SIP-jmed（0.819）、27B 的
+MedGemma（0.822）基本追平 70B 通用 Llama-3.3（0.822），最高是 70B 医学 Med42（0.825）。
+领域预训练让中小模型抵得上大模型。GPT-OSS-120B 因 MXFP4 量化 + Ampere 架构不兼容**未做微调**（详见 [WORKFLOW.md](WORKFLOW.md)）。
 
 ---
 
@@ -141,7 +151,7 @@ gold 用字符级原始表层，和 BERT 训练同源。平均每例 29.4 个实
 | BERT 各标签 strict/soft P/R/F1 + 训练指标 | `code/results/NER/{UTH,NICT}/NER/{metrics,NER_strict_RESULT,NER_soft_RESULT}_0.json` |
 | BERT loss 曲线 | `code/results/NER/{UTH,NICT}/loss_NER_0.json` |
 | BERT 模型权重 | `code/models/NER/{UTH,NICT}/NER/ner_model_0.pt` |
-| **LoRA 适配器**（微调产物） | `llm/ft/{llmjp-1.8b-3ep, sip-jmed-13b, llmjp-4-32b}/adapter_model.safetensors` |
+| **LoRA 适配器**（微调产物） | `llm/ft/{llmjp-1.8b-3ep, sip-jmed-13b, llmjp-4-32b, qwen3-30b-a3b, llama-3.3-70b}/`；医学新模型在 `/opt/llm/ft-local/{med42-70b, medgemma-27b}/adapter_model.safetensors`（均 627 步 = 3 epoch） |
 | SFT 训练数据 | `llm/sft_data/{sft_train,sft_val}.jsonl` |
 | 真实病历抽取（BERT） | `code/results/predict/{UTH,NICT}/entities.csv` + `stats.json` |
 | 真实病历抽取（LLM，全183篇 gold 评测的产物） | `llm/results/ehr/{qwen35b,llama70b}/entities.csv` |

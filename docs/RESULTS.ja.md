@@ -3,7 +3,7 @@
 [中文](RESULTS.md) | **日本語**
 
 日本語臨床NER：ファインチューニングBERT vs. ゼロショット/ファインチューニングLLM。
-2026-07-16 時点の完全な記録。（一部のFTモデルは学習中。表内に注記。）
+2026-08-18 時点の完全な記録。（新規医療モデル Med42-70B / MedGemma-27B のゼロショット + ファインチューニング結果を含む。）
 
 ---
 
@@ -56,7 +56,7 @@ JSON配列 `[{"label":…,"text":…}]` のみを要求。temperature=0（貪欲
 | エンジン | モデル | 主要設定 |
 |---------|--------|---------|
 | ollama | qwen3.6:35b, llama3.3:70b, gpt-oss:120b | `think:false`（思考無効）, `num_ctx=4096`, `num_predict=1024`；qwen/llamaは **4-GPUデータ並列**（GPU毎に1インスタンス、port 11434-11437、ラウンドロビン）、gpt-ossは単一インスタンス4GPU |
-| vLLM | llm-jp-4-32b, SIP-jmed-13b | 推論モデルには思考を確実に切る手段が無く、①guided JSON(schema+minLength) ②`<think></think>`プリフィル ③自然推論(max_tokens最大12000) を試行。報告値は最良の自然推論版 |
+| vLLM | llm-jp-4-32b, SIP-jmed-13b, **Med42-70B**, **MedGemma-27B** | 推論モデルには思考を確実に切る手段が無く、①guided JSON(schema+minLength) ②`<think></think>`プリフィル ③自然推論(max_tokens最大12000) を試行。報告値は最良の自然推論版。Med42/MedGemmaの重みは移動HDDからローカルNVMe(`/opt/llm/models/`)へコピーしてからロード(FUSE/ntfsはvLLMマルチワーカーの並列読込に耐えない) |
 
 **落とし穴**：qwen3.6/llm-jp-4/gpt-oss/SIP-jmedはいずれも「思考型」モデル。思考を切れない場合、
 延々と推論しmax_tokens内にJSONを出せない（パース失敗率は結果表を参照）。
@@ -64,7 +64,7 @@ JSON配列 `[{"label":…,"text":…}]` のみを要求。temperature=0（貪欲
 ### 2.3 ファインチューニングLLM（QLoRA）— `llm/qlora_train.py` + `llm/build_sft_data.py`
 
 **SFTデータ**：学習146文書 → **1672 学習 / 88 検証** ペア（`プロンプト → gold JSON`）。
-goldは文字レベルの素の表層で、BERT学習と同一ソース。1例あたり平均29.4エンティティ。
+goldは文字レベルの素の表層で、BERT学習と同一ソース。1例あたり平均33.2エンティティ（`end+1`修正後）。
 
 **QLoRA設定**：
 - 量子化：4-bit **NF4**、double quant、compute dtype bf16
@@ -83,7 +83,9 @@ goldは文字レベルの素の表層で、BERT学習と同一ソース。1例�
 - **denseモデル**（SIP-jmed-13B、1.8B）：vLLM tp=1 + `--lora`（LlamaアーキはLoRA対応）
 - **MoEモデル**（Qwen3-30B、LLM-jp-4-32B＝Qwen3-MoE）：vLLMは**MoEのLoRA未対応**のため、
   LoRAを**baseにマージ**（`merge_lora.py`）してから **vLLM V0エンジン tp=2** で配信
-- **Llama-3.3-70B-ft**：dense、vLLM **V0 tp=4** + `--lora`（4GPUにbf16 70B）
+- **Llama-3.3-70B-ft / Med42-70B-ft**：dense、vLLM **V0 tp=4** + `--lora`（4GPUにbf16 70B）
+- **MedGemma-27B-ft**：dense（Gemmaアーキ、vLLMはLoRA対応）、vLLM **V0 tp=2** + `--lora`
+- **Med42-70B ファインチューニング**：70Bは単一GPUで `logits.float()` がOOM → 2GPUモデル並列（`--device_map auto`）
 - **ゼロショット**：ollama（qwen3.6/llama3.3/gpt-oss、`think:false`）、vLLM V0 tp=2（MoE）
 - 落とし穴：vLLM **V1エンジンのtp≥2はtritonキャッシュ競合**（`FileExistsError`）→ **V0エンジン**（`VLLM_USE_V1=0`）+ `enforce_eager` で回避
 
@@ -107,18 +109,25 @@ goldは文字レベルの素の表層で、BERT学習と同一ソース。1例�
 |------|:--:|:---------:|:------:|:---------:|
 | **UTH-BERT**（FT済みエンコーダ） | **0.752** | 0.871 | 0.661 | — |
 | **NICT-BERT**（FT済みエンコーダ） | **0.742** | 0.861 | 0.651 | — |
+| MedGemma-27B（医療） | 0.319 | 0.457 | 0.245 | 0 |
 | Qwen3.6-35B (ollama) | 0.288 | 0.446 | 0.212 | 0 |
 | Llama3.3-70B (ollama) | 0.261 | 0.522 | 0.174 | 0 |
 | Qwen3-30B-A3B (vLLM) | 0.244 | 0.316 | 0.199 | 1 |
+| Med42-70B（医療） | 0.136 | 0.300 | 0.088 | 11 |
 | LLM-jp-4-32B | 0.068 | 0.324 | 0.038 | 66% |
 | GPT-OSS-120B | 0.040 | 0.606 | 0.021 | 59% |
 | SIP-jmed-13B（医療） | 0.012 | 0.119 | 0.006 | 74% |
+
+> 医療モデルの二面性：instruct型の **MedGemma-27B がゼロショット最高（0.319）**、
+> しかし同じ医療の **SIP-jmed はゼロショット最下位（0.012）**——差は指定形式で出力できるか否かであり、ドメイン知識そのものではない。
 
 ### QLoRAファインチューニング後（全てBERTを逆転）
 
 | 手法 | ゼロショット F1 | **FT後 F1** | P | R | パース失敗 |
 |------|:-----------:|:----------:|:---:|:---:|:--------:|
-| **Llama-3.3-70B** | 0.261 | **0.822（最高）** | 0.921 | 0.743 | 0 |
+| **Med42-70B**（医療・70B） | 0.136 | **0.825（最高）** | 0.925 | 0.745 | 0 |
+| **Llama-3.3-70B** | 0.261 | **0.822** | 0.921 | 0.743 | 0 |
+| **MedGemma-27B**（医療・27B） | 0.319 | **0.822** | 0.917 | 0.746 | 0 |
 | **SIP-jmed-13B**（医療・13Bのみ） | 0.012（ゼロショット最下位） | **0.819** | 0.918 | 0.740 | 0 |
 | **Qwen3-30B-A3B** | 0.244 | **0.812** | 0.910 | 0.733 | 0 |
 | **LLM-jp-4-32B** | 0.068 | **0.811** | 0.902 | 0.737 | 0 |
@@ -127,9 +136,11 @@ goldは文字レベルの素の表層で、BERT学習と同一ソース。1例�
 | NICT-BERT | — | 0.742 | — | — | — |
 
 **主要な結論（修正データでも成立）**：ファインチューニングで順位が完全に逆転する。ゼロショットでは
-BERT（0.752）≫ 全LLMで医療モデルが最下位（0.012）；QLoRA後は**5つのFT-LLM全て（0.777–0.822）＞ BERT（0.752）**。
+BERT（0.752）≫ 全LLM；QLoRA後は**7つのFT-LLM全て（0.777–0.825）＞ BERT（0.752）**。
 ゼロショットの差は「形式/タスク適応」の問題であり、「能力」の問題ではない。
-**最も注目**：13BのSIP-jmed（0.819）が70BのLlama-3.3（0.822）にほぼ並ぶ——ドメイン事前学習で13Bが70Bに匹敵。
+**最も注目**：ファインチューニング後の **Top-4のうち3つが医療モデル**——13BのSIP-jmed（0.819）、
+27BのMedGemma（0.822）が70B汎用のLlama-3.3（0.822）にほぼ並び、最高は70B医療のMed42（0.825）。
+ドメイン事前学習により中小モデルが大モデルに匹敵する。GPT-OSS-120BはMXFP4量子化 + Ampereアーキ非互換のため**ファインチューニング未実施**（詳細は [WORKFLOW.md](WORKFLOW.md)）。
 
 ---
 
@@ -141,7 +152,7 @@ BERT（0.752）≫ 全LLMで医療モデルが最下位（0.012）；QLoRA後は
 | BERT ラベル別 strict/soft P/R/F1 + 学習指標 | `code/results/NER/{UTH,NICT}/NER/{metrics,NER_strict_RESULT,NER_soft_RESULT}_0.json` |
 | BERT loss曲線 | `code/results/NER/{UTH,NICT}/loss_NER_0.json` |
 | BERT モデル重み | `code/models/NER/{UTH,NICT}/NER/ner_model_0.pt` |
-| **LoRAアダプタ**（FT成果物） | `llm/ft/{llmjp-1.8b-3ep, sip-jmed-13b, llmjp-4-32b}/adapter_model.safetensors` |
+| **LoRAアダプタ**（FT成果物） | `llm/ft/{llmjp-1.8b-3ep, sip-jmed-13b, llmjp-4-32b, qwen3-30b-a3b, llama-3.3-70b}/`；新規医療モデルは `/opt/llm/ft-local/{med42-70b, medgemma-27b}/adapter_model.safetensors`（いずれも627ステップ = 3 epoch） |
 | SFT学習データ | `llm/sft_data/{sft_train,sft_val}.jsonl` |
 | 実カルテ抽出（BERT） | `code/results/predict/{UTH,NICT}/entities.csv` + `stats.json` |
 | 実カルテ抽出（LLM、全183文書gold評価の成果物） | `llm/results/ehr/{qwen35b,llama70b}/entities.csv` |
