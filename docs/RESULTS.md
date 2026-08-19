@@ -5,6 +5,17 @@
 日语临床 NER：微调 BERT vs. 零样本/微调 LLM。截至 2026-08-18 的完整记录。
 （含新增医学模型 Med42-70B / MedGemma-27B 的零样本 + 微调结果。）
 
+> **先行研究与本项目定位**：临床 NER 中「BERT vs LLM」「zero-shot vs fine-tuning」的比较已有先例，
+> 不宜声称"首次比较"。
+> - **Shimizu et al. 2025**（JMIR Med Inform 13:e76773）：日语临床**疾患名**识别，fine-tuned Llama-3.1 > BERT，
+>   但仅比通用日语 BERT，作者自陈未含医疗领域预训练 BERT（limitation）。
+> - **Lu et al. 2024**（AMIA）：RareDis 上比较通用/医疗 LLM（Meditron/Llama2-MedTuned/ChatGPT）与 BioClinicalBERT，
+>   覆盖 zero/few-shot、RAG、instruction-FT。
+> - **Chen et al. 2023**（arXiv:2305.16326）：BioNLP benchmark，GPT/LLaMA/PMC-LLaMA × zero/few/FT vs domain BERT/BART，含 NER。
+>
+> 本项目定位（比上述更完整）：在**同一 iCorpus + 113 细粒度标签 + 同一评价指标**下，系统比较
+> **通用/医疗的 BERT（UTH/NICT）与 LLM（1.8B–70B, 通用+医疗）× zero-shot/QLoRA**，并做**逐标签误差分析**。
+
 ---
 
 ## 1. 任务设置
@@ -115,6 +126,7 @@ gold 用字符级原始表层，和 BERT 训练同源。平均每例 33.2 个实
 | Med42-70B（医学） | 0.136 | 0.300 | 0.088 | 11 |
 | LLM-jp-4-32B | 0.068 | 0.324 | 0.038 | 66% |
 | GPT-OSS-120B | 0.040 | 0.606 | 0.021 | 59% |
+| LLM-jp-1.8B | 0.026 | 0.054 | 0.017 | 3 |
 | SIP-jmed-13B（医学） | 0.012 | 0.119 | 0.006 | 74% |
 
 > 医学模型的双面性：instruct 型 **MedGemma-27B 零样本最高（0.319）**，但同为医学的 **SIP-jmed
@@ -130,7 +142,7 @@ gold 用字符级原始表层，和 BERT 训练同源。平均每例 33.2 个实
 | **SIP-jmed-13B**（医学·仅13B） | 0.012（零样本最差） | **0.819** | 0.918 | 0.740 | 0 |
 | **Qwen3-30B-A3B** | 0.244 | **0.812** | 0.910 | 0.733 | 0 |
 | **LLM-jp-4-32B** | 0.068 | **0.811** | 0.902 | 0.737 | 0 |
-| **LLM-jp-1.8B**（3 epoch） | ≈0 | **0.777** | 0.880 | 0.695 | 2 |
+| **LLM-jp-1.8B**（3 epoch） | 0.026 | **0.777** | 0.880 | 0.695 | 2 |
 | UTH-BERT | — | 0.752 | — | — | — |
 | NICT-BERT | — | 0.742 | — | — | — |
 
@@ -140,6 +152,46 @@ QLoRA 后**全部 7 个微调 LLM（0.777–0.825）＞ BERT（0.752）**。
 **最亮眼**：微调后 **Top-4 里有 3 个是医学模型**——13B 的 SIP-jmed（0.819）、27B 的
 MedGemma（0.822）基本追平 70B 通用 Llama-3.3（0.822），最高是 70B 医学 Med42（0.825）。
 领域预训练让中小模型抵得上大模型。GPT-OSS-120B 因 MXFP4 量化 + Ampere 架构不兼容**未做微调**（详见 [WORKFLOW.md](WORKFLOW.md)）。
+
+### 3.5 逐标签分析（タグ別）
+
+对**全部 7 个微调模型 + 2 个 BERT** 都做了逐标签分析（各模型独立 CSV：`scratchpad/per_tag/per_tag_<model>.csv`；
+跨模型 F1 矩阵：`scratchpad/per_tag_allmodels.csv`）。下表以最佳的 **med42-70b-ft** 为代表
+（全 102 标签明细：`scratchpad/per_tag_med42ft.csv`）。数据来源：`compare_csv`（每实体 gold/预测/判定：
+正解/ラベル誤り/未抽出/誤抽出）→ 聚合 P/R/F1。
+
+**跨模型一致性（关键）**：苦手标签模式在全部模型高度一致——各模型 top-5 苦手都是同一批
+「-others」主体类 + detail，第一大混同都是「-others→-patient」。macro-F1（support≥20 等权平均）：
+7 个 FT 模型 **0.72–0.77**（彼此≤0.02），BERT-UTH 0.73、NICT 0.71。
+> 注：按等权 macro，LLM-jp-1.8b（0.72）略**低于** BERT-UTH（0.73）——小模型吃亏在稀有标签；
+> 但论文主指标是**按频次加权的整体 F1**，那里 1.8b（0.777）＞ BERT（0.752）。两者不矛盾。
+
+**总体**：精度普遍高（P 0.88–0.98），**瓶颈是召回**（R 0.67–0.86）——模型保守，极少误报，主要是"漏检"。
+
+**① 高频标签(vs BERT)——提升集中在临床关键类别**
+| 标签 | 件数 | med42-ft F1 | BERT F1 | Δ |
+|---|--:|--:|--:|--:|
+| state-patient（症状・所见） | 2318 | 0.85 | 0.72 | +0.13 |
+| clinical_test（检查） | 587 | 0.85 | 0.71 | +0.14 |
+| treatment（治疗） | 614 | 0.78 | 0.71 | +0.07 |
+| drug（药剂） | 283 | 0.80 | 0.70 | +0.10 |
+| PN-Negative-patient（否定） | 276 | 0.79 | 0.86 | **−0.07**（唯一 BERT 更强） |
+
+**② 苦手标签（support≥20, F1 低）**
+| 标签 | 件数 | F1 | BERT | 主因 |
+|---|--:|--:|--:|---|
+| value-others | 63 | 0.12 | 0.07 | 漏检(R=0.08) |
+| state-others | 155 | 0.48 | 0.41 | 漏检(FN=104) |
+| device | 75 | 0.65 | 0.46 | — |
+| time_span | 59 | 0.58 | 0.54 | — |
+
+（变化类 quantity/quality_progress 也弱，F1 0.60–0.74）
+
+**③ 误差机制**：最大错误是 **「-others → -patient」主体混同**（state-others→patient 40 次、value-others→patient 31…）
+——模型分不清"患者 vs 家族/他者"，一律判患者。其次是语义近邻混淆（state↔item、tissue↔body、clinical_test↔item）。
+
+**④ 临床意义**：BERT 与微调 LLM 的约 7% 差距**几乎全来自召回**，体现为症状/检查/薬剤等临床关键类别的漏检减少；
+两者精度都已很高。苦手标签（-others 主体/变化类/否定）在 BERT 上同样低，属**本质难标签**。
 
 ---
 
