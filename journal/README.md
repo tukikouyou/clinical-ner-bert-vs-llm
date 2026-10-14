@@ -14,7 +14,7 @@ distributed for research use by its authors and is **not** included here.
 | `code/metrics_v2.py` | deterministic greedy matching, relaxed / strict / min-length / merged-subject / macro F1, document-level bootstrap CIs, paired differences |
 | `code/qlora_train_v2.py` | QLoRA fine-tuning (identical hyperparameters, `--seed`, step checkpoints) |
 | `code/extra_stats.py` | truncation analysis, per-label scores, frequency correlation |
-| `code/make_tables.py`, `code/annotate_tables.py`, `code/plots.py` | tables (`stats/tables.md`, `stats/tables_annotated.md`) and figures (`paper/figs/`) |
+| `code/make_tables.py`, `code/annotate_tables.py`, `code/readme_tables.py`, `code/plots.py` | tables (`stats/tables.md`; with glossary and commentary `stats/tables_annotated.md`; English `stats/tables_en.md`) and figures (`paper/figs/`) |
 | `code/run_queue2.sh`, `code/run_train_queue2.sh`, `code/chain_next.sh`, `code/stage.sh` | job queues used on the 4×A6000 workstation |
 | `runs/<run>/` | per-run `meta.json` (settings, parse failures, truncation), `preds.json` (parsed (label, text) pairs per sentence), `raw.jsonl` (raw model output per sentence) |
 | `stats/<run>.json` | all metrics for one run; `stats/pairwise_*.json` paired bootstrap differences; `stats/extra.json` |
@@ -25,6 +25,5 @@ Run names: `<model>-zs` (prompt only), `<model>-zs-guided` (constrained decoding
 (seeds 1, 2), `<model>-ft-4k` (4,096-token generation budget), `*-guided-ws` (constrained decoding
 with whitespace allowed; supplementary).
 
-Note: in this public repository `runs/<run>/` contains only `meta.json`; `preds.json` and
-`raw.jsonl` (model outputs, which contain entity surfaces from the corpus) are withheld under the
-corpus licence and are available from the authors on request.
+Note: `raw.jsonl` and `preds.json` contain entity surfaces, i.e. short substrings of the test
+sentences, but not the sentences themselves.
