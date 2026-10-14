@@ -21,6 +21,65 @@ The project has three goals:
 
 ---
 
+## Journal version (October 2026): extended experiments
+
+The LAU-16 study below was extended for a journal submission (MDPI *Machine Learning and Knowledge
+Extraction*, Special Issue "Language Acquisition and Understanding"). Everything for the extension is
+under [`journal/`](journal/) (code, per-run metadata, all statistics, figures); the full comparison
+tables are in [`journal/stats/tables.md`](journal/stats/tables.md) and, with a glossary and
+commentary, [`journal/stats/tables_annotated.md`](journal/stats/tables_annotated.md).
+
+What was added: a deterministic matching procedure (the earlier greedy matching depended on
+Python's hash seed), **strict (exact-span) F1** next to the relaxed metric, document-level bootstrap
+confidence intervals and paired tests, **three QLoRA seeds per model**, the two general-purpose
+**base models** of SIP-jmed-13B (LLM-jp-3.1-13B) and MedGemma-27B (Gemma-3-27B), **JSON-schema
+constrained decoding** and a two-pass "think, then constrain" procedure for the reasoning models, a
+corrected JSON parser, and two reference models (Qwen3.6-35B, GPT-OSS-120B).
+
+**Fine-tuned (QLoRA), test-36, mean ± SD over seeds 42/1/2**
+
+| Model | Type | Relaxed F1 | Strict F1 |
+|---|---|:---:|:---:|
+| Med42-70B | medical | 0.827 ± 0.002 | 0.798 ± 0.004 |
+| Llama-3.3-70B | general | 0.827 ± 0.003 | 0.798 ± 0.006 |
+| MedGemma-27B | medical | 0.827 ± 0.003 | 0.795 ± 0.004 |
+| Gemma-3-27B (base of MedGemma) | general | 0.827 ± 0.002 | 0.796 ± 0.002 |
+| SIP-jmed-13B | medical | 0.819 ± 0.002 | 0.785 ± 0.002 |
+| LLM-jp-3.1-13B (base of SIP-jmed) | general | 0.817 ± 0.001 | 0.780 ± 0.002 |
+| LLM-jp-4-32B (MoE) | general | 0.817 ± 0.004 | 0.779 ± 0.006 |
+| Qwen3-30B-A3B (MoE) | general | 0.815 ± 0.002 | 0.779 ± 0.004 |
+| LLM-jp-1.8B | general | 0.778 ± 0.002 | 0.731 ± 0.002 |
+| UTH-BERT (fine-tuned) | medical | 0.751 | 0.688 |
+| NICT-BERT (fine-tuned) | general | 0.741 | 0.710 |
+
+**Zero-shot, relaxed F1 (test-36)**: prompt only → with JSON-schema constrained decoding:
+MedGemma-27B 0.320 → 0.316, Llama-3.3-70B 0.276 → 0.265, Qwen3-30B-A3B 0.235 → 0.224,
+Med42-70B 0.136 → 0.146, LLM-jp-1.8B 0.027 → 0.019; reasoning models LLM-jp-4-32B 0.092 (old parser)
+/ 0.150 (fixed parser) / 0.000 (whole-output constraint) / 0.172 (think, then constrain),
+SIP-jmed-13B 0.010 / 0.025 / 0.015 / 0.048. Reference: Qwen3.6-35B 0.300, GPT-OSS-120B 0.265.
+
+**Medical vs. its own base, same seed (paired bootstrap, relaxed F1, medical − base)**:
+13B +0.004 / +0.002 / +0.000, 27B −0.005 / +0.004 / +0.001, 70B +0.002 / −0.001 / −0.001;
+every 95% interval includes zero.
+
+Corrected conclusions (they supersede the "Takeaways" of the LAU version further down):
+
+- The zero-shot gap is **not** an output-format problem: constrained decoding removes all parse
+  failures and out-of-schema labels but changes F1 by at most 0.02, and the best zero-shot score of a
+  reasoning model with free reasoning and a constrained answer is 0.17. The 66–74 % "parse failures"
+  of the reasoning models were mostly an artifact of the old parser (first `[` … last `]`).
+- After fine-tuning, every model with ≥ 13B parameters is equivalent (seed SD ≤ 0.006, larger than
+  the differences between models); the single-seed ranking of the LAU version was noise.
+- **Medical-domain pretraining has no detectable effect** once the base model is held fixed and the
+  models are fine-tuned on the same data (three pairs, three seeds each). The earlier suggestion that
+  medical pretraining lets 13B match 70B is withdrawn.
+- The LLM–BERT gap is larger under strict matching (+0.10) than under relaxed matching (+0.07).
+- The remaining recall deficit of fine-tuned LLMs sits in the ~20 % of sentences whose JSON output
+  exceeds the 900-token budget (they hold 52 % of the gold entities; recall 0.58 there vs. 0.92
+  elsewhere) and in labels with a non-patient subject (`-others`).
+
+---
+
 ## Key results
 
 Entity-level NER accuracy on the corpus test split (36 held-out documents),

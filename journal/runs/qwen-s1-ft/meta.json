@@ -1,0 +1,20 @@
+{
+  "name": "qwen-s1-ft",
+  "model": "/opt/llm/stage/qwen-s1-ft",
+  "lora": null,
+  "tp": 2,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 900,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 1,
+  "think": null,
+  "truncated": 86,
+  "sec": 142.1,
+  "gpus": "2,3",
+  "date": "2026-10-09 14:07",
+  "parse_fail_v1": 1,
+  "parse_fail_v2": 1
+}

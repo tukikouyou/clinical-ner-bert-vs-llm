@@ -1,0 +1,2927 @@
+{
+ "name": "med42-70b-zs",
+ "relaxed": {
+  "P": 0.2968,
+  "R": 0.0882,
+  "F1": 0.136,
+  "tp": 1140,
+  "fp": 2701,
+  "fn": 11779
+ },
+ "relaxed_ci95": [
+  0.1178,
+  0.1528
+ ],
+ "strict": {
+  "P": 0.0953,
+  "R": 0.0283,
+  "F1": 0.0437,
+  "tp": 366,
+  "fp": 3475,
+  "fn": 12553
+ },
+ "strict_ci95": [
+  0.0384,
+  0.0487
+ ],
+ "min2_F1": 0.1313,
+ "min3_F1": 0.0968,
+ "relaxed_merged_F1": 0.1369,
+ "strict_merged_F1": 0.0442,
+ "macro_F1": 0.1102,
+ "n_macro_labels": 48,
+ "kinds": {
+  "exact": 363,
+  "gold_in_pred": 763,
+  "pred_in_gold": 14
+ },
+ "exact_share_of_tp": 0.3184,
+ "n_pred": 3841,
+ "n_unknown_label_pred": 581,
+ "per_label_relaxed": {
+  "Action": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Admission": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "AdverseEffect": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Age-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Anesthesia": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Assessment": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Body-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "BodyArea": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "BodyAreaExtent": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "C3": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "C4": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "CH50": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "CRP": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Chemotherapy": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ChiefComplaint": {
+   "n": 28,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ClinicalTest": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ClinicalTestResult": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Clinical_test": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Collaboration": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Comorbidity": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Complication": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Condition": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Consultation": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Date": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "DesireForTreatment": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Detail": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Diagnosis": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "DiagnosisDate": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Diagnosis_update": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "DifferentialDiagnosis": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "DischargeStatus": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "DiseaseActivity": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "DiseaseState": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Effect": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Effectiveness": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Etiology": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Event": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Examination": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ExaminationResult": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "FamilyHistory": {
+   "n": 29,
+   "P": 0.1163,
+   "R": 0.1724,
+   "F1": 0.1389
+  },
+  "FinalDiagnosis": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Follow-up": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "FollowUp": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "GOT": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "GPT": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Gene-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Gene-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "GeneticTest": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Guideline": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Habit": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Hb": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Hospitalization": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Ht": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ICUAdmission": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Imaging": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ImagingFinding": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ImagingResult": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Imaging_Result": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Immunosuppressant": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Incident": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Infection": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Injury": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Judge-Positive-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "LDH": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "LabResult": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "LesionType": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Management": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Medication": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "MedicationChange": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "MedicationDetails": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "MedicationDose": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "MedicationEffect": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "MedicationHistory": {
+   "n": 5,
+   "P": 0.0082,
+   "R": 0.2,
+   "F1": 0.0157
+  },
+  "MedicationStop": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "NewSymptom": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "OnsetTiming": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Outcome": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-Negative-others": {
+   "n": 26,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-Negative-patient": {
+   "n": 276,
+   "P": 0.25,
+   "R": 0.0181,
+   "F1": 0.0338
+  },
+  "PN-None-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-None-patient": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-Positive-others": {
+   "n": 17,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-Positive-patient": {
+   "n": 865,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PastHistory": {
+   "n": 35,
+   "P": 0.0317,
+   "R": 0.1143,
+   "F1": 0.0497
+  },
+  "Plt": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PostoperativeComplication": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PreoperativeProcedure": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PreoperativeStatus": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PresentCondition": {
+   "n": 23,
+   "P": 0.0015,
+   "R": 0.0435,
+   "F1": 0.0029
+  },
+  "PresentCondition-context": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PresentHistory": {
+   "n": 35,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Procedure": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Procedure_Detail": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Prognosis": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Progress": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Progression": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Quality_evaluation-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Quality_evaluation-severe-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Quality_progress": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Quality_progress-improve-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Quality_progress-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Quantity_progress-decrease-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "RBC": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ReasonForAdmission": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Referral": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ReferralReason": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Reoccurrence": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "RevisedDiagnosis": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ScreeningResult": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "SeverityScore": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "SocialHistory": {
+   "n": 9,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Spacial_concept": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Stage": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "SurgicalHistory": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "SurgicalProcedure": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "SurgicalTarget": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Surgical_decision": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Surgical_plan": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "SuspectedDiagnosis": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Symptom_progress": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TNM": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TNMStage": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Test": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Time": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Time_span": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Treatment": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TreatmentDuration": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TreatmentEffect": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Treatment_chosen": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Treatment_consideration": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Treatment_final": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TumorCharacteristics": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TumorControl": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TumorMarker": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TumorNodeMetastasis-M": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TumorNodeMetastasis-N": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TumorNodeMetastasis-T": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Value-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "VitalSign": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "VitalSigns": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "WBC": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "WorseningCondition": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "absence_of": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "action": {
+   "n": 11,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "activity-patient": {
+   "n": 10,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "adverse_event": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "age-others": {
+   "n": 1,
+   "P": 1.0,
+   "R": 1.0,
+   "F1": 1.0
+  },
+  "age-patient": {
+   "n": 119,
+   "P": 0.9818,
+   "R": 0.4538,
+   "F1": 0.6207
+  },
+  "allergy-patient": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "anatomical_location": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "antibody": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "background_liver": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "body-others": {
+   "n": 28,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "body-patient": {
+   "n": 1200,
+   "P": 0.625,
+   "R": 0.1875,
+   "F1": 0.2885
+  },
+  "clinical_reaction": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "clinical_test": {
+   "n": 587,
+   "P": 0.5986,
+   "R": 0.4497,
+   "F1": 0.5136
+  },
+  "clinical_test_result": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "comparison": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "condition": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "consultation": {
+   "n": 198,
+   "P": 1.0,
+   "R": 0.0253,
+   "F1": 0.0493
+  },
+  "date": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "depth": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "detail": {
+   "n": 41,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "device": {
+   "n": 75,
+   "P": 0.5,
+   "R": 0.1333,
+   "F1": 0.2105
+  },
+  "diagnosis": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "dose": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "dose_change": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "drinking-current-patient": {
+   "n": 7,
+   "P": 0.5,
+   "R": 0.5714,
+   "F1": 0.5333
+  },
+  "drug": {
+   "n": 283,
+   "P": 0.8947,
+   "R": 0.0601,
+   "F1": 0.1126
+  },
+  "duration": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "effect": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "effect-evaluation": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "event": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "execute": {
+   "n": 522,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "explain": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "fatty_change": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "fibrosis": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "finding": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "food": {
+   "n": 10,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "frequency": {
+   "n": 12,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "function-others": {
+   "n": 7,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "function-patient": {
+   "n": 330,
+   "P": 0.4,
+   "R": 0.0061,
+   "F1": 0.0119
+  },
+  "gene-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "gene-patient": {
+   "n": 16,
+   "P": 0.5,
+   "R": 0.1875,
+   "F1": 0.2727
+  },
+  "genetic_test": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "imaging": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "incident": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "info": {
+   "n": 12,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "intention-NG": {
+   "n": 4,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "intention-OK": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "item": {
+   "n": 1025,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Negative": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Negative-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Negative-patient": {
+   "n": 13,
+   "P": 0.0769,
+   "R": 0.1538,
+   "F1": 0.1026
+  },
+  "judge-None-patient": {
+   "n": 4,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Positive-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Positive-patient": {
+   "n": 110,
+   "P": 0.1,
+   "R": 0.0091,
+   "F1": 0.0167
+  },
+  "judge-Suspicious-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Suspicious-patient": {
+   "n": 51,
+   "P": 1.0,
+   "R": 0.0196,
+   "F1": 0.0385
+  },
+  "judge-future-others": {
+   "n": 7,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-future-patient": {
+   "n": 8,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judgment": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "lab_test": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "laterality": {
+   "n": 145,
+   "P": 0.4783,
+   "R": 0.0759,
+   "F1": 0.131
+  },
+  "location": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "lymphocyte_percentage": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "material": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "no_effect": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "organization": {
+   "n": 151,
+   "P": 0.5,
+   "R": 0.0132,
+   "F1": 0.0258
+  },
+  "outcome": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "percentage-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "person-family": {
+   "n": 30,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "person-others": {
+   "n": 10,
+   "P": 1.0,
+   "R": 0.1,
+   "F1": 0.1818
+  },
+  "person-patient": {
+   "n": 55,
+   "P": 1.0,
+   "R": 0.0182,
+   "F1": 0.0357
+  },
+  "pose": {
+   "n": 6,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "present_condition": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "prevention": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-High-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-None-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-mild": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-mild-patient": {
+   "n": 39,
+   "P": 0.3462,
+   "R": 0.2308,
+   "F1": 0.2769
+  },
+  "quality_evaluation-moderate-patient": {
+   "n": 5,
+   "P": 0.0455,
+   "R": 0.2,
+   "F1": 0.0741
+  },
+  "quality_evaluation-no_change-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-none": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-none-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-normal-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-patient": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-patient": {
+   "n": 68,
+   "P": 0.2955,
+   "R": 0.1912,
+   "F1": 0.2321
+  },
+  "quality_progress": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-decrease-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-fluctuate-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-improve-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-improve-patient": {
+   "n": 56,
+   "P": 0.5789,
+   "R": 0.1964,
+   "F1": 0.2933
+  },
+  "quality_progress-increase-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-no_change-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-no_change-patient": {
+   "n": 11,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-patient": {
+   "n": 56,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-recover-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-recover-patient": {
+   "n": 27,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-start-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-start-patient": {
+   "n": 113,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-worsen-others": {
+   "n": 4,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-worsen-patient": {
+   "n": 44,
+   "P": 0.1429,
+   "R": 0.0455,
+   "F1": 0.069
+  },
+  "quantity_evaluation": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-patient": {
+   "n": 66,
+   "P": 0.0667,
+   "R": 0.0303,
+   "F1": 0.0417
+  },
+  "quantity_evaluation-Low-patient": {
+   "n": 53,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-Positive-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-normal-patient": {
+   "n": 20,
+   "P": 0.3333,
+   "R": 0.05,
+   "F1": 0.087
+  },
+  "quantity_evaluation-patient": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-patient": {
+   "n": 21,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-increase-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-increase-patient": {
+   "n": 21,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-no_change-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-no_change-patient": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-patient": {
+   "n": 9,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ratio-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "referral": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "result": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "route": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "sex-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "sex-patient": {
+   "n": 37,
+   "P": 1.0,
+   "R": 0.973,
+   "F1": 0.9863
+  },
+  "side_effect": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "size": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "smoking-current-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "smoking-current-patient": {
+   "n": 9,
+   "P": 0.5714,
+   "R": 0.4444,
+   "F1": 0.5
+  },
+  "smoking-stop-patient": {
+   "n": 1,
+   "P": 1.0,
+   "R": 1.0,
+   "F1": 1.0
+  },
+  "spacial_concept": {
+   "n": 201,
+   "P": 0.3,
+   "R": 0.0149,
+   "F1": 0.0284
+  },
+  "stage": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "state-others": {
+   "n": 155,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "state-patient": {
+   "n": 2318,
+   "P": 0.625,
+   "R": 0.0043,
+   "F1": 0.0086
+  },
+  "substance": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "subtest": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "surgery": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "symptom_resolution": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "tapering": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "time": {
+   "n": 746,
+   "P": 0.7101,
+   "R": 0.0657,
+   "F1": 0.1202
+  },
+  "time_span": {
+   "n": 59,
+   "P": 0.1515,
+   "R": 0.0847,
+   "F1": 0.1087
+  },
+  "tissue-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "tissue-patient": {
+   "n": 145,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "treatment": {
+   "n": 614,
+   "P": 0.8079,
+   "R": 0.2329,
+   "F1": 0.3616
+  },
+  "treatment_cycle": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "treatment_dosage": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "treatment_duration": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "treatment_effect": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "treatment_frequency": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "tumor_marker": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "type": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "unit": {
+   "n": 552,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "value-others": {
+   "n": 63,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "value-patient": {
+   "n": 921,
+   "P": 0.9583,
+   "R": 0.2497,
+   "F1": 0.3962
+  },
+  "vital-sign": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "vital-sign-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "vital_sign": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  }
+ },
+ "per_label_strict": {
+  "Action": {
+   "F1": 0.0
+  },
+  "Admission": {
+   "F1": 0.0
+  },
+  "AdverseEffect": {
+   "F1": 0.0
+  },
+  "Age-patient": {
+   "F1": 0.0
+  },
+  "Anesthesia": {
+   "F1": 0.0
+  },
+  "Assessment": {
+   "F1": 0.0
+  },
+  "Body-patient": {
+   "F1": 0.0
+  },
+  "BodyArea": {
+   "F1": 0.0
+  },
+  "BodyAreaExtent": {
+   "F1": 0.0
+  },
+  "C3": {
+   "F1": 0.0
+  },
+  "C4": {
+   "F1": 0.0
+  },
+  "CH50": {
+   "F1": 0.0
+  },
+  "CRP": {
+   "F1": 0.0
+  },
+  "Chemotherapy": {
+   "F1": 0.0
+  },
+  "ChiefComplaint": {
+   "F1": 0.0
+  },
+  "ClinicalTest": {
+   "F1": 0.0
+  },
+  "ClinicalTestResult": {
+   "F1": 0.0
+  },
+  "Clinical_test": {
+   "F1": 0.0
+  },
+  "Collaboration": {
+   "F1": 0.0
+  },
+  "Comorbidity": {
+   "F1": 0.0
+  },
+  "Complication": {
+   "F1": 0.0
+  },
+  "Condition": {
+   "F1": 0.0
+  },
+  "Consultation": {
+   "F1": 0.0
+  },
+  "Date": {
+   "F1": 0.0
+  },
+  "DesireForTreatment": {
+   "F1": 0.0
+  },
+  "Detail": {
+   "F1": 0.0
+  },
+  "Diagnosis": {
+   "F1": 0.0
+  },
+  "DiagnosisDate": {
+   "F1": 0.0
+  },
+  "Diagnosis_update": {
+   "F1": 0.0
+  },
+  "DifferentialDiagnosis": {
+   "F1": 0.0
+  },
+  "DischargeStatus": {
+   "F1": 0.0
+  },
+  "DiseaseActivity": {
+   "F1": 0.0
+  },
+  "DiseaseState": {
+   "F1": 0.0
+  },
+  "Effect": {
+   "F1": 0.0
+  },
+  "Effectiveness": {
+   "F1": 0.0
+  },
+  "Etiology": {
+   "F1": 0.0
+  },
+  "Event": {
+   "F1": 0.0
+  },
+  "Examination": {
+   "F1": 0.0
+  },
+  "ExaminationResult": {
+   "F1": 0.0
+  },
+  "FamilyHistory": {
+   "F1": 0.0278
+  },
+  "FinalDiagnosis": {
+   "F1": 0.0
+  },
+  "Follow-up": {
+   "F1": 0.0
+  },
+  "FollowUp": {
+   "F1": 0.0
+  },
+  "GOT": {
+   "F1": 0.0
+  },
+  "GPT": {
+   "F1": 0.0
+  },
+  "Gene-others": {
+   "F1": 0.0
+  },
+  "Gene-patient": {
+   "F1": 0.0
+  },
+  "GeneticTest": {
+   "F1": 0.0
+  },
+  "Guideline": {
+   "F1": 0.0
+  },
+  "Habit": {
+   "F1": 0.0
+  },
+  "Hb": {
+   "F1": 0.0
+  },
+  "Hospitalization": {
+   "F1": 0.0
+  },
+  "Ht": {
+   "F1": 0.0
+  },
+  "ICUAdmission": {
+   "F1": 0.0
+  },
+  "Imaging": {
+   "F1": 0.0
+  },
+  "ImagingFinding": {
+   "F1": 0.0
+  },
+  "ImagingResult": {
+   "F1": 0.0
+  },
+  "Imaging_Result": {
+   "F1": 0.0
+  },
+  "Immunosuppressant": {
+   "F1": 0.0
+  },
+  "Incident": {
+   "F1": 0.0
+  },
+  "Infection": {
+   "F1": 0.0
+  },
+  "Injury": {
+   "F1": 0.0
+  },
+  "Judge-Positive-patient": {
+   "F1": 0.0
+  },
+  "LDH": {
+   "F1": 0.0
+  },
+  "LabResult": {
+   "F1": 0.0
+  },
+  "LesionType": {
+   "F1": 0.0
+  },
+  "Management": {
+   "F1": 0.0
+  },
+  "Medication": {
+   "F1": 0.0
+  },
+  "MedicationChange": {
+   "F1": 0.0
+  },
+  "MedicationDetails": {
+   "F1": 0.0
+  },
+  "MedicationDose": {
+   "F1": 0.0
+  },
+  "MedicationEffect": {
+   "F1": 0.0
+  },
+  "MedicationHistory": {
+   "F1": 0.0
+  },
+  "MedicationStop": {
+   "F1": 0.0
+  },
+  "NewSymptom": {
+   "F1": 0.0
+  },
+  "OnsetTiming": {
+   "F1": 0.0
+  },
+  "Outcome": {
+   "F1": 0.0
+  },
+  "PN-Negative-others": {
+   "F1": 0.0
+  },
+  "PN-Negative-patient": {
+   "F1": 0.0
+  },
+  "PN-None-others": {
+   "F1": 0.0
+  },
+  "PN-None-patient": {
+   "F1": 0.0
+  },
+  "PN-Positive-others": {
+   "F1": 0.0
+  },
+  "PN-Positive-patient": {
+   "F1": 0.0
+  },
+  "PastHistory": {
+   "F1": 0.0
+  },
+  "Plt": {
+   "F1": 0.0
+  },
+  "PostoperativeComplication": {
+   "F1": 0.0
+  },
+  "PreoperativeProcedure": {
+   "F1": 0.0
+  },
+  "PreoperativeStatus": {
+   "F1": 0.0
+  },
+  "PresentCondition": {
+   "F1": 0.0
+  },
+  "PresentCondition-context": {
+   "F1": 0.0
+  },
+  "PresentHistory": {
+   "F1": 0.0
+  },
+  "Procedure": {
+   "F1": 0.0
+  },
+  "Procedure_Detail": {
+   "F1": 0.0
+  },
+  "Prognosis": {
+   "F1": 0.0
+  },
+  "Progress": {
+   "F1": 0.0
+  },
+  "Progression": {
+   "F1": 0.0
+  },
+  "Quality_evaluation-patient": {
+   "F1": 0.0
+  },
+  "Quality_evaluation-severe-patient": {
+   "F1": 0.0
+  },
+  "Quality_progress": {
+   "F1": 0.0
+  },
+  "Quality_progress-improve-patient": {
+   "F1": 0.0
+  },
+  "Quality_progress-patient": {
+   "F1": 0.0
+  },
+  "Quantity_progress-decrease-patient": {
+   "F1": 0.0
+  },
+  "RBC": {
+   "F1": 0.0
+  },
+  "ReasonForAdmission": {
+   "F1": 0.0
+  },
+  "Referral": {
+   "F1": 0.0
+  },
+  "ReferralReason": {
+   "F1": 0.0
+  },
+  "Reoccurrence": {
+   "F1": 0.0
+  },
+  "RevisedDiagnosis": {
+   "F1": 0.0
+  },
+  "ScreeningResult": {
+   "F1": 0.0
+  },
+  "SeverityScore": {
+   "F1": 0.0
+  },
+  "SocialHistory": {
+   "F1": 0.0
+  },
+  "Spacial_concept": {
+   "F1": 0.0
+  },
+  "Stage": {
+   "F1": 0.0
+  },
+  "SurgicalHistory": {
+   "F1": 0.0
+  },
+  "SurgicalProcedure": {
+   "F1": 0.0
+  },
+  "SurgicalTarget": {
+   "F1": 0.0
+  },
+  "Surgical_decision": {
+   "F1": 0.0
+  },
+  "Surgical_plan": {
+   "F1": 0.0
+  },
+  "SuspectedDiagnosis": {
+   "F1": 0.0
+  },
+  "Symptom_progress": {
+   "F1": 0.0
+  },
+  "TNM": {
+   "F1": 0.0
+  },
+  "TNMStage": {
+   "F1": 0.0
+  },
+  "Test": {
+   "F1": 0.0
+  },
+  "Time": {
+   "F1": 0.0
+  },
+  "Time_span": {
+   "F1": 0.0
+  },
+  "Treatment": {
+   "F1": 0.0
+  },
+  "TreatmentDuration": {
+   "F1": 0.0
+  },
+  "TreatmentEffect": {
+   "F1": 0.0
+  },
+  "Treatment_chosen": {
+   "F1": 0.0
+  },
+  "Treatment_consideration": {
+   "F1": 0.0
+  },
+  "Treatment_final": {
+   "F1": 0.0
+  },
+  "TumorCharacteristics": {
+   "F1": 0.0
+  },
+  "TumorControl": {
+   "F1": 0.0
+  },
+  "TumorMarker": {
+   "F1": 0.0
+  },
+  "TumorNodeMetastasis-M": {
+   "F1": 0.0
+  },
+  "TumorNodeMetastasis-N": {
+   "F1": 0.0
+  },
+  "TumorNodeMetastasis-T": {
+   "F1": 0.0
+  },
+  "Value-patient": {
+   "F1": 0.0
+  },
+  "VitalSign": {
+   "F1": 0.0
+  },
+  "VitalSigns": {
+   "F1": 0.0
+  },
+  "WBC": {
+   "F1": 0.0
+  },
+  "WorseningCondition": {
+   "F1": 0.0
+  },
+  "absence_of": {
+   "F1": 0.0
+  },
+  "action": {
+   "F1": 0.0
+  },
+  "activity-patient": {
+   "F1": 0.0
+  },
+  "adverse_event": {
+   "F1": 0.0
+  },
+  "age-others": {
+   "F1": 1.0
+  },
+  "age-patient": {
+   "F1": 0.5747
+  },
+  "allergy-patient": {
+   "F1": 0.0
+  },
+  "anatomical_location": {
+   "F1": 0.0
+  },
+  "antibody": {
+   "F1": 0.0
+  },
+  "background_liver": {
+   "F1": 0.0
+  },
+  "body-others": {
+   "F1": 0.0
+  },
+  "body-patient": {
+   "F1": 0.1474
+  },
+  "clinical_reaction": {
+   "F1": 0.0
+  },
+  "clinical_test": {
+   "F1": 0.1498
+  },
+  "clinical_test_result": {
+   "F1": 0.0
+  },
+  "comparison": {
+   "F1": 0.0
+  },
+  "condition": {
+   "F1": 0.0
+  },
+  "consultation": {
+   "F1": 0.0
+  },
+  "date": {
+   "F1": 0.0
+  },
+  "depth": {
+   "F1": 0.0
+  },
+  "detail": {
+   "F1": 0.0
+  },
+  "device": {
+   "F1": 0.0632
+  },
+  "diagnosis": {
+   "F1": 0.0
+  },
+  "dose": {
+   "F1": 0.0
+  },
+  "dose_change": {
+   "F1": 0.0
+  },
+  "drinking-current-patient": {
+   "F1": 0.0
+  },
+  "drug": {
+   "F1": 0.0728
+  },
+  "duration": {
+   "F1": 0.0
+  },
+  "effect": {
+   "F1": 0.0
+  },
+  "effect-evaluation": {
+   "F1": 0.0
+  },
+  "event": {
+   "F1": 0.0
+  },
+  "execute": {
+   "F1": 0.0
+  },
+  "explain": {
+   "F1": 0.0
+  },
+  "fatty_change": {
+   "F1": 0.0
+  },
+  "fibrosis": {
+   "F1": 0.0
+  },
+  "finding": {
+   "F1": 0.0
+  },
+  "food": {
+   "F1": 0.0
+  },
+  "frequency": {
+   "F1": 0.0
+  },
+  "function-others": {
+   "F1": 0.0
+  },
+  "function-patient": {
+   "F1": 0.0
+  },
+  "gene-others": {
+   "F1": 0.0
+  },
+  "gene-patient": {
+   "F1": 0.0909
+  },
+  "genetic_test": {
+   "F1": 0.0
+  },
+  "imaging": {
+   "F1": 0.0
+  },
+  "incident": {
+   "F1": 0.0
+  },
+  "info": {
+   "F1": 0.0
+  },
+  "intention-NG": {
+   "F1": 0.0
+  },
+  "intention-OK": {
+   "F1": 0.0
+  },
+  "item": {
+   "F1": 0.0
+  },
+  "judge-Negative": {
+   "F1": 0.0
+  },
+  "judge-Negative-others": {
+   "F1": 0.0
+  },
+  "judge-Negative-patient": {
+   "F1": 0.0513
+  },
+  "judge-None-patient": {
+   "F1": 0.0
+  },
+  "judge-Positive-others": {
+   "F1": 0.0
+  },
+  "judge-Positive-patient": {
+   "F1": 0.0
+  },
+  "judge-Suspicious-others": {
+   "F1": 0.0
+  },
+  "judge-Suspicious-patient": {
+   "F1": 0.0
+  },
+  "judge-future-others": {
+   "F1": 0.0
+  },
+  "judge-future-patient": {
+   "F1": 0.0
+  },
+  "judgment": {
+   "F1": 0.0
+  },
+  "lab_test": {
+   "F1": 0.0
+  },
+  "laterality": {
+   "F1": 0.0595
+  },
+  "location": {
+   "F1": 0.0
+  },
+  "lymphocyte_percentage": {
+   "F1": 0.0
+  },
+  "material": {
+   "F1": 0.0
+  },
+  "no_effect": {
+   "F1": 0.0
+  },
+  "organization": {
+   "F1": 0.0258
+  },
+  "outcome": {
+   "F1": 0.0
+  },
+  "percentage-patient": {
+   "F1": 0.0
+  },
+  "person-family": {
+   "F1": 0.0
+  },
+  "person-others": {
+   "F1": 0.0
+  },
+  "person-patient": {
+   "F1": 0.0357
+  },
+  "pose": {
+   "F1": 0.0
+  },
+  "present_condition": {
+   "F1": 0.0
+  },
+  "prevention": {
+   "F1": 0.0
+  },
+  "quality_evaluation": {
+   "F1": 0.0
+  },
+  "quality_evaluation-High-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-None-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-mild": {
+   "F1": 0.0
+  },
+  "quality_evaluation-mild-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-moderate-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-no_change-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-none": {
+   "F1": 0.0
+  },
+  "quality_evaluation-none-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-normal-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-others": {
+   "F1": 0.0
+  },
+  "quality_evaluation-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-others": {
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-patient": {
+   "F1": 0.0
+  },
+  "quality_progress": {
+   "F1": 0.0
+  },
+  "quality_progress-decrease-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-fluctuate-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-improve-others": {
+   "F1": 0.0
+  },
+  "quality_progress-improve-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-increase-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-no_change-others": {
+   "F1": 0.0
+  },
+  "quality_progress-no_change-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-others": {
+   "F1": 0.0
+  },
+  "quality_progress-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-recover-others": {
+   "F1": 0.0
+  },
+  "quality_progress-recover-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-start-others": {
+   "F1": 0.0
+  },
+  "quality_progress-start-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-worsen-others": {
+   "F1": 0.0
+  },
+  "quality_progress-worsen-patient": {
+   "F1": 0.0
+  },
+  "quantity_evaluation": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-others": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-patient": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-Low-patient": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-Positive-patient": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-normal-patient": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress": {
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-others": {
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress-increase-others": {
+   "F1": 0.0
+  },
+  "quantity_progress-increase-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress-no_change-others": {
+   "F1": 0.0
+  },
+  "quantity_progress-no_change-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress-patient": {
+   "F1": 0.0
+  },
+  "ratio-patient": {
+   "F1": 0.0
+  },
+  "referral": {
+   "F1": 0.0
+  },
+  "result": {
+   "F1": 0.0
+  },
+  "route": {
+   "F1": 0.0
+  },
+  "sex-others": {
+   "F1": 0.0
+  },
+  "sex-patient": {
+   "F1": 0.8219
+  },
+  "side_effect": {
+   "F1": 0.0
+  },
+  "size": {
+   "F1": 0.0
+  },
+  "smoking-current-others": {
+   "F1": 0.0
+  },
+  "smoking-current-patient": {
+   "F1": 0.25
+  },
+  "smoking-stop-patient": {
+   "F1": 0.0
+  },
+  "spacial_concept": {
+   "F1": 0.0
+  },
+  "stage": {
+   "F1": 0.0
+  },
+  "state-others": {
+   "F1": 0.0
+  },
+  "state-patient": {
+   "F1": 0.0034
+  },
+  "substance": {
+   "F1": 0.0
+  },
+  "subtest": {
+   "F1": 0.0
+  },
+  "surgery": {
+   "F1": 0.0
+  },
+  "symptom_resolution": {
+   "F1": 0.0
+  },
+  "tapering": {
+   "F1": 0.0
+  },
+  "time": {
+   "F1": 0.0417
+  },
+  "time_span": {
+   "F1": 0.0652
+  },
+  "tissue-others": {
+   "F1": 0.0
+  },
+  "tissue-patient": {
+   "F1": 0.0
+  },
+  "treatment": {
+   "F1": 0.1011
+  },
+  "treatment_cycle": {
+   "F1": 0.0
+  },
+  "treatment_dosage": {
+   "F1": 0.0
+  },
+  "treatment_duration": {
+   "F1": 0.0
+  },
+  "treatment_effect": {
+   "F1": 0.0
+  },
+  "treatment_frequency": {
+   "F1": 0.0
+  },
+  "tumor_marker": {
+   "F1": 0.0
+  },
+  "type": {
+   "F1": 0.0
+  },
+  "unit": {
+   "F1": 0.0
+  },
+  "value-others": {
+   "F1": 0.0
+  },
+  "value-patient": {
+   "F1": 0.0034
+  },
+  "vital-sign": {
+   "F1": 0.0
+  },
+  "vital-sign-patient": {
+   "F1": 0.0
+  },
+  "vital_sign": {
+   "F1": 0.0
+  }
+ },
+ "per_doc_relaxed": {
+  "005": [
+   28,
+   66,
+   254
+  ],
+  "005_2": [
+   43,
+   76,
+   395
+  ],
+  "010_4": [
+   30,
+   66,
+   324
+  ],
+  "014_2": [
+   23,
+   63,
+   288
+  ],
+  "015_3": [
+   19,
+   65,
+   303
+  ],
+  "017": [
+   32,
+   100,
+   392
+  ],
+  "017_4": [
+   55,
+   136,
+   560
+  ],
+  "018_2": [
+   16,
+   66,
+   231
+  ],
+  "028": [
+   23,
+   51,
+   209
+  ],
+  "038_3": [
+   20,
+   91,
+   355
+  ],
+  "039": [
+   36,
+   81,
+   345
+  ],
+  "039_3": [
+   29,
+   80,
+   369
+  ],
+  "040_3": [
+   40,
+   68,
+   235
+  ],
+  "045_2": [
+   57,
+   121,
+   449
+  ],
+  "047": [
+   28,
+   67,
+   273
+  ],
+  "049": [
+   15,
+   70,
+   228
+  ],
+  "049_3": [
+   50,
+   88,
+   382
+  ],
+  "050_3": [
+   37,
+   110,
+   375
+  ],
+  "051": [
+   32,
+   137,
+   504
+  ],
+  "058_3": [
+   50,
+   77,
+   353
+  ],
+  "059": [
+   116,
+   170,
+   572
+  ],
+  "086": [
+   24,
+   78,
+   455
+  ],
+  "166_3": [
+   40,
+   86,
+   328
+  ],
+  "188_3": [
+   17,
+   37,
+   260
+  ],
+  "189": [
+   9,
+   43,
+   270
+  ],
+  "203_2_case1": [
+   10,
+   39,
+   169
+  ],
+  "208": [
+   26,
+   61,
+   482
+  ],
+  "230_2": [
+   24,
+   77,
+   262
+  ],
+  "236": [
+   11,
+   33,
+   429
+  ],
+  "257_2": [
+   52,
+   73,
+   297
+  ],
+  "266": [
+   8,
+   31,
+   144
+  ],
+  "266_3": [
+   27,
+   75,
+   279
+  ],
+  "271_3": [
+   22,
+   62,
+   241
+  ],
+  "274": [
+   53,
+   63,
+   298
+  ],
+  "292_2": [
+   12,
+   34,
+   180
+  ],
+  "303": [
+   26,
+   60,
+   289
+  ]
+ }
+}

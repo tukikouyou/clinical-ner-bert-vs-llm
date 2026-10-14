@@ -1,0 +1,2279 @@
+{
+ "name": "sip-jmed-13b-zs@v2",
+ "relaxed": {
+  "P": 0.1219,
+  "R": 0.014,
+  "F1": 0.0251,
+  "tp": 181,
+  "fp": 1304,
+  "fn": 12738
+ },
+ "relaxed_ci95": [
+  0.0202,
+  0.0302
+ ],
+ "strict": {
+  "P": 0.0673,
+  "R": 0.0077,
+  "F1": 0.0139,
+  "tp": 100,
+  "fp": 1385,
+  "fn": 12819
+ },
+ "strict_ci95": [
+  0.0106,
+  0.0175
+ ],
+ "min2_F1": 0.0243,
+ "min3_F1": 0.0211,
+ "relaxed_merged_F1": 0.0387,
+ "strict_merged_F1": 0.0205,
+ "macro_F1": 0.0401,
+ "n_macro_labels": 48,
+ "kinds": {
+  "exact": 100,
+  "gold_in_pred": 78,
+  "pred_in_gold": 3
+ },
+ "exact_share_of_tp": 0.5525,
+ "n_pred": 1485,
+ "n_unknown_label_pred": 143,
+ "per_label_relaxed": {
+  "1y3": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "2 cm": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "20本/日": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "22年間": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "3単語再生": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "3型": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "AFP": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ALP": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "APTT": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "AT Ⅲ": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Alb": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Allergy": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "BMI": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "BUN": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "CK": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "CK-MB": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "CRP": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "ChiefComplaint": {
+   "n": 28,
+   "P": 0.1064,
+   "R": 0.3571,
+   "F1": 0.1639
+  },
+  "Cl": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Crea": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "FDP": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "FIB": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "FamilyHistory": {
+   "n": 29,
+   "P": 0.2857,
+   "R": 0.1379,
+   "F1": 0.186
+  },
+  "Food": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Frontal Assessment Battery": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "GOT": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "GPT": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "HBs抗原": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "HCV抗体": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "HDLコレステロール": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "HGB": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Hb": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "HbA1c": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Ht": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "K": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "LDH": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "LDLコレステロール": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "MMSE-J": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Medication": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "MedicationHistory": {
+   "n": 5,
+   "P": 0.0625,
+   "R": 0.2,
+   "F1": 0.0952
+  },
+  "NT-proBNP": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Na": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PIC": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PIVKA II": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-Negative-others": {
+   "n": 26,
+   "P": 0.0566,
+   "R": 0.1154,
+   "F1": 0.0759
+  },
+  "PN-Negative-patient": {
+   "n": 276,
+   "P": 0.3333,
+   "R": 0.0145,
+   "F1": 0.0278
+  },
+  "PN-None-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-None-patient": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-Positive-others": {
+   "n": 17,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-Positive-patient": {
+   "n": 865,
+   "P": 0.2222,
+   "R": 0.0023,
+   "F1": 0.0046
+  },
+  "PT-INR": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PastHistory": {
+   "n": 35,
+   "P": 0.0368,
+   "R": 0.1714,
+   "F1": 0.0606
+  },
+  "Plt": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PresentCondition": {
+   "n": 23,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PresentHistory": {
+   "n": 35,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PulmonaryNodule-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "RBC": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Raven Coloured Progressive Matrices": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Self-rating Depression Scale": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "SocialHistory": {
+   "n": 9,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Symptom": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "T Bil": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "T Prot": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "TAT": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Thorax": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "WBC": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "Wechsler Adult Intelligence Scale-Third Edition": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "abdominal circumference": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "action": {
+   "n": 11,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "activity-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "activity-patient": {
+   "n": 10,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "age-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "age-patient": {
+   "n": 119,
+   "P": 0.7826,
+   "R": 0.1513,
+   "F1": 0.2535
+  },
+  "allergy-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "allergy-patient": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "blood pressure": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "body-others": {
+   "n": 28,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "body-patient": {
+   "n": 1200,
+   "P": 0.84,
+   "R": 0.0175,
+   "F1": 0.0343
+  },
+  "cell-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "clinical_test": {
+   "n": 587,
+   "P": 0.2423,
+   "R": 0.0801,
+   "F1": 0.1204
+  },
+  "consultation": {
+   "n": 198,
+   "P": 0.6,
+   "R": 0.0152,
+   "F1": 0.0296
+  },
+  "detail": {
+   "n": 41,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "device": {
+   "n": 75,
+   "P": 0.3333,
+   "R": 0.04,
+   "F1": 0.0714
+  },
+  "drinking-current": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "drinking-current-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "drinking-current-patient": {
+   "n": 7,
+   "P": 0.2,
+   "R": 0.1429,
+   "F1": 0.1667
+  },
+  "drug": {
+   "n": 283,
+   "P": 0.5789,
+   "R": 0.0389,
+   "F1": 0.0728
+  },
+  "execute": {
+   "n": 522,
+   "P": 0.1,
+   "R": 0.0019,
+   "F1": 0.0038
+  },
+  "explain": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "exposure": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "family-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "figure": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "food": {
+   "n": 10,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "frequency": {
+   "n": 12,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "function-others": {
+   "n": 7,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "function-patient": {
+   "n": 330,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "gene-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "gene-patient": {
+   "n": 16,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "height": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "incident": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "info": {
+   "n": 12,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "intention-Future": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "intention-NG": {
+   "n": 4,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "intention-OK": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "item": {
+   "n": 1025,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "job-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "job-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Future-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Future-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Negative-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Negative-patient": {
+   "n": 13,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-None-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-None-patient": {
+   "n": 4,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Positive-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Positive-patient": {
+   "n": 110,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Suspicious-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Suspicious-patient": {
+   "n": 51,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-future-others": {
+   "n": 7,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-future-patient": {
+   "n": 8,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "laterality": {
+   "n": 145,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "lesion": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "mp": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "n1 (251)": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "organization": {
+   "n": 151,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "pain": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "person-family": {
+   "n": 30,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "person-others": {
+   "n": 10,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "person-patient": {
+   "n": 55,
+   "P": 0.6667,
+   "R": 0.0727,
+   "F1": 0.1311
+  },
+  "pose": {
+   "n": 6,
+   "P": 0.3333,
+   "R": 0.1667,
+   "F1": 0.2222
+  },
+  "presentCondition": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "presentHistory": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "pulse": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-mild-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-mild-patient": {
+   "n": 39,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-moderate-patient": {
+   "n": 5,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-patient": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-patient": {
+   "n": 68,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-improve-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-improve-patient": {
+   "n": 56,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-no_change": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-no_change-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-no_change-patient": {
+   "n": 11,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-patient": {
+   "n": 56,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-recover-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-recover-patient": {
+   "n": 27,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-start-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-start-patient": {
+   "n": 113,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-worsen-others": {
+   "n": 4,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-worsen-patient": {
+   "n": 44,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-patient": {
+   "n": 66,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-Low-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-Low-patient": {
+   "n": 53,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-normal-patient": {
+   "n": 20,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-patient": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-patient": {
+   "n": 21,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-increase-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-increase-patient": {
+   "n": 21,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-no_change-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-no_change-patient": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-patient": {
+   "n": 9,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "retinopathy": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "serial7": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "sex-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "sex-patient": {
+   "n": 37,
+   "P": 0.7308,
+   "R": 0.5135,
+   "F1": 0.6032
+  },
+  "smoking-current-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "smoking-current-patient": {
+   "n": 9,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "smoking-stop-patient": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "social_history": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "spacial_concept": {
+   "n": 201,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "stage III a": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "state-others": {
+   "n": 155,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "state-patient": {
+   "n": 2318,
+   "P": 0.5,
+   "R": 0.0009,
+   "F1": 0.0017
+  },
+  "substance": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "time": {
+   "n": 746,
+   "P": 0.3077,
+   "R": 0.0054,
+   "F1": 0.0105
+  },
+  "time_span": {
+   "n": 59,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "tissue-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "tissue-patient": {
+   "n": 145,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "treatment": {
+   "n": 614,
+   "P": 0.7895,
+   "R": 0.0244,
+   "F1": 0.0474
+  },
+  "unit": {
+   "n": 552,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "v2": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "value-others": {
+   "n": 63,
+   "P": 0.0588,
+   "R": 0.0159,
+   "F1": 0.025
+  },
+  "value-patient": {
+   "n": 921,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "weight": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "γ-GTP": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "エストラジオール": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "プロゲステロン": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "中分化型腺癌": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "中性脂肪": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "主訴": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "作動記憶": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "凝固系": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "初診": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "右腋窩部腫瘤": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "喫煙-current-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "図6a": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "図6b,c": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "図形模写": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "家族歴": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "径": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "慶応式 Wisconsin Card Sorting Test": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "描画": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "改訂版標準高次視知覚検査": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "既往歴": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "書字": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "検査所見": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "正常範囲": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "深達度": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "炎症所見": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "特記すべき事項なし": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "特記事項": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "直腸癌": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "空腹時血糖値": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "組織型": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "聴理解": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "血小板": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "血液一般": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "血液生化学検査": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "視知覚の基本的機能": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "視覚性記憶範囲": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "言語性IQ": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "言語理解": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  }
+ },
+ "per_label_strict": {
+  "1y3": {
+   "F1": 0.0
+  },
+  "2 cm": {
+   "F1": 0.0
+  },
+  "20本/日": {
+   "F1": 0.0
+  },
+  "22年間": {
+   "F1": 0.0
+  },
+  "3単語再生": {
+   "F1": 0.0
+  },
+  "3型": {
+   "F1": 0.0
+  },
+  "AFP": {
+   "F1": 0.0
+  },
+  "ALP": {
+   "F1": 0.0
+  },
+  "APTT": {
+   "F1": 0.0
+  },
+  "AT Ⅲ": {
+   "F1": 0.0
+  },
+  "Alb": {
+   "F1": 0.0
+  },
+  "Allergy": {
+   "F1": 0.0
+  },
+  "BMI": {
+   "F1": 0.0
+  },
+  "BUN": {
+   "F1": 0.0
+  },
+  "CK": {
+   "F1": 0.0
+  },
+  "CK-MB": {
+   "F1": 0.0
+  },
+  "CRP": {
+   "F1": 0.0
+  },
+  "ChiefComplaint": {
+   "F1": 0.1639
+  },
+  "Cl": {
+   "F1": 0.0
+  },
+  "Crea": {
+   "F1": 0.0
+  },
+  "FDP": {
+   "F1": 0.0
+  },
+  "FIB": {
+   "F1": 0.0
+  },
+  "FamilyHistory": {
+   "F1": 0.1395
+  },
+  "Food": {
+   "F1": 0.0
+  },
+  "Frontal Assessment Battery": {
+   "F1": 0.0
+  },
+  "GOT": {
+   "F1": 0.0
+  },
+  "GPT": {
+   "F1": 0.0
+  },
+  "HBs抗原": {
+   "F1": 0.0
+  },
+  "HCV抗体": {
+   "F1": 0.0
+  },
+  "HDLコレステロール": {
+   "F1": 0.0
+  },
+  "HGB": {
+   "F1": 0.0
+  },
+  "Hb": {
+   "F1": 0.0
+  },
+  "HbA1c": {
+   "F1": 0.0
+  },
+  "Ht": {
+   "F1": 0.0
+  },
+  "K": {
+   "F1": 0.0
+  },
+  "LDH": {
+   "F1": 0.0
+  },
+  "LDLコレステロール": {
+   "F1": 0.0
+  },
+  "MMSE-J": {
+   "F1": 0.0
+  },
+  "Medication": {
+   "F1": 0.0
+  },
+  "MedicationHistory": {
+   "F1": 0.0
+  },
+  "NT-proBNP": {
+   "F1": 0.0
+  },
+  "Na": {
+   "F1": 0.0
+  },
+  "PIC": {
+   "F1": 0.0
+  },
+  "PIVKA II": {
+   "F1": 0.0
+  },
+  "PN-Negative-others": {
+   "F1": 0.0
+  },
+  "PN-Negative-patient": {
+   "F1": 0.0
+  },
+  "PN-None-others": {
+   "F1": 0.0
+  },
+  "PN-None-patient": {
+   "F1": 0.0
+  },
+  "PN-Positive-others": {
+   "F1": 0.0
+  },
+  "PN-Positive-patient": {
+   "F1": 0.0
+  },
+  "PT-INR": {
+   "F1": 0.0
+  },
+  "PastHistory": {
+   "F1": 0.0606
+  },
+  "Plt": {
+   "F1": 0.0
+  },
+  "PresentCondition": {
+   "F1": 0.0
+  },
+  "PresentHistory": {
+   "F1": 0.0
+  },
+  "PulmonaryNodule-others": {
+   "F1": 0.0
+  },
+  "RBC": {
+   "F1": 0.0
+  },
+  "Raven Coloured Progressive Matrices": {
+   "F1": 0.0
+  },
+  "Self-rating Depression Scale": {
+   "F1": 0.0
+  },
+  "SocialHistory": {
+   "F1": 0.0
+  },
+  "Symptom": {
+   "F1": 0.0
+  },
+  "T Bil": {
+   "F1": 0.0
+  },
+  "T Prot": {
+   "F1": 0.0
+  },
+  "TAT": {
+   "F1": 0.0
+  },
+  "Thorax": {
+   "F1": 0.0
+  },
+  "WBC": {
+   "F1": 0.0
+  },
+  "Wechsler Adult Intelligence Scale-Third Edition": {
+   "F1": 0.0
+  },
+  "abdominal circumference": {
+   "F1": 0.0
+  },
+  "action": {
+   "F1": 0.0
+  },
+  "activity-others": {
+   "F1": 0.0
+  },
+  "activity-patient": {
+   "F1": 0.0
+  },
+  "age-others": {
+   "F1": 0.0
+  },
+  "age-patient": {
+   "F1": 0.2254
+  },
+  "allergy-others": {
+   "F1": 0.0
+  },
+  "allergy-patient": {
+   "F1": 0.0
+  },
+  "blood pressure": {
+   "F1": 0.0
+  },
+  "body-others": {
+   "F1": 0.0
+  },
+  "body-patient": {
+   "F1": 0.0163
+  },
+  "cell-others": {
+   "F1": 0.0
+  },
+  "clinical_test": {
+   "F1": 0.041
+  },
+  "consultation": {
+   "F1": 0.0
+  },
+  "detail": {
+   "F1": 0.0
+  },
+  "device": {
+   "F1": 0.0476
+  },
+  "drinking-current": {
+   "F1": 0.0
+  },
+  "drinking-current-others": {
+   "F1": 0.0
+  },
+  "drinking-current-patient": {
+   "F1": 0.0
+  },
+  "drug": {
+   "F1": 0.053
+  },
+  "execute": {
+   "F1": 0.0
+  },
+  "explain": {
+   "F1": 0.0
+  },
+  "exposure": {
+   "F1": 0.0
+  },
+  "family-others": {
+   "F1": 0.0
+  },
+  "figure": {
+   "F1": 0.0
+  },
+  "food": {
+   "F1": 0.0
+  },
+  "frequency": {
+   "F1": 0.0
+  },
+  "function-others": {
+   "F1": 0.0
+  },
+  "function-patient": {
+   "F1": 0.0
+  },
+  "gene-others": {
+   "F1": 0.0
+  },
+  "gene-patient": {
+   "F1": 0.0
+  },
+  "height": {
+   "F1": 0.0
+  },
+  "incident": {
+   "F1": 0.0
+  },
+  "info": {
+   "F1": 0.0
+  },
+  "intention-Future": {
+   "F1": 0.0
+  },
+  "intention-NG": {
+   "F1": 0.0
+  },
+  "intention-OK": {
+   "F1": 0.0
+  },
+  "item": {
+   "F1": 0.0
+  },
+  "job-others": {
+   "F1": 0.0
+  },
+  "job-patient": {
+   "F1": 0.0
+  },
+  "judge-Future-others": {
+   "F1": 0.0
+  },
+  "judge-Future-patient": {
+   "F1": 0.0
+  },
+  "judge-Negative-others": {
+   "F1": 0.0
+  },
+  "judge-Negative-patient": {
+   "F1": 0.0
+  },
+  "judge-None-others": {
+   "F1": 0.0
+  },
+  "judge-None-patient": {
+   "F1": 0.0
+  },
+  "judge-Positive-others": {
+   "F1": 0.0
+  },
+  "judge-Positive-patient": {
+   "F1": 0.0
+  },
+  "judge-Suspicious-others": {
+   "F1": 0.0
+  },
+  "judge-Suspicious-patient": {
+   "F1": 0.0
+  },
+  "judge-future-others": {
+   "F1": 0.0
+  },
+  "judge-future-patient": {
+   "F1": 0.0
+  },
+  "laterality": {
+   "F1": 0.0
+  },
+  "lesion": {
+   "F1": 0.0
+  },
+  "mp": {
+   "F1": 0.0
+  },
+  "n1 (251)": {
+   "F1": 0.0
+  },
+  "organization": {
+   "F1": 0.0
+  },
+  "pain": {
+   "F1": 0.0
+  },
+  "person-family": {
+   "F1": 0.0
+  },
+  "person-others": {
+   "F1": 0.0
+  },
+  "person-patient": {
+   "F1": 0.1311
+  },
+  "pose": {
+   "F1": 0.2222
+  },
+  "presentCondition": {
+   "F1": 0.0
+  },
+  "presentHistory": {
+   "F1": 0.0
+  },
+  "pulse": {
+   "F1": 0.0
+  },
+  "quality_evaluation-mild-others": {
+   "F1": 0.0
+  },
+  "quality_evaluation-mild-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-moderate-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-others": {
+   "F1": 0.0
+  },
+  "quality_evaluation-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-others": {
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-improve-others": {
+   "F1": 0.0
+  },
+  "quality_progress-improve-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-no_change": {
+   "F1": 0.0
+  },
+  "quality_progress-no_change-others": {
+   "F1": 0.0
+  },
+  "quality_progress-no_change-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-others": {
+   "F1": 0.0
+  },
+  "quality_progress-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-recover-others": {
+   "F1": 0.0
+  },
+  "quality_progress-recover-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-start-others": {
+   "F1": 0.0
+  },
+  "quality_progress-start-patient": {
+   "F1": 0.0
+  },
+  "quality_progress-worsen-others": {
+   "F1": 0.0
+  },
+  "quality_progress-worsen-patient": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-others": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-patient": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-Low-others": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-Low-patient": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-normal-patient": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-others": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-others": {
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress-increase-others": {
+   "F1": 0.0
+  },
+  "quantity_progress-increase-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress-no_change-others": {
+   "F1": 0.0
+  },
+  "quantity_progress-no_change-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress-others": {
+   "F1": 0.0
+  },
+  "quantity_progress-patient": {
+   "F1": 0.0
+  },
+  "retinopathy": {
+   "F1": 0.0
+  },
+  "serial7": {
+   "F1": 0.0
+  },
+  "sex-others": {
+   "F1": 0.0
+  },
+  "sex-patient": {
+   "F1": 0.6032
+  },
+  "smoking-current-others": {
+   "F1": 0.0
+  },
+  "smoking-current-patient": {
+   "F1": 0.0
+  },
+  "smoking-stop-patient": {
+   "F1": 0.0
+  },
+  "social_history": {
+   "F1": 0.0
+  },
+  "spacial_concept": {
+   "F1": 0.0
+  },
+  "stage III a": {
+   "F1": 0.0
+  },
+  "state-others": {
+   "F1": 0.0
+  },
+  "state-patient": {
+   "F1": 0.0
+  },
+  "substance": {
+   "F1": 0.0
+  },
+  "time": {
+   "F1": 0.0
+  },
+  "time_span": {
+   "F1": 0.0
+  },
+  "tissue-others": {
+   "F1": 0.0
+  },
+  "tissue-patient": {
+   "F1": 0.0
+  },
+  "treatment": {
+   "F1": 0.0158
+  },
+  "unit": {
+   "F1": 0.0
+  },
+  "v2": {
+   "F1": 0.0
+  },
+  "value-others": {
+   "F1": 0.0
+  },
+  "value-patient": {
+   "F1": 0.0
+  },
+  "weight": {
+   "F1": 0.0
+  },
+  "γ-GTP": {
+   "F1": 0.0
+  },
+  "エストラジオール": {
+   "F1": 0.0
+  },
+  "プロゲステロン": {
+   "F1": 0.0
+  },
+  "中分化型腺癌": {
+   "F1": 0.0
+  },
+  "中性脂肪": {
+   "F1": 0.0
+  },
+  "主訴": {
+   "F1": 0.0
+  },
+  "作動記憶": {
+   "F1": 0.0
+  },
+  "凝固系": {
+   "F1": 0.0
+  },
+  "初診": {
+   "F1": 0.0
+  },
+  "右腋窩部腫瘤": {
+   "F1": 0.0
+  },
+  "喫煙-current-others": {
+   "F1": 0.0
+  },
+  "図6a": {
+   "F1": 0.0
+  },
+  "図6b,c": {
+   "F1": 0.0
+  },
+  "図形模写": {
+   "F1": 0.0
+  },
+  "家族歴": {
+   "F1": 0.0
+  },
+  "径": {
+   "F1": 0.0
+  },
+  "慶応式 Wisconsin Card Sorting Test": {
+   "F1": 0.0
+  },
+  "描画": {
+   "F1": 0.0
+  },
+  "改訂版標準高次視知覚検査": {
+   "F1": 0.0
+  },
+  "既往歴": {
+   "F1": 0.0
+  },
+  "書字": {
+   "F1": 0.0
+  },
+  "検査所見": {
+   "F1": 0.0
+  },
+  "正常範囲": {
+   "F1": 0.0
+  },
+  "深達度": {
+   "F1": 0.0
+  },
+  "炎症所見": {
+   "F1": 0.0
+  },
+  "特記すべき事項なし": {
+   "F1": 0.0
+  },
+  "特記事項": {
+   "F1": 0.0
+  },
+  "直腸癌": {
+   "F1": 0.0
+  },
+  "空腹時血糖値": {
+   "F1": 0.0
+  },
+  "組織型": {
+   "F1": 0.0
+  },
+  "聴理解": {
+   "F1": 0.0
+  },
+  "血小板": {
+   "F1": 0.0
+  },
+  "血液一般": {
+   "F1": 0.0
+  },
+  "血液生化学検査": {
+   "F1": 0.0
+  },
+  "視知覚の基本的機能": {
+   "F1": 0.0
+  },
+  "視覚性記憶範囲": {
+   "F1": 0.0
+  },
+  "言語性IQ": {
+   "F1": 0.0
+  },
+  "言語理解": {
+   "F1": 0.0
+  }
+ },
+ "per_doc_relaxed": {
+  "005": [
+   1,
+   4,
+   281
+  ],
+  "005_2": [
+   4,
+   43,
+   434
+  ],
+  "010_4": [
+   4,
+   23,
+   350
+  ],
+  "014_2": [
+   5,
+   75,
+   306
+  ],
+  "015_3": [
+   10,
+   34,
+   312
+  ],
+  "017": [
+   1,
+   29,
+   423
+  ],
+  "017_4": [
+   11,
+   92,
+   604
+  ],
+  "018_2": [
+   10,
+   73,
+   237
+  ],
+  "028": [
+   0,
+   27,
+   232
+  ],
+  "038_3": [
+   6,
+   31,
+   369
+  ],
+  "039": [
+   8,
+   18,
+   373
+  ],
+  "039_3": [
+   4,
+   23,
+   394
+  ],
+  "040_3": [
+   2,
+   42,
+   273
+  ],
+  "045_2": [
+   6,
+   30,
+   500
+  ],
+  "047": [
+   5,
+   33,
+   296
+  ],
+  "049": [
+   2,
+   16,
+   241
+  ],
+  "049_3": [
+   12,
+   80,
+   420
+  ],
+  "050_3": [
+   8,
+   57,
+   404
+  ],
+  "051": [
+   10,
+   63,
+   526
+  ],
+  "058_3": [
+   6,
+   20,
+   397
+  ],
+  "059": [
+   8,
+   64,
+   680
+  ],
+  "086": [
+   4,
+   64,
+   475
+  ],
+  "166_3": [
+   2,
+   24,
+   366
+  ],
+  "188_3": [
+   3,
+   9,
+   274
+  ],
+  "189": [
+   1,
+   30,
+   278
+  ],
+  "203_2_case1": [
+   0,
+   8,
+   179
+  ],
+  "208": [
+   7,
+   25,
+   501
+  ],
+  "230_2": [
+   8,
+   34,
+   278
+  ],
+  "236": [
+   0,
+   0,
+   440
+  ],
+  "257_2": [
+   8,
+   46,
+   341
+  ],
+  "266": [
+   0,
+   1,
+   152
+  ],
+  "266_3": [
+   3,
+   64,
+   303
+  ],
+  "271_3": [
+   12,
+   66,
+   251
+  ],
+  "274": [
+   6,
+   42,
+   345
+  ],
+  "292_2": [
+   2,
+   3,
+   190
+  ],
+  "303": [
+   2,
+   11,
+   313
+  ]
+ }
+}

@@ -18,6 +18,26 @@
 
 ---
 
+## 期刊版（2026 年 10 月）：追加实验
+
+下面的 LAU-16 研究已扩展为期刊投稿（MDPI *Machine Learning and Knowledge Extraction*，特刊 "Language
+Acquisition and Understanding"）。扩展部分全部在 [`journal/`](journal/)（代码、run 元数据、全部统计、图），
+完整对照表见 [`journal/stats/tables.md`](journal/stats/tables.md)，带术语说明和考察的版本见
+[`journal/stats/tables_annotated.md`](journal/stats/tables_annotated.md)。
+
+新增内容：确定性配对规则（旧贪心法依赖 Python 的 hash seed）、在 relaxed 之外报告 **strict（完全一致）F1**、
+文档级 bootstrap 置信区间与配对检验、**每个模型 3 个 QLoRA seed**、SIP-jmed-13B 和 MedGemma-27B 的**基座模型**
+（LLM-jp-3.1-13B、Gemma-3-27B）、**JSON Schema 约束解码**和思考型模型的两段式"自由思考→约束答案"、修正后的
+JSON 解析器、两个参考模型（Qwen3.6-35B、GPT-OSS-120B）。
+
+主要结果（test-36，3 seed 均值）：13B 以上的所有模型收敛到 relaxed F1 0.815–0.827 / strict 0.779–0.798，
+全部高于 BERT（0.751 / 0.688）。零样本在约束解码下 F1 几乎不变（如 MedGemma 0.320→0.316），思考型模型
+"66–74% parse 失败"大部分是旧解析器的缺陷。三对基座对齐比较（13B/27B/70B）× 3 seed 检测不到医学预训练的
+效果（配对差都在 ±0.005 内，区间含 0），LAU 版"医学预训练可替代规模"的推测予以撤回。微调后的漏检集中在被
+900 token 上限截断的约 20% 句子（含 52% 的正解实体）。
+
+---
+
 ## 主要结果
 
 在语料测试集（36 篇留出文档）上的实体级 NER 精度，用**宽松匹配**（同一实体类型

@@ -1,0 +1,20 @@
+{
+  "name": "medgemma-27b-s2-ft",
+  "model": "/opt/llm/stage/medgemma-27b-text",
+  "lora": "/media/user/Elements/ft-journal/medgemma-27b-s2",
+  "tp": 2,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 900,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 0,
+  "think": null,
+  "truncated": 80,
+  "sec": 749.0,
+  "gpus": "2,3",
+  "date": "2026-10-07 03:31",
+  "parse_fail_v1": 0,
+  "parse_fail_v2": 0
+}

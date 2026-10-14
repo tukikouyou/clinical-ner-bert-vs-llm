@@ -1,0 +1,18 @@
+{
+  "name": "sip-jmed-13b-zs",
+  "model": "SIP-med-LLM/SIP-jmed-llm-3-13b-OP-32k-R0.1",
+  "lora": null,
+  "tp": 1,
+  "guided": false,
+  "schema": null,
+  "max_new_tokens": 3072,
+  "max_model_len": 8192,
+  "n_sent": 433,
+  "parse_fail": 322,
+  "truncated": 147,
+  "sec": 4398.7,
+  "gpus": "0",
+  "date": "2026-10-05 16:06",
+  "parse_fail_v1": 322,
+  "parse_fail_v2": 92
+}

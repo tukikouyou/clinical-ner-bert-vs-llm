@@ -1,0 +1,19 @@
+{
+  "name": "qwen-zs",
+  "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+  "lora": null,
+  "tp": 2,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 3072,
+  "max_model_len": 8192,
+  "n_sent": 433,
+  "parse_fail": 3,
+  "truncated": 24,
+  "sec": 226.4,
+  "gpus": "2,3",
+  "date": "2026-10-05 18:07",
+  "parse_fail_v1": 3,
+  "parse_fail_v2": 3
+}

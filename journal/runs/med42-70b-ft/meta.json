@@ -1,0 +1,20 @@
+{
+  "name": "med42-70b-ft",
+  "model": "/opt/llm/stage/med42-70b",
+  "lora": "/media/user/Elements/ft/med42-70b",
+  "tp": 4,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 900,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 0,
+  "think": null,
+  "truncated": 87,
+  "sec": 805.6,
+  "gpus": "0,1,2,3",
+  "date": "2026-10-06 09:31",
+  "parse_fail_v1": 0,
+  "parse_fail_v2": 0
+}

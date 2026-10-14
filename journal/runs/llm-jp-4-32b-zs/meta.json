@@ -1,0 +1,18 @@
+{
+  "name": "llm-jp-4-32b-zs",
+  "model": "llm-jp/llm-jp-4-32b-a3b-thinking",
+  "lora": null,
+  "tp": 2,
+  "guided": false,
+  "schema": null,
+  "max_new_tokens": 3072,
+  "max_model_len": 8192,
+  "n_sent": 433,
+  "parse_fail": 261,
+  "truncated": 35,
+  "sec": 463.4,
+  "gpus": "2,3",
+  "date": "2026-10-05 17:44",
+  "parse_fail_v1": 261,
+  "parse_fail_v2": 17
+}

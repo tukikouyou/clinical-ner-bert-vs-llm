@@ -20,6 +20,27 @@ BERTエンコーダ**と**ゼロショットの大規模言語モデル(LLM)**�
 
 ---
 
+## 期刊版（2026年10月）：追加実験
+
+下記の LAU-16 の研究を論文誌投稿（MDPI *Machine Learning and Knowledge Extraction*、特集 "Language
+Acquisition and Understanding"）向けに拡張した。拡張分はすべて [`journal/`](journal/)（コード・run
+メタ・全統計・図）にあり、全対照表は [`journal/stats/tables.md`](journal/stats/tables.md)、用語と考察付きは
+[`journal/stats/tables_annotated.md`](journal/stats/tables_annotated.md)。
+
+追加点：決定的な対応付け（旧貪欲法は Python の hash seed に依存していた）、relaxed に加えて
+**strict（完全一致）F1**、文書単位ブートストラップ CI と対応あり検定、**QLoRA を 3 seed**、SIP-jmed-13B と
+MedGemma-27B の**基盤モデル**（LLM-jp-3.1-13B、Gemma-3-27B）、**JSON Schema 制約デコード**と思考型モデル用の
+2 段階「自由思考→制約回答」、JSON パーサの修正、参考モデル 2 種（Qwen3.6-35B、GPT-OSS-120B）。
+
+主な結果（test-36、3 seed 平均）：13B 以上の全モデルが relaxed F1 0.815–0.827 / strict 0.779–0.798 に収束し
+BERT（0.751 / 0.688）を上回る。ゼロショットは制約デコードでも F1 がほぼ動かず（例 MedGemma 0.320→0.316）、
+思考型の「parse 失敗 66–74%」は大半が旧パーサの欠陥だった。基盤を揃えた 3 対（13B/27B/70B）× 3 seed では
+医療事前学習の効果は検出できない（対差すべて ±0.005 以内、区間は 0 を含む）。LAU 版の「医療事前学習が
+サイズを代替し得る」という示唆は撤回する。微調整後の取りこぼしは 900 トークン上限で打ち切られた約 20% の
+文（正解の 52% を含む）に集中する。
+
+---
+
 ## 主な結果
 
 コーパスのテスト分割(ホールドアウト36文書)での固有表現抽出精度。**緩和マッチ**

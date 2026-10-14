@@ -1,0 +1,20 @@
+{
+  "name": "sip-jmed-13b-s1-ft",
+  "model": "/opt/llm/stage/SIP-med-LLM--SIP-jmed-llm-3-13b-OP-32k-R0.1",
+  "lora": "/media/user/Elements/ft-journal/sip-jmed-13b-s1",
+  "tp": 1,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 900,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 0,
+  "think": null,
+  "truncated": 86,
+  "sec": 646.5,
+  "gpus": "0",
+  "date": "2026-10-06 00:34",
+  "parse_fail_v1": 0,
+  "parse_fail_v2": 0
+}

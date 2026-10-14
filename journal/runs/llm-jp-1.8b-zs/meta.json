@@ -1,0 +1,18 @@
+{
+  "name": "smoke-llm-jp-1.8b-zs",
+  "model": "llm-jp/llm-jp-3.1-1.8b-instruct4",
+  "lora": null,
+  "tp": 1,
+  "guided": false,
+  "schema": null,
+  "max_new_tokens": 900,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 3,
+  "truncated": 427,
+  "sec": 102.7,
+  "gpus": "0",
+  "date": "2026-10-05 14:03",
+  "parse_fail_v1": 3,
+  "parse_fail_v2": 3
+}

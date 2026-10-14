@@ -1,0 +1,20 @@
+{
+  "name": "gemma-3-27b-s1-ft",
+  "model": "/opt/llm/stage/gemma-3-27b-text-it",
+  "lora": "/media/user/Elements/ft-journal/gemma-3-27b-s1",
+  "tp": 2,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 900,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 0,
+  "think": null,
+  "truncated": 84,
+  "sec": 758.7,
+  "gpus": "2,3",
+  "date": "2026-10-07 03:04",
+  "parse_fail_v1": 0,
+  "parse_fail_v2": 0
+}
