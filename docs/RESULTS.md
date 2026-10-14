@@ -1,3 +1,5 @@
+> **存档（2026-10-14）**：本文件是 LAU-16 阶段的结果（单 seed、旧解析器、依赖 hash seed 的配对），已被 `journal/`（README 的 Results 节、`journal/stats/`）取代；数字有冲突时以 journal/ 为准。
+
 # 详细结果与实验参数
 
 **中文** | [日本語](RESULTS.ja.md)

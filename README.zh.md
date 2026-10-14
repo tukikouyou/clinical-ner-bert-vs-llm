@@ -1,14 +1,14 @@
-# 日语临床 NER：微调 BERT vs. 零样本 LLM
+# 日语临床 NER：微调 BERT vs. 零样本/微调 LLM
 
 [English](README.md) | [日本語](README.ja.md) | **中文**
 
-对日语临床文本做命名实体识别（NER），在同一份 gold 标注语料上、用统一指标，
-比较**微调后的 BERT 编码器**与**零样本大语言模型（LLM）**。
+对日语临床文本做命名实体识别（NER），在同一份 gold 标注语料上、用统一评价流程，
+比较**微调后的 BERT 编码器**与**大语言模型（LLM）**（零样本及 QLoRA 微调后）。
 
 本项目有三个目标：
 
-1. **精度对比** — 在公开标注语料上测量 BERT（UTH-BERT、NICT-BERT）与 LLM
-   （LLM-jp、GPT-OSS、SIP-jmed-LLM、Qwen、Llama）的 NER 精度。
+1. **精度对比** — 在公开标注语料上测量 BERT（UTH-BERT、NICT-BERT）与 9 个 LLM
+   （LLM-jp、SIP-jmed、Gemma/MedGemma、Qwen、Llama/Med42）的 NER 精度。
 2. **真实数据抽取** — 用同一套管线抽取真实临床报告。
 3. **FHIR 抽取**（计划中） — 从临床报告中抽取可映射到 FHIR 的项目。
 
@@ -18,25 +18,26 @@
 
 ---
 
-## 期刊版（2026 年 10 月）：追加实验
+## 结果（期刊版，2026 年 10 月）
 
-下面的 LAU-16 研究已扩展为期刊投稿（MDPI *Machine Learning and Knowledge Extraction*，特刊 "Language
-Acquisition and Understanding"）。扩展部分全部在 [`journal/`](journal/)（代码、run 元数据、全部统计、图），
-完整对照表见 [`journal/stats/tables.md`](journal/stats/tables.md)，带术语说明和考察的版本见
-[`journal/stats/tables_annotated.md`](journal/stats/tables_annotated.md)。
+设置：iCorpus（113 种实体类型），训练 146 篇 / 测试 36 篇（433 句，正解 12,919 个）；所有 LLM 使用同一提示和同一
+QLoRA 超参数；确定性一对一配对，报告 **relaxed**（标签相同且一方表层是另一方的子串）和 **strict**（标签与 NFKC
+规范化后的表层完全一致）F1；文档级 bootstrap 置信区间；每个模型 **3 个微调 seed**；**JSON Schema 约束解码**和
+思考型模型的两段式"自由思考→约束答案"；SIP-jmed-13B 与 MedGemma-27B 的**通用基座模型**。代码、run 元数据、
+统计和图在 [`journal/`](journal/)。LAU-16 的单 seed 结果由下表取代。
 
-新增内容：确定性配对规则（旧贪心法依赖 Python 的 hash seed）、在 relaxed 之外报告 **strict（完全一致）F1**、
-文档级 bootstrap 置信区间与配对检验、**每个模型 3 个 QLoRA seed**、SIP-jmed-13B 和 MedGemma-27B 的**基座模型**
-（LLM-jp-3.1-13B、Gemma-3-27B）、**JSON Schema 约束解码**和思考型模型的两段式"自由思考→约束答案"、修正后的
-JSON 解析器、两个参考模型（Qwen3.6-35B、GPT-OSS-120B）。
+主要结论：
 
-主要结果（test-36，3 seed 均值）：13B 以上的所有模型收敛到 relaxed F1 0.815–0.827 / strict 0.779–0.798，
-全部高于 BERT（0.751 / 0.688）。零样本在约束解码下 F1 几乎不变（如 MedGemma 0.320→0.316），思考型模型
-"66–74% parse 失败"大部分是旧解析器的缺陷。三对基座对齐比较（13B/27B/70B）× 3 seed 检测不到医学预训练的
-效果（配对差都在 ±0.005 内，区间含 0），LAU 版"医学预训练可替代规模"的推测予以撤回。微调后的漏检集中在被
-900 token 上限截断的约 20% 句子（含 52% 的正解实体）。
+- 零样本下所有 LLM 远低于微调 BERT（relaxed F1 ≤ 0.32 vs. 0.75），而且这**不是**输出格式问题：约束解码消除了全部
+  parse 失败和体系外标签，但 F1 最多变化 0.02；思考型模型的最好成绩（自由思考＋约束答案）是 0.17。思考型模型的
+  "parse 失败"大部分是旧解析器（第一个 `[` … 最后一个 `]`）的缺陷。
+- QLoRA 微调后所有 LLM 超过 BERT；≥13B 的模型彼此等价（relaxed 0.815–0.827，strict 0.779–0.798；seed 间 SD ≤ 0.006，
+  大于模型间差异）。LLM 对 BERT 的优势在 strict 下（+0.10）大于 relaxed（+0.07）。
+- 固定基座后**检测不到医学预训练的效果**（3 对 × 3 seed，配对差全部在 ±0.005 内且区间含 0）。
+- 剩余漏检集中在 JSON 输出超过 900 token 上限的约 20% 句子（含 52% 的正解；召回 0.58 vs. 其余 0.92）和主体不是
+  患者的标签（`-others`）。
 
-### 期刊版：完整对照表
+### 对照表
 
 以下数字全部由 `journal/code/readme_tables.py zh` 从 `journal/stats/` 生成（与
 [`journal/stats/tables_zh.md`](journal/stats/tables_zh.md) 相同）。relaxed = 标签相同且一方表层是另一方的子串，
@@ -165,83 +166,6 @@ Trunc.：输出被截断的句数。Gold：这些句子所含正解的比例。R
 
 ---
 
-## 主要结果
-
-在语料测试集（36 篇留出文档）上的实体级 NER 精度，用**宽松匹配**（同一实体类型
-+ 表层字符串包含，NFKC 归一化）打分。所有方法用完全相同的指标，因此 BERT 和 LLM
-可直接对比。微调 BERT 只在留出测试集上评测（无数据泄漏）；零样本 LLM 在全部
-183 篇上运行，取其中测试集 36 篇子集做正面对比。
-
-> ⚠️ 数字为**修正 gold（`end+1`）后**的结果（详见 [docs/RESULTS.md](docs/RESULTS.md)）。
-
-| 方法 | 类型 | 测试36篇 F1 | Precision | Recall |
-|------|------|:----------:|:---------:|:------:|
-| **UTH-BERT**（微调） | 编码器，临床预训练 | **0.752** | 0.871 | 0.661 |
-| **NICT-BERT**（微调） | 编码器，维基百科预训练 | **0.742** | 0.861 | 0.651 |
-| Qwen3.6 35B | LLM，零样本 | 0.288 | 0.446 | 0.212 |
-| Llama3.3 70B | LLM，零样本 | 0.261 | 0.522 | 0.174 |
-| Qwen3-30B-A3B | LLM，零样本 | 0.244 | 0.316 | 0.199 |
-| LLM-jp-4 32B | LLM，零样本（推理型） | 0.068 | 0.324 | 0.038 |
-| GPT-OSS 120B | LLM，零样本（推理型） | 0.040 | 0.606 | 0.021 |
-| SIP-jmed-LLM-3 13B | LLM，零样本（推理型·**医学**） | 0.012 | 0.119 | 0.006 |
-
-指标：宽松匹配（类型 + 表层包含，NFKC）。全部 test36、同一修正 gold。LLM 零样本
-（推理模型开启思考、给大 token 预算 — 见[说明](#关于-llm-数字的说明)）。
-完整数字：[`results/testset_scores.json`](results/testset_scores.json)。
-
-### 微调 LLM（QLoRA）——排名彻底反转
-
-把同样这些 LLM 用**和 BERT 相同的 146 篇训练集**做 QLoRA 微调（SFT：prompt→gold
-JSON），再用同一指标评测：
-
-| 方法 | 零样本 F1 | **微调后 F1** | Δ |
-|------|:--------:|:------------:|:--:|
-| **Llama-3.3 70B** | 0.261 | **0.822** *(最高)* | +0.561 |
-| **SIP-jmed-LLM-3 13B**（医学·仅13B）| 0.012 *(零样本最差)* | **0.819** | **+0.807** |
-| **Qwen3-30B-A3B** | 0.244 | **0.812** | +0.568 |
-| **LLM-jp-4 32B** | 0.068 | **0.811** | +0.743 |
-| **LLM-jp-3.1 1.8B** | ≈0 | **0.777** | +0.78 |
-| UTH-BERT（微调编码器）| — | 0.752 | — |
-| NICT-BERT（微调编码器）| — | 0.742 | — |
-
-**微调让整个排名反转。** 零样本时 BERT（0.752）超过所有 LLM、医学模型最差（0.012）；
-QLoRA 微调后**全部 5 个 LLM（0.777–0.822）反超 BERT**。哪怕 1.8B 的小模型（零样本≈0）也到
-0.777。零样本的差距是**任务/格式适配问题，不是能力问题**——一旦模型学会产出结构化输出，
-LLM 更丰富的表示（加上医学模型的领域知识）就超过了 BERT。零样本时是*负担*的领域预训练
-（吐不出 JSON 的推理模型），微调后变成决定性*优势*：**13B 的医学 SIP-jmed（0.819）几乎
-追平 70B 的通用 Llama-3.3（0.822）**——领域预训练让 13B 抵得上 70B。
-
-方法：QLoRA（4-bit NF4 + LoRA r=16，attention+MLP），3 epoch，单卡。
-见 [`llm/qlora_train.py`](llm/qlora_train.py)、[`llm/build_sft_data.py`](llm/build_sft_data.py)。
-
-### 结论（零样本）
-
-- **微调 BERT 远超所有零样本 LLM**（约 0.75 vs. ≤0.29，2.5 倍以上差距）。在这种
-  细粒度、领域专用的 NER 任务上，任务能力几乎完全来自对 100 多类标注体系的微调；
-  通用 LLM 零样本做不到。
-- **LLM 召回很低。** 语料标注极其详尽（"網羅的"），而 LLM 抽取没那么密，也难以
-  套用 100 多个陌生标签名（最好的 LLM 也只有 R≈0.19–0.23，远低于 BERT 的约 0.66）。
-- **医学专用模型反而最差。** SIP-jmed-LLM-3（13B，日语临床）只有 0.012，是所有 LLM
-  里最低的——因为它是*推理调优*模型，会无止境地推理，**约 74% 的输入吐不出可解析
-  JSON**。模型无法产出结构化输出时，领域知识帮不上忙。（但微调后它一跃成为并列最好。）
-- **「思考」型 LLM 不适合结构化抽取**，全部聚在底部（SIP-jmed 0.012、GPT-OSS 0.040、
-  LLM-jp-4 0.068）。强制立即输出 JSON（guided decoding）会丢掉推理、使输出退化
-  （如 LLM-jp-4 降到 0.049）；让它们自由推理又会在 JSON 前超出 token 上限。直接
-  给答案的模型（Qwen/Llama 关掉思考）好得多（0.27–0.29）。
-- **UTH-BERT（临床预训练） > NICT-BERT（维基百科预训练）**，符合预期。NICT 的词表
-  缺很多临床汉字（会变成 `[UNK]`），是它用于临床文本的实际短板。
-
-### 关于 LLM 数字的说明
-
-- Qwen / Llama / GPT-OSS 通过 **ollama 关闭思考**（`think:false`）运行。
-- LLM-jp-4 和 SIP-jmed 是推理模型、没有可靠的关思考开关，用 **vLLM 自然推理模式**、
-  大 token 预算（最多 12k）运行。SIP-jmed 仍有 75% 输入被截断，加大预算也不改变分数
-  （6k 是 0.018 ≈ 12k 也是 0.018）。
-- LLM-jp-4 的 12k token 运行中途遇到 vLLM detokenizer 崩溃；报告值 0.094 是它完整
-  跑完的 6k token 自然推理版。
-
----
-
 ## 仓库结构
 
 ```
@@ -264,6 +188,8 @@ results/                  仅聚合指标（无文本、无患者数据）
   testset_scores.json       BERT vs LLM 对比（本仓库核心结果）
   bert_UTH/ bert_NICT/      各标签 strict/soft P/R/F1 + 训练指标
 docs/WORKFLOW.md          详细操作记录
+docs/RESULTS.md           LAU-16（单 seed）旧结果（存档，已被 journal/ 取代）
+journal/                  期刊版：代码、run 元数据、统计、图（见 journal/README.md）
 ```
 
 ---
@@ -286,23 +212,19 @@ docs/WORKFLOW.md          详细操作记录
 > 的 IOB 必须是严格合法的 BIO，否则损失会爆炸（到约 1e8）而 F1 看起来正常。
 > `build_conll.py` 里含 BIO 修复步骤。
 
-### LLM（零样本）
+### LLM（零样本与微调）
 
-把每个临床句放进一个列出全部标签的 prompt，要求输出 JSON 数组
-`[{"label","text"}]`。两个后端：
+把每句放进一个列出 109 个标签、要求输出 JSON 数组 `[{"label","text"}]` 的提示
+（`journal/code/eval_v2.py`，vLLM，贪心解码）。条件：仅提示；JSON Schema 约束解码（`--guided`，XGrammar，
+标签限制在体系内）；思考型模型两段式"自由思考→约束答案"（`--think_from`）；QLoRA 微调
+（`journal/code/qlora_train_v2.py`：NF4、LoRA r=16、3 epoch、seed 42/1/2）后以 adapter 附加或合并推理。
+两个参考模型（Qwen3.6-35B、GPT-OSS-120B）用 ollama 运行。
 
-- **ollama**（Qwen3.6-35B、Llama3.3-70B、GPT-OSS-120B） — 用 `think:false` 关思考；
-  为提升吞吐做**4-GPU 数据并行**（每张卡一个实例、请求轮询分发）；上下文限制到
-  4096 以省 KV 缓存。
-- **vLLM**（LLM-jp-4-32B、SIP-jmed-13B） — HF 模型；对推理模型用 guided JSON
-  解码或大 token 预算的自然推理。
+### 评测
 
-### 统一评测
-
-BERT 的预测和 LLM 的输出都对 gold 字符级标注用**同一个宽松指标**打分
-（`llm/testset_eval.py`）。实体 = `(类型, 表层)`；类型相同且一方表层包含另一方
-（NFKC 归一化）即算命中。这对基于 token 的 BERT 和自由文本的 LLM 都公平，也能容忍
-语料中碎片式的 gold span。
+BERT 预测和 LLM 输出都转成每句的 `(类型, 表层)`，由 `journal/code/metrics_v2.py` 打分：确定性一对一贪心配对；
+**relaxed**（类型相同且一方表层是另一方子串，NFKC）与 **strict**（表层完全一致）F1，以及最小长度、主体合并、
+宏平均变体；文档级 bootstrap 置信区间与配对差。`llm/testset_eval.py` 是 LAU-16 版打分器（仅 relaxed，依赖集合遍历顺序）。
 
 ---
 
