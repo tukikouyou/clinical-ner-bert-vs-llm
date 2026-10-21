@@ -28,8 +28,8 @@ run() { # name model hfhome tp gpus maxtok maxlen lora extra...
   [ -f runs/$name/meta.json ] && { echo "[$name] SKIP done" >> $LOG; return; }
   avail "$model" "$hf" "$lora" || { echo "[$name] SKIP (model/LoRA not available: $model $lora)" >> $LOG; return; }
   echo "===== [$name] start $(date '+%m-%d %H:%M') tp=$tp gpus=$gpus =====" >> $LOG
-  local staged; staged=$(bash code/stage.sh "$model" "$hf" 2>>logs/stage.log) || { echo "!!!!! [$name] STAGE FAILED" >> $LOG; return; }
-  model=$staged
+  local staged; if staged=$(bash code/stage.sh "$model" "$hf" 2>>logs/stage.log); then model=$staged
+  else echo "[$name] stage failed (空き不足など) → Elements から直接読込" >> $LOG; fi
   local extra=""; [ -n "$lora" ] && extra="--lora $lora"
   local v1=1; [ "$tp" -ge 2 ] && v1=0
   # Triton/inductor キャッシュはモデル単位で共有(初回で温め、2回目以降は再コンパイル無し → tp>=2 の FileExistsError 競合を避ける)
@@ -58,8 +58,8 @@ merge() { # name base lora hfhome → $MG/name
   [ -d $MG/$name ] && [ -f $MG/$name/config.json ] && return 0
   avail "$base" "$hf" "$lora" || return 1
   echo "===== [$name] merge $(date '+%m-%d %H:%M') =====" >> $LOG; rm -rf $MG/$name
+  bash code/stage.sh --reserve 140 2>>logs/stage.log   # 基盤のステージ(60GB) + merge 出力(65GB) の空きを先に確保 (後から evict すると直前にステージした基盤を消す: 2026-10-14 の MERGE FAILED の原因)
   base=$(bash code/stage.sh "$base" "$hf" 2>>logs/stage.log) || return 1
-  bash code/stage.sh --reserve 70 2>>logs/stage.log   # merge 出力(最大 65GB)の空きを確保
   HF_HOME=$hf CUDA_VISIBLE_DEVICES=2,3 $T451 -u /home/user/yagahara/shared/llm/merge_lora.py --base "$base" --lora "$lora" --out $MG/$name >> logs/merge_$name.log 2>&1 \
    || { rm -rf $MG/$name; HF_HOME=$hf CUDA_VISIBLE_DEVICES= $T451 -u /home/user/yagahara/shared/llm/merge_lora.py --base "$base" --lora "$lora" --out $MG/$name --device cpu >> logs/merge_$name.log 2>&1; } \
    || { echo "!!!!! [$name] MERGE FAILED" >> $LOG; return 1; }; }
@@ -134,14 +134,33 @@ K4) # 生成予算アブレーション: seed42 の FT 推論を max_new_tokens 
   run llm-jp-1.8b-ft-4k     $LJ18 $OPT 1 0 2600 4096 $FT/llmjp-1.8b-3ep   # LLM-jp-3.1 は max_position_embeddings 4096 → 予算 2600
   run sip-jmed-13b-ft-4k    $SIP  $EXT 1 0 4096 8192 $FT/sip-jmed-13b
   run llmjp-3.1-13b-ft-4k   llm-jp/llm-jp-3.1-13b-instruct4 $EXT 1 0 2600 4096 $FJ/llmjp-3.1-13b-s42
-  run medgemma-27b-ft-4k    $MGT $OPT 2 2,3 4096 8192 $FTL/medgemma-27b --max_num_seqs 32
-  run gemma-3-27b-ft-4k     $GT  $EXT 2 2,3 4096 8192 $FJ/gemma-3-27b-s42 --max_num_seqs 32
-  if merge qwen-ft $QWEN $FT/qwen3-30b-a3b $EXT; then run qwen-ft-4k $MG/qwen-ft $EXT 2 2,3 4096 8192 ""; rm -rf $MG/qwen-ft; fi
-  if merge llm-jp-4-32b-ft $LJ4 $FT/llmjp-4-32b $EXT; then run llm-jp-4-32b-ft-4k $MG/llm-jp-4-32b-ft $EXT 2 2,3 4096 8192 ""; rm -rf $MG/llm-jp-4-32b-ft; fi
+  run medgemma-27b-ft-4k    $MGT $OPT 2 2,3 4096 6400 $FTL/medgemma-27b --max_num_seqs 8   # 8192/32 seq は KV プロファイルで OOM
+  run gemma-3-27b-ft-4k     $GT  $EXT 2 2,3 4096 6400 $FJ/gemma-3-27b-s42 --max_num_seqs 8
+  if merge qwen-ft $QWEN $FT/qwen3-30b-a3b $EXT; then run qwen-ft-4k $MG/qwen-ft $EXT 2 2,3 4096 6400 "" --max_num_seqs 8; rm -rf $MG/qwen-ft; fi
+  if merge llm-jp-4-32b-ft $LJ4 $FT/llmjp-4-32b $EXT; then run llm-jp-4-32b-ft-4k $MG/llm-jp-4-32b-ft $EXT 2 2,3 4096 6400 "" --max_num_seqs 8; rm -rf $MG/llm-jp-4-32b-ft; fi
   # 70B は 4 GPU 全部が要る: GPU1 の他ジョブ (<2GB なら可) を待つ
   while [ "$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 1)" -gt 2000 ]; do echo "[K4] waiting for GPU1 (busy)" >> $LOG; sleep 600; done
-  run med42-70b-ft-4k       /media/user/Elements/models/med42-70b $OPT 4 0,1,2,3 4096 8192 $FTL/med42-70b
-  run llama-3.3-70b-ft-4k   $LLAMA $EXT 4 0,1,2,3 4096 8192 $FT/llama-3.3-70b
+  run llama-3.3-70b-ft-4k   $LLAMA $EXT 4 0,1,2,3 4096 6400 $FT/llama-3.3-70b --max_num_seqs 16
+  run med42-70b-ft-4k       /media/user/Elements/models/med42-70b $OPT 4 0,1,2,3 4096 6400 $FTL/med42-70b --max_num_seqs 16
+  ;;
+K4S) # 生成予算アブレーション seed 1/2 (主表を大予算にするため): runs/<name>-s<k>-ft-4k
+  FJ=/media/user/Elements/ft-journal; GT=/media/user/Elements/models/gemma-3-27b-text-it; MGT=/media/user/Elements/models/medgemma-27b-text
+  for sd in 1 2; do
+    run llm-jp-1.8b-s$sd-ft-4k     $LJ18 $OPT 1 0 2600 4096 $FJ/llmjp-1.8b-s$sd
+    run llmjp-3.1-13b-s$sd-ft-4k   llm-jp/llm-jp-3.1-13b-instruct4 $EXT 1 0 2600 4096 $FJ/llmjp-3.1-13b-s$sd
+    run sip-jmed-13b-s$sd-ft-4k    $SIP  $EXT 1 0 4096 8192 $FJ/sip-jmed-13b-s$sd
+  done
+  for sd in 1 2; do
+    run medgemma-27b-s$sd-ft-4k    $MGT $OPT 2 2,3 4096 6400 $FJ/medgemma-27b-s$sd --max_num_seqs 8
+    run gemma-3-27b-s$sd-ft-4k     $GT  $EXT 2 2,3 4096 6400 $FJ/gemma-3-27b-s$sd --max_num_seqs 8
+  done
+  for sd in 1 2; do
+    if merge qwen-s$sd-ft $QWEN $FJ/qwen3-30b-a3b-s$sd $EXT; then run qwen-s$sd-ft-4k $MG/qwen-s$sd-ft $EXT 2 2,3 4096 6400 "" --max_num_seqs 8; rm -rf $MG/qwen-s$sd-ft; fi
+    if merge llm-jp-4-32b-s$sd-ft $LJ4 $FJ/llmjp-4-32b-s$sd $EXT; then run llm-jp-4-32b-s$sd-ft-4k $MG/llm-jp-4-32b-s$sd-ft $EXT 2 2,3 4096 6400 "" --max_num_seqs 8; rm -rf $MG/llm-jp-4-32b-s$sd-ft; fi
+  done
+  while [ "$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 1)" -gt 2000 ]; do echo "[K4S] waiting for GPU1 (busy)" >> $LOG; sleep 600; done
+  for sd in 1 2; do run llama-3.3-70b-s$sd-ft-4k $LLAMA $EXT 4 0,1,2,3 4096 6400 $FJ/llama-3.3-70b-s$sd --max_num_seqs 16; done
+  for sd in 1 2; do run med42-70b-s$sd-ft-4k /media/user/Elements/models/med42-70b $OPT 4 0,1,2,3 4096 6400 $FJ/med42-70b-s$sd --max_num_seqs 16; done
   ;;
 R|RQ|RG) # 参考モデル (ollama)。RQ=qwen3.6 のみ(GPU 1 枚で可)、RG=gpt-oss:120b のみ(GPU 2 枚以上)、R=両方
   specs=()

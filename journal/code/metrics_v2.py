@@ -174,7 +174,7 @@ def main():
     p.add_argument("--pair", action="store_true")
     p.add_argument("--n_boot", type=int, default=2000)
     p.add_argument("--macro_min", type=int, default=20)
-    p.add_argument("--parser", default="v1", choices=["v1", "v2"], help="v2: preds_v2.json (最後の JSON 配列を採用)")
+    p.add_argument("--parser", default="v1", choices=["v1", "v2", "v3"], help="v2: preds_v2.json (最後の JSON 配列); v3: preds_v3.json (最初の完全な配列; FT 用)")
     args = p.parse_args()
     os.makedirs(STATS, exist_ok=True)
 
@@ -192,8 +192,8 @@ def main():
     for b in args.bert:
         systems[f"BERT-{b}"] = bert_pred_ordered(b)
     for r in args.runs:
-        pr = json.load(open(os.path.join(RUNS, r, "preds.json" if args.parser == "v1" else "preds_v2.json")))
-        systems[r + ("" if args.parser == "v1" else "@v2")] = {k: [tuple(x) for x in v] for k, v in pr.items()}
+        pr = json.load(open(os.path.join(RUNS, r, {"v1": "preds.json", "v2": "preds_v2.json", "v3": "preds_v3.json"}[args.parser])))
+        systems[r + ("" if args.parser == "v1" else "@" + args.parser)] = {k: [tuple(x) for x in v] for k, v in pr.items()}
 
     boot_cache = {}
     summary = {}

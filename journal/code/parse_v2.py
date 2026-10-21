@@ -35,3 +35,28 @@ def parse_entities_v2(raw, fallback=None):
                 except json.JSONDecodeError:
                     pass
     return fallback(raw) if fallback else None
+
+
+def parse_entities_v3(raw, fallback=None):
+    """v3 (ファインチューニング済みモデル用): 出力冒頭の「最初の完全な JSON 配列」を採用する。
+    FT モデルは配列を出し終えた後に EOS を出さずプロンプトを復唱して生成を続けることがあり(予算 4096 で顕在化)、
+    v1 (最初の '[' 〜 最後の ']') はその復唱中の '[' ']' まで取り込んでパース失敗する。
+    配列が予算で途切れた場合は閉じた最後の要素までで閉じる。"""
+    starts = [i for i, ch in enumerate(raw) if ch == "["]
+    for i in starts:                        # 左端の配列を優先
+        try:
+            o, _ = _dec.raw_decode(raw[i:])
+        except json.JSONDecodeError:
+            # 途切れ修復: この '[' から最後の '}' までで閉じる
+            c = raw[i:]; j = c.rfind("}")
+            if j > 0:
+                try:
+                    o = json.loads(c[:j + 1] + "]")
+                    if _valid(o):
+                        return o
+                except json.JSONDecodeError:
+                    pass
+            continue
+        if _valid(o):
+            return o
+    return fallback(raw) if fallback else None

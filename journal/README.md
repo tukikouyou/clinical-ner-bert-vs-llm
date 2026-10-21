@@ -22,8 +22,11 @@ distributed for research use by its authors and is **not** included here.
 
 Run names: `<model>-zs` (prompt only), `<model>-zs-guided` (constrained decoding),
 `<model>-zs-think-guided` (two-pass), `<model>-ft` (QLoRA seed 42), `<model>-s1-ft` / `-s2-ft`
-(seeds 1, 2), `<model>-ft-4k` (4,096-token generation budget), `*-guided-ws` (constrained decoding
-with whitespace allowed; supplementary).
+(seeds 1, 2) under the 900-token budget of the LAU paper; `<model>-ft-4k`, `-s1-ft-4k`, `-s2-ft-4k`
+(**main condition**: 4,096-token generation budget; 2,600 for the two LLM-jp-3.1 models); `*-guided-ws`
+(constrained decoding with whitespace allowed; supplementary). Fine-tuned outputs are parsed as the first
+complete JSON array (`preds.json`; the LAU parser's result is kept in `preds_v1.json`), zero-shot outputs
+with the LAU parser (`preds.json`) and the final-array parser (`preds_v2.json`).
 
 Note: `raw.jsonl` and `preds.json` contain entity surfaces, i.e. short substrings of the test
 sentences, but not the sentences themselves.

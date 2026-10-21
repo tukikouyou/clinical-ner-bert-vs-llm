@@ -1,0 +1,21 @@
+{
+  "name": "med42-70b-s2-ft-4k",
+  "model": "/opt/llm/stage/med42-70b",
+  "lora": "/media/user/Elements/ft-journal/med42-70b-s2",
+  "tp": 4,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 4096,
+  "max_model_len": 6400,
+  "n_sent": 433,
+  "parse_fail": 27,
+  "think": null,
+  "truncated": 11,
+  "sec": 2657.1,
+  "gpus": "0,1,2,3",
+  "date": "2026-10-21 22:29",
+  "parse_fail_v1": 27,
+  "parse_fail_v2": 0,
+  "parse_fail_v3": 0
+}

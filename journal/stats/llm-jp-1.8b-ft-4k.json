@@ -1,0 +1,1244 @@
+{
+ "name": "llm-jp-1.8b-ft-4k",
+ "relaxed": {
+  "P": 0.8625,
+  "R": 0.7999,
+  "F1": 0.83,
+  "tp": 10334,
+  "fp": 1648,
+  "fn": 2585
+ },
+ "relaxed_ci95": [
+  0.8047,
+  0.8536
+ ],
+ "strict": {
+  "P": 0.8066,
+  "R": 0.7481,
+  "F1": 0.7763,
+  "tp": 9665,
+  "fp": 2317,
+  "fn": 3254
+ },
+ "strict_ci95": [
+  0.7488,
+  0.8015
+ ],
+ "min2_F1": 0.8219,
+ "min3_F1": 0.8017,
+ "relaxed_merged_F1": 0.8441,
+ "strict_merged_F1": 0.7888,
+ "macro_F1": 0.7626,
+ "n_macro_labels": 48,
+ "kinds": {
+  "exact": 9594,
+  "gold_in_pred": 438,
+  "pred_in_gold": 302
+ },
+ "exact_share_of_tp": 0.9284,
+ "n_pred": 11982,
+ "n_unknown_label_pred": 18,
+ "per_label_relaxed": {
+  "ChiefComplaint": {
+   "n": 28,
+   "P": 1.0,
+   "R": 0.9643,
+   "F1": 0.9818
+  },
+  "FamilyHistory": {
+   "n": 29,
+   "P": 1.0,
+   "R": 0.9655,
+   "F1": 0.9825
+  },
+  "Forward": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "MedicationHistory": {
+   "n": 5,
+   "P": 0.5,
+   "R": 0.2,
+   "F1": 0.2857
+  },
+  "PN-Negative-others": {
+   "n": 26,
+   "P": 1.0,
+   "R": 0.1923,
+   "F1": 0.3226
+  },
+  "PN-Negative-patient": {
+   "n": 276,
+   "P": 0.9481,
+   "R": 0.7283,
+   "F1": 0.8238
+  },
+  "PN-None-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-None-patient": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "PN-Positive-others": {
+   "n": 17,
+   "P": 0.3333,
+   "R": 0.2353,
+   "F1": 0.2759
+  },
+  "PN-Positive-patient": {
+   "n": 865,
+   "P": 0.9272,
+   "R": 0.8682,
+   "F1": 0.8967
+  },
+  "PastHistory": {
+   "n": 35,
+   "P": 0.9444,
+   "R": 0.9714,
+   "F1": 0.9577
+  },
+  "PresentCondition": {
+   "n": 23,
+   "P": 1.0,
+   "R": 1.0,
+   "F1": 1.0
+  },
+  "PresentHistory": {
+   "n": 35,
+   "P": 0.9706,
+   "R": 0.9429,
+   "F1": 0.9565
+  },
+  "Reverse": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "SocialHistory": {
+   "n": 9,
+   "P": 0.8889,
+   "R": 0.8889,
+   "F1": 0.8889
+  },
+  "action": {
+   "n": 11,
+   "P": 0.1667,
+   "R": 0.0909,
+   "F1": 0.1176
+  },
+  "activity-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "activity-patient": {
+   "n": 10,
+   "P": 0.0714,
+   "R": 0.2,
+   "F1": 0.1053
+  },
+  "age-others": {
+   "n": 1,
+   "P": 1.0,
+   "R": 1.0,
+   "F1": 1.0
+  },
+  "age-patient": {
+   "n": 119,
+   "P": 0.9328,
+   "R": 0.9328,
+   "F1": 0.9328
+  },
+  "allergy-patient": {
+   "n": 2,
+   "P": 1.0,
+   "R": 1.0,
+   "F1": 1.0
+  },
+  "body-others": {
+   "n": 28,
+   "P": 0.2308,
+   "R": 0.1071,
+   "F1": 0.1463
+  },
+  "body-patient": {
+   "n": 1200,
+   "P": 0.8335,
+   "R": 0.8592,
+   "F1": 0.8461
+  },
+  "clinical_test": {
+   "n": 587,
+   "P": 0.8982,
+   "R": 0.8416,
+   "F1": 0.869
+  },
+  "consultation": {
+   "n": 198,
+   "P": 0.9679,
+   "R": 0.9141,
+   "F1": 0.9403
+  },
+  "detail": {
+   "n": 41,
+   "P": 0.4583,
+   "R": 0.2683,
+   "F1": 0.3385
+  },
+  "device": {
+   "n": 75,
+   "P": 0.5921,
+   "R": 0.6,
+   "F1": 0.596
+  },
+  "drinking-current-patient": {
+   "n": 7,
+   "P": 1.0,
+   "R": 0.8571,
+   "F1": 0.9231
+  },
+  "drug": {
+   "n": 283,
+   "P": 0.8835,
+   "R": 0.7774,
+   "F1": 0.8271
+  },
+  "execute": {
+   "n": 522,
+   "P": 0.8833,
+   "R": 0.841,
+   "F1": 0.8616
+  },
+  "explain": {
+   "n": 2,
+   "P": 1.0,
+   "R": 0.5,
+   "F1": 0.6667
+  },
+  "family-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "food": {
+   "n": 10,
+   "P": 1.0,
+   "R": 0.3,
+   "F1": 0.4615
+  },
+  "frequency": {
+   "n": 12,
+   "P": 0.7143,
+   "R": 0.4167,
+   "F1": 0.5263
+  },
+  "function": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "function-others": {
+   "n": 7,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "function-patient": {
+   "n": 330,
+   "P": 0.7562,
+   "R": 0.7333,
+   "F1": 0.7446
+  },
+  "future-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "gene-others": {
+   "n": 2,
+   "P": 0.3333,
+   "R": 0.5,
+   "F1": 0.4
+  },
+  "gene-patient": {
+   "n": 16,
+   "P": 1.0,
+   "R": 0.5,
+   "F1": 0.6667
+  },
+  "incident": {
+   "n": 1,
+   "P": 0.5,
+   "R": 1.0,
+   "F1": 0.6667
+  },
+  "info": {
+   "n": 12,
+   "P": 0.4545,
+   "R": 0.4167,
+   "F1": 0.4348
+  },
+  "intention-NG": {
+   "n": 4,
+   "P": 1.0,
+   "R": 0.25,
+   "F1": 0.4
+  },
+  "intention-OK": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "item": {
+   "n": 1025,
+   "P": 0.9072,
+   "R": 0.7532,
+   "F1": 0.823
+  },
+  "judge-Negative-patient": {
+   "n": 13,
+   "P": 1.0,
+   "R": 0.6923,
+   "F1": 0.8182
+  },
+  "judge-None-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-None-patient": {
+   "n": 4,
+   "P": 0.2857,
+   "R": 0.5,
+   "F1": 0.3636
+  },
+  "judge-Positive-others": {
+   "n": 2,
+   "P": 0.5,
+   "R": 0.5,
+   "F1": 0.5
+  },
+  "judge-Positive-patient": {
+   "n": 110,
+   "P": 0.8252,
+   "R": 0.7727,
+   "F1": 0.7981
+  },
+  "judge-Suspicious-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-Suspicious-patient": {
+   "n": 51,
+   "P": 0.76,
+   "R": 0.7451,
+   "F1": 0.7525
+  },
+  "judge-future-others": {
+   "n": 7,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "judge-future-patient": {
+   "n": 8,
+   "P": 0.5,
+   "R": 0.125,
+   "F1": 0.2
+  },
+  "laterality": {
+   "n": 145,
+   "P": 0.9535,
+   "R": 0.8483,
+   "F1": 0.8978
+  },
+  "load": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "organization": {
+   "n": 151,
+   "P": 0.9315,
+   "R": 0.9007,
+   "F1": 0.9158
+  },
+  "person-family": {
+   "n": 30,
+   "P": 1.0,
+   "R": 0.7333,
+   "F1": 0.8462
+  },
+  "person-others": {
+   "n": 10,
+   "P": 0.4444,
+   "R": 0.4,
+   "F1": 0.4211
+  },
+  "person-patient": {
+   "n": 55,
+   "P": 0.9074,
+   "R": 0.8909,
+   "F1": 0.8991
+  },
+  "pose": {
+   "n": 6,
+   "P": 1.0,
+   "R": 0.8333,
+   "F1": 0.9091
+  },
+  "quality_evaluation-mild-patient": {
+   "n": 39,
+   "P": 0.9143,
+   "R": 0.8205,
+   "F1": 0.8649
+  },
+  "quality_evaluation-moderate-patient": {
+   "n": 5,
+   "P": 1.0,
+   "R": 0.4,
+   "F1": 0.5714
+  },
+  "quality_evaluation-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-patient": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-patient": {
+   "n": 68,
+   "P": 0.8387,
+   "R": 0.7647,
+   "F1": 0.8
+  },
+  "quality_progress-improve-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-improve-patient": {
+   "n": 56,
+   "P": 0.8148,
+   "R": 0.7857,
+   "F1": 0.8
+  },
+  "quality_progress-no_change-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-no_change-patient": {
+   "n": 11,
+   "P": 0.8571,
+   "R": 0.5455,
+   "F1": 0.6667
+  },
+  "quality_progress-patient": {
+   "n": 56,
+   "P": 0.6613,
+   "R": 0.7321,
+   "F1": 0.6949
+  },
+  "quality_progress-recover-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-recover-patient": {
+   "n": 27,
+   "P": 0.5588,
+   "R": 0.7037,
+   "F1": 0.623
+  },
+  "quality_progress-start-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-start-patient": {
+   "n": 113,
+   "P": 0.8365,
+   "R": 0.7699,
+   "F1": 0.8018
+  },
+  "quality_progress-worsen-others": {
+   "n": 4,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quality_progress-worsen-patient": {
+   "n": 44,
+   "P": 0.7778,
+   "R": 0.7955,
+   "F1": 0.7865
+  },
+  "quantity-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-patient": {
+   "n": 66,
+   "P": 0.8475,
+   "R": 0.7576,
+   "F1": 0.8
+  },
+  "quantity_evaluation-Low-patient": {
+   "n": 53,
+   "P": 0.9268,
+   "R": 0.717,
+   "F1": 0.8085
+  },
+  "quantity_evaluation-normal-patient": {
+   "n": 20,
+   "P": 0.8571,
+   "R": 0.6,
+   "F1": 0.7059
+  },
+  "quantity_evaluation-patient": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-patient": {
+   "n": 21,
+   "P": 0.7368,
+   "R": 0.6667,
+   "F1": 0.7
+  },
+  "quantity_progress-improve-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-increase-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-increase-patient": {
+   "n": 21,
+   "P": 0.5652,
+   "R": 0.619,
+   "F1": 0.5909
+  },
+  "quantity_progress-no_change-others": {
+   "n": 2,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-no_change-patient": {
+   "n": 3,
+   "P": 0.6667,
+   "R": 0.6667,
+   "F1": 0.6667
+  },
+  "quantity_progress-patient": {
+   "n": 9,
+   "P": 0.3,
+   "R": 0.6667,
+   "F1": 0.4138
+  },
+  "quantity_progress-recover-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "quantity_progress-state-patient": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "sex-others": {
+   "n": 1,
+   "P": 1.0,
+   "R": 1.0,
+   "F1": 1.0
+  },
+  "sex-patient": {
+   "n": 37,
+   "P": 1.0,
+   "R": 0.973,
+   "F1": 0.9863
+  },
+  "smoking-current-others": {
+   "n": 1,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "smoking-current-patient": {
+   "n": 9,
+   "P": 0.875,
+   "R": 0.7778,
+   "F1": 0.8235
+  },
+  "smoking-stop-patient": {
+   "n": 1,
+   "P": 1.0,
+   "R": 1.0,
+   "F1": 1.0
+  },
+  "spacial_concept": {
+   "n": 201,
+   "P": 0.8312,
+   "R": 0.6368,
+   "F1": 0.7211
+  },
+  "state": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "state-others": {
+   "n": 155,
+   "P": 0.6923,
+   "R": 0.3484,
+   "F1": 0.4635
+  },
+  "state-patient": {
+   "n": 2318,
+   "P": 0.853,
+   "R": 0.8486,
+   "F1": 0.8508
+  },
+  "teach-others": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "time": {
+   "n": 746,
+   "P": 0.8854,
+   "R": 0.8391,
+   "F1": 0.8617
+  },
+  "time_span": {
+   "n": 59,
+   "P": 0.7647,
+   "R": 0.4407,
+   "F1": 0.5591
+  },
+  "tissue": {
+   "n": 0,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "tissue-others": {
+   "n": 3,
+   "P": 0.0,
+   "R": 0.0,
+   "F1": 0.0
+  },
+  "tissue-patient": {
+   "n": 145,
+   "P": 0.7216,
+   "R": 0.4828,
+   "F1": 0.5785
+  },
+  "treatment": {
+   "n": 614,
+   "P": 0.8466,
+   "R": 0.7997,
+   "F1": 0.8224
+  },
+  "unit": {
+   "n": 552,
+   "P": 0.9416,
+   "R": 0.8768,
+   "F1": 0.9081
+  },
+  "value-others": {
+   "n": 63,
+   "P": 0.2,
+   "R": 0.0159,
+   "F1": 0.0294
+  },
+  "value-patient": {
+   "n": 921,
+   "P": 0.8993,
+   "R": 0.8827,
+   "F1": 0.891
+  }
+ },
+ "per_label_strict": {
+  "ChiefComplaint": {
+   "F1": 0.9818
+  },
+  "FamilyHistory": {
+   "F1": 0.9825
+  },
+  "Forward": {
+   "F1": 0.0
+  },
+  "MedicationHistory": {
+   "F1": 0.2857
+  },
+  "PN-Negative-others": {
+   "F1": 0.3226
+  },
+  "PN-Negative-patient": {
+   "F1": 0.8115
+  },
+  "PN-None-others": {
+   "F1": 0.0
+  },
+  "PN-None-patient": {
+   "F1": 0.0
+  },
+  "PN-Positive-others": {
+   "F1": 0.2069
+  },
+  "PN-Positive-patient": {
+   "F1": 0.8645
+  },
+  "PastHistory": {
+   "F1": 0.9577
+  },
+  "PresentCondition": {
+   "F1": 1.0
+  },
+  "PresentHistory": {
+   "F1": 0.9565
+  },
+  "Reverse": {
+   "F1": 0.0
+  },
+  "SocialHistory": {
+   "F1": 0.8889
+  },
+  "action": {
+   "F1": 0.1176
+  },
+  "activity-others": {
+   "F1": 0.0
+  },
+  "activity-patient": {
+   "F1": 0.0526
+  },
+  "age-others": {
+   "F1": 1.0
+  },
+  "age-patient": {
+   "F1": 0.8655
+  },
+  "allergy-patient": {
+   "F1": 1.0
+  },
+  "body-others": {
+   "F1": 0.1463
+  },
+  "body-patient": {
+   "F1": 0.7944
+  },
+  "clinical_test": {
+   "F1": 0.7704
+  },
+  "consultation": {
+   "F1": 0.9299
+  },
+  "detail": {
+   "F1": 0.3385
+  },
+  "device": {
+   "F1": 0.4901
+  },
+  "drinking-current-patient": {
+   "F1": 0.9231
+  },
+  "drug": {
+   "F1": 0.7707
+  },
+  "execute": {
+   "F1": 0.8027
+  },
+  "explain": {
+   "F1": 0.0
+  },
+  "family-others": {
+   "F1": 0.0
+  },
+  "food": {
+   "F1": 0.4615
+  },
+  "frequency": {
+   "F1": 0.5263
+  },
+  "function": {
+   "F1": 0.0
+  },
+  "function-others": {
+   "F1": 0.0
+  },
+  "function-patient": {
+   "F1": 0.6738
+  },
+  "future-patient": {
+   "F1": 0.0
+  },
+  "gene-others": {
+   "F1": 0.4
+  },
+  "gene-patient": {
+   "F1": 0.6667
+  },
+  "incident": {
+   "F1": 0.6667
+  },
+  "info": {
+   "F1": 0.4348
+  },
+  "intention-NG": {
+   "F1": 0.4
+  },
+  "intention-OK": {
+   "F1": 0.0
+  },
+  "item": {
+   "F1": 0.7591
+  },
+  "judge-Negative-patient": {
+   "F1": 0.7273
+  },
+  "judge-None-others": {
+   "F1": 0.0
+  },
+  "judge-None-patient": {
+   "F1": 0.3636
+  },
+  "judge-Positive-others": {
+   "F1": 0.5
+  },
+  "judge-Positive-patient": {
+   "F1": 0.7418
+  },
+  "judge-Suspicious-others": {
+   "F1": 0.0
+  },
+  "judge-Suspicious-patient": {
+   "F1": 0.6931
+  },
+  "judge-future-others": {
+   "F1": 0.0
+  },
+  "judge-future-patient": {
+   "F1": 0.2
+  },
+  "laterality": {
+   "F1": 0.8686
+  },
+  "load": {
+   "F1": 0.0
+  },
+  "organization": {
+   "F1": 0.8956
+  },
+  "person-family": {
+   "F1": 0.8462
+  },
+  "person-others": {
+   "F1": 0.2105
+  },
+  "person-patient": {
+   "F1": 0.8807
+  },
+  "pose": {
+   "F1": 0.9091
+  },
+  "quality_evaluation-mild-patient": {
+   "F1": 0.8649
+  },
+  "quality_evaluation-moderate-patient": {
+   "F1": 0.2857
+  },
+  "quality_evaluation-others": {
+   "F1": 0.0
+  },
+  "quality_evaluation-patient": {
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-others": {
+   "F1": 0.0
+  },
+  "quality_evaluation-severe-patient": {
+   "F1": 0.8
+  },
+  "quality_progress-improve-others": {
+   "F1": 0.0
+  },
+  "quality_progress-improve-patient": {
+   "F1": 0.7818
+  },
+  "quality_progress-no_change-others": {
+   "F1": 0.0
+  },
+  "quality_progress-no_change-patient": {
+   "F1": 0.5556
+  },
+  "quality_progress-patient": {
+   "F1": 0.678
+  },
+  "quality_progress-recover-others": {
+   "F1": 0.0
+  },
+  "quality_progress-recover-patient": {
+   "F1": 0.5902
+  },
+  "quality_progress-start-others": {
+   "F1": 0.0
+  },
+  "quality_progress-start-patient": {
+   "F1": 0.7926
+  },
+  "quality_progress-worsen-others": {
+   "F1": 0.0
+  },
+  "quality_progress-worsen-patient": {
+   "F1": 0.7865
+  },
+  "quantity-patient": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-others": {
+   "F1": 0.0
+  },
+  "quantity_evaluation-High-patient": {
+   "F1": 0.784
+  },
+  "quantity_evaluation-Low-patient": {
+   "F1": 0.8085
+  },
+  "quantity_evaluation-normal-patient": {
+   "F1": 0.7059
+  },
+  "quantity_evaluation-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-others": {
+   "F1": 0.0
+  },
+  "quantity_progress-decrease-patient": {
+   "F1": 0.7
+  },
+  "quantity_progress-improve-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress-increase-others": {
+   "F1": 0.0
+  },
+  "quantity_progress-increase-patient": {
+   "F1": 0.5909
+  },
+  "quantity_progress-no_change-others": {
+   "F1": 0.0
+  },
+  "quantity_progress-no_change-patient": {
+   "F1": 0.6667
+  },
+  "quantity_progress-patient": {
+   "F1": 0.3448
+  },
+  "quantity_progress-recover-patient": {
+   "F1": 0.0
+  },
+  "quantity_progress-state-patient": {
+   "F1": 0.0
+  },
+  "sex-others": {
+   "F1": 1.0
+  },
+  "sex-patient": {
+   "F1": 0.9863
+  },
+  "smoking-current-others": {
+   "F1": 0.0
+  },
+  "smoking-current-patient": {
+   "F1": 0.8235
+  },
+  "smoking-stop-patient": {
+   "F1": 1.0
+  },
+  "spacial_concept": {
+   "F1": 0.6873
+  },
+  "state": {
+   "F1": 0.0
+  },
+  "state-others": {
+   "F1": 0.3948
+  },
+  "state-patient": {
+   "F1": 0.7543
+  },
+  "teach-others": {
+   "F1": 0.0
+  },
+  "time": {
+   "F1": 0.8328
+  },
+  "time_span": {
+   "F1": 0.4946
+  },
+  "tissue": {
+   "F1": 0.0
+  },
+  "tissue-others": {
+   "F1": 0.0
+  },
+  "tissue-patient": {
+   "F1": 0.5207
+  },
+  "treatment": {
+   "F1": 0.7337
+  },
+  "unit": {
+   "F1": 0.9006
+  },
+  "value-others": {
+   "F1": 0.0294
+  },
+  "value-patient": {
+   "F1": 0.8712
+  }
+ },
+ "per_doc_relaxed": {
+  "005": [
+   240,
+   31,
+   42
+  ],
+  "005_2": [
+   307,
+   126,
+   131
+  ],
+  "010_4": [
+   295,
+   51,
+   59
+  ],
+  "014_2": [
+   262,
+   47,
+   49
+  ],
+  "015_3": [
+   277,
+   31,
+   45
+  ],
+  "017": [
+   314,
+   110,
+   110
+  ],
+  "017_4": [
+   524,
+   83,
+   91
+  ],
+  "018_2": [
+   209,
+   36,
+   38
+  ],
+  "028": [
+   209,
+   21,
+   23
+  ],
+  "038_3": [
+   351,
+   28,
+   24
+  ],
+  "039": [
+   311,
+   41,
+   70
+  ],
+  "039_3": [
+   332,
+   49,
+   66
+  ],
+  "040_3": [
+   244,
+   32,
+   31
+  ],
+  "045_2": [
+   434,
+   59,
+   72
+  ],
+  "047": [
+   261,
+   31,
+   40
+  ],
+  "049": [
+   215,
+   22,
+   28
+  ],
+  "049_3": [
+   373,
+   27,
+   59
+  ],
+  "050_3": [
+   324,
+   36,
+   88
+  ],
+  "051": [
+   447,
+   84,
+   89
+  ],
+  "058_3": [
+   328,
+   44,
+   75
+  ],
+  "059": [
+   504,
+   74,
+   184
+  ],
+  "086": [
+   290,
+   49,
+   189
+  ],
+  "166_3": [
+   309,
+   39,
+   59
+  ],
+  "188_3": [
+   223,
+   44,
+   54
+  ],
+  "189": [
+   174,
+   40,
+   105
+  ],
+  "203_2_case1": [
+   164,
+   18,
+   15
+  ],
+  "208": [
+   332,
+   69,
+   176
+  ],
+  "230_2": [
+   250,
+   30,
+   36
+  ],
+  "236": [
+   214,
+   61,
+   226
+  ],
+  "257_2": [
+   293,
+   34,
+   56
+  ],
+  "266": [
+   130,
+   10,
+   22
+  ],
+  "266_3": [
+   238,
+   47,
+   68
+  ],
+  "271_3": [
+   244,
+   17,
+   19
+  ],
+  "274": [
+   296,
+   51,
+   55
+  ],
+  "292_2": [
+   160,
+   26,
+   32
+  ],
+  "303": [
+   256,
+   50,
+   59
+  ]
+ }
+}

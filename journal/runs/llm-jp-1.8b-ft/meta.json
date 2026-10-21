@@ -14,5 +14,6 @@
   "gpus": "0",
   "date": "2026-10-05 14:25",
   "parse_fail_v1": 2,
-  "parse_fail_v2": 2
+  "parse_fail_v2": 2,
+  "parse_fail_v3": 2
 }

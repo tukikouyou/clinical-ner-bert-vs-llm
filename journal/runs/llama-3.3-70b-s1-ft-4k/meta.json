@@ -1,0 +1,21 @@
+{
+  "name": "llama-3.3-70b-s1-ft-4k",
+  "model": "/opt/llm/stage/Llama-3.3-70B-Instruct",
+  "lora": "/media/user/Elements/ft-journal/llama-3.3-70b-s1",
+  "tp": 4,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 4096,
+  "max_model_len": 6400,
+  "n_sent": 433,
+  "parse_fail": 1,
+  "think": null,
+  "truncated": 2,
+  "sec": 2132.1,
+  "gpus": "0,1,2,3",
+  "date": "2026-10-21 20:02",
+  "parse_fail_v1": 1,
+  "parse_fail_v2": 1,
+  "parse_fail_v3": 1
+}
