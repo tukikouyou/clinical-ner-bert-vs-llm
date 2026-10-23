@@ -162,6 +162,12 @@ K4S) # 生成予算アブレーション seed 1/2 (主表を大予算にする�
   for sd in 1 2; do run llama-3.3-70b-s$sd-ft-4k $LLAMA $EXT 4 0,1,2,3 4096 6400 $FJ/llama-3.3-70b-s$sd --max_num_seqs 16; done
   for sd in 1 2; do run med42-70b-s$sd-ft-4k /media/user/Elements/models/med42-70b $OPT 4 0,1,2,3 4096 6400 $FJ/med42-70b-s$sd --max_num_seqs 16; done
   ;;
+K26) # 13B 対の予算を揃える: SIP-jmed を基盤と同じ 2600 トークン予算で 3 seed (runs/sip-jmed-13b*-ft-2k6)
+  FJ=/media/user/Elements/ft-journal
+  run sip-jmed-13b-ft-2k6     $SIP $EXT 1 0 2600 4096 $FT/sip-jmed-13b
+  run sip-jmed-13b-s1-ft-2k6  $SIP $EXT 1 0 2600 4096 $FJ/sip-jmed-13b-s1
+  run sip-jmed-13b-s2-ft-2k6  $SIP $EXT 1 0 2600 4096 $FJ/sip-jmed-13b-s2
+  ;;
 R|RQ|RG) # 参考モデル (ollama)。RQ=qwen3.6 のみ(GPU 1 枚で可)、RG=gpt-oss:120b のみ(GPU 2 枚以上)、R=両方
   specs=()
   [ "$Q" != "RG" ] && specs+=("qwen3.6-35b-zs qwen3.6:35b" "qwen3.6-35b-zs-guided qwen3.6:35b --guided" "qwen3.6-35b-zs-think-guided qwen3.6:35b --guided --ollama_think")

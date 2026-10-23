@@ -38,12 +38,14 @@ for ax, mode in zip(axes, ["relaxed", "strict"]):
     ax.bar(x - 0.5 * w, cg, w, color="#6baed6", label="Zero-shot + constrained decoding")
     ax.bar(x + 0.5 * w, [m for m, _ in f9], w, yerr=[d for _, d in f9], capsize=1.5, color="#fdae6b", label="Fine-tuned, 900-token budget")
     ax.bar(x + 1.5 * w, [m for m, _ in f4], w, yerr=[d for _, d in f4], capsize=1.5, color="#e6550d", label="Fine-tuned, 4,096-token budget")
-    ax.axhline(S("BERT-UTH")[mode]["F1"], color="0.2", ls=(0, (5, 3)), lw=1, label="UTH-BERT (fine-tuned)")
+    bu = st.mean([S(f"BERT-UTH-v2-s{k}")[mode]["F1"] for k in (42, 1, 2)]); bn = st.mean([S(f"BERT-NICT-v2-s{k}")[mode]["F1"] for k in (42, 1, 2)])
+    ax.axhline(bu, color="0.2", ls=(0, (5, 3)), lw=1, label="UTH-BERT, fine-tuned (mean of 3 seeds)")
+    ax.axhline(bn, color="0.5", ls=(0, (2, 2)), lw=1, label="NICT-BERT, fine-tuned (mean of 3 seeds)")
     ax.set_xticks(x); ax.set_xticklabels([m for m, _, _ in MODELS], rotation=35, ha="right")
-    ax.set_title(f"{mode.capitalize()} match"); ax.set_ylim(0, 1.0); ax.grid(axis="y", lw=0.4, alpha=0.5)
+    ax.set_title("Relaxed match" if mode == "relaxed" else "Exact-surface match"); ax.set_ylim(0, 1.0); ax.grid(axis="y", lw=0.4, alpha=0.5)
 axes[0].set_ylabel("F1 (micro)"); h, l = axes[0].get_legend_handles_labels()
 fig.legend(h, l, loc="lower center", ncol=3, frameon=False, bbox_to_anchor=(0.5, -0.01), fontsize=7)
-fig.tight_layout(rect=(0, 0.11, 1, 1)); fig.savefig(os.path.join(FIG, "fig_overview.pdf")); fig.savefig(os.path.join(FIG, "fig_overview.png"), dpi=300); plt.close(fig)
+fig.tight_layout(rect=(0, 0.13, 1, 1)); fig.savefig(os.path.join(FIG, "fig_overview.pdf")); fig.savefig(os.path.join(FIG, "fig_overview.png"), dpi=300); plt.close(fig)
 
 # ---- Fig 2: base-aligned pairs per seed (main budget 4k)
 PAIRS = [("13B pair", "sip-jmed-13b", "llmjp-3.1-13b"), ("27B pair", "medgemma-27b", "gemma-3-27b"), ("70B pair", "med42-70b", "llama-3.3-70b")]
@@ -57,7 +59,7 @@ for ax, mode in zip(axes, ["relaxed", "strict"]):
             ax.scatter([i - 0.12], [sm], color="#e6550d", zorder=3, s=22); ax.scatter([i + 0.12], [sb], color="#3182bd", zorder=3, s=22, marker="s")
             ax.plot([i - 0.12, i + 0.12], [sm, sb], color="0.6", lw=0.6, zorder=2)
     ax.scatter([], [], color="#e6550d", s=22, label="medical"); ax.scatter([], [], color="#3182bd", s=22, marker="s", label="general-purpose base")
-    ax.set_xticks(range(3)); ax.set_xticklabels([n for n, _, _ in PAIRS], fontsize=8); ax.set_title(f"{mode.capitalize()} match"); ax.grid(axis="y", lw=0.4, alpha=0.5)
+    ax.set_xticks(range(3)); ax.set_xticklabels([n for n, _, _ in PAIRS], fontsize=8); ax.set_title("Relaxed match" if mode == "relaxed" else "Exact-surface match"); ax.grid(axis="y", lw=0.4, alpha=0.5)
 axes[0].set_ylabel("F1 (micro), seeds 42/1/2"); axes[0].legend(frameon=False, loc="lower right")
 fig.tight_layout(); fig.savefig(os.path.join(FIG, "fig_pairs.pdf")); fig.savefig(os.path.join(FIG, "fig_pairs.png"), dpi=300); plt.close(fig)
 

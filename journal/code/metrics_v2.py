@@ -40,7 +40,12 @@ def load_gold_ordered():
 
 def bert_pred_ordered(bert_type):
     """BERT の pred_IOB CSV から文内出現順の (型,表層) リスト(重複は最初のみ)。"""
-    df = pd.read_csv(os.path.join(ROOT, f"code/results/NER/{bert_type}/NER/0.csv"))
+    # 2026-10-23: load_data_cv が 510 文字超の文を除外していたため元の 0.csv は test 433 文のうち 25/28 文を欠く(空予測扱いだった)。
+    # journal/bert_preds/<B>_pred_IOB_fold0_full.csv (欠損文を ≤510 サブワード窓で予測して補完; bert_predict_long.py) があればそれを使う。
+    # 再学習版 (bert_train_v2.py) は名前 "UTH-v2-s42" 等 → bert_preds/<name>_pred_IOB_full.csv
+    cands = [os.path.join(HERE, "../bert_preds", f"{bert_type}_pred_IOB_full.csv"), os.path.join(HERE, "../bert_preds", f"{bert_type}_pred_IOB_fold0_full.csv"),
+             os.path.join(ROOT, f"code/results/NER/{bert_type}/NER/0.csv")]
+    df = pd.read_csv(next(c for c in cands if os.path.exists(c)))
     out = {}
     for uno, g in df.groupby("unique_no", sort=False):
         lst, seen, cur, buf = [], set(), None, ""

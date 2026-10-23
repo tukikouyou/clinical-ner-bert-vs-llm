@@ -33,6 +33,12 @@ TR = {"ja": {
  "#### Table I. Effect of the 900-token generation budget (fine-tuned, seed 42, relaxed)": "#### 表 I. 生成上限 900 トークンの影響 (FT 後, seed 42, relaxed)",
  "Trunc.: sentences whose output was cut off; Gold: share of all gold entities in those sentences; R: recall on truncated / other sentences; FN: share of the model's false negatives in truncated sentences. UTH-BERT is scored on the sentences truncated by Med42-70B.": "Trunc.: 出力が打ち切られた文数。Gold: それらの文に含まれる正解の割合。R: 打ち切り文 / その他の文の再現率。FN: モデルの FN のうち打ち切り文にある割合。UTH-BERT は Med42-70B が打ち切られた文で分割して評価。",
  "#### Table J. Per-label scores of fine-tuned Med42-70B (seed 42, 4,096-token budget) for nine labels; UTH = UTH-BERT relaxed / strict F1": "#### 表 J. FT 後 Med42-70B (seed 42, 予算 4,096) のラベル別 (9 種); UTH = UTH-BERT の relaxed / strict F1",
+
+ "#### Table K. Output completeness of fine-tuned models (seed 42): 900-token budget / main condition": "#### 表 K. FT 後モデルの出力完全性 (seed 42): 予算 900 / 主条件",
+ "Stop: sentences where generation ended with the end-of-sequence token; Clean: raw output is itself a valid JSON array (Harmony channel markers stripped for LLM-jp-4); Repaired: array cut off by the budget and closed at the last complete element; Continued: output continued after a complete array (parsed as the first array); Empty: parsed answer has no entities; Fail: no array could be parsed.": "Stop: 終端トークンで生成が終わった文数。Clean: 生出力がそのまま正しい JSON 配列 (LLM-jp-4 は Harmony のチャネル記号を除去)。Repaired: 上限で途切れた配列を最後の完全な要素で閉じた文数。Continued: 完全な配列の後に生成が続いた文数 (最初の配列を採用)。Empty: 解析結果が空。Fail: 配列を取り出せず。",
+ "Stop (900 / main)": "Stop (900 / 主)", "Clean (900 / main)": "Clean (900 / 主)", "Repaired (900 / main)": "Repaired (900 / 主)", "Continued (900 / main)": "Continued (900 / 主)", "Empty (900 / main)": "Empty (900 / 主)", "Fail (900 / main)": "Fail (900 / 主)",
+ "UTH-BERT v2 (retrained, seed 42)": "UTH-BERT v2 (再学習, seed 42)", "NICT-BERT v2 (retrained, seed 42)": "NICT-BERT v2 (再学習, seed 42)",
+ "UTH-BERT (original training, coverage completed)": "UTH-BERT (元の学習, 欠損文を補完予測)", "NICT-BERT (original training, coverage completed)": "NICT-BERT (元の学習, 欠損文を補完予測)",
 }, "zh": {
  "medical": "医学", "general": "通用",
  "Model": "模型", "Type": "类型", "Budget": "预算", "Pair": "配对", "Label": "标签", "Condition": "条件", "Mean ± SD": "均值 ± SD", "Macro (mean)": "Macro (均值)",
@@ -57,6 +63,12 @@ TR = {"ja": {
  "#### Table I. Effect of the 900-token generation budget (fine-tuned, seed 42, relaxed)": "#### 表 I. 900 token 生成上限的影响（微调后，seed 42，relaxed）",
  "Trunc.: sentences whose output was cut off; Gold: share of all gold entities in those sentences; R: recall on truncated / other sentences; FN: share of the model's false negatives in truncated sentences. UTH-BERT is scored on the sentences truncated by Med42-70B.": "Trunc.：输出被截断的句数。Gold：这些句子所含正解的比例。R：截断句 / 其余句的召回。FN：该模型的 FN 落在截断句中的比例。UTH-BERT 按 Med42-70B 的截断句划分评价。",
  "#### Table J. Per-label scores of fine-tuned Med42-70B (seed 42, 4,096-token budget) for nine labels; UTH = UTH-BERT relaxed / strict F1": "#### 表 J. 微调后 Med42-70B（seed 42，预算 4,096）九个标签的逐标签成绩；UTH = UTH-BERT 的 relaxed / strict F1",
+
+ "#### Table K. Output completeness of fine-tuned models (seed 42): 900-token budget / main condition": "#### 表 K. 微调模型的输出完整性 (seed 42)：预算 900 / 主条件",
+ "Stop: sentences where generation ended with the end-of-sequence token; Clean: raw output is itself a valid JSON array (Harmony channel markers stripped for LLM-jp-4); Repaired: array cut off by the budget and closed at the last complete element; Continued: output continued after a complete array (parsed as the first array); Empty: parsed answer has no entities; Fail: no array could be parsed.": "Stop：以结束符正常结束的句数。Clean：原始输出本身就是合法 JSON 数组（LLM-jp-4 去掉 Harmony 通道标记后）。Repaired：数组在上限处被截断、按最后一个完整元素闭合。Continued：完整数组之后仍继续生成（取第一个数组）。Empty：解析结果为空。Fail：无法取出数组。",
+ "Stop (900 / main)": "Stop (900 / 主)", "Clean (900 / main)": "Clean (900 / 主)", "Repaired (900 / main)": "Repaired (900 / 主)", "Continued (900 / main)": "Continued (900 / 主)", "Empty (900 / main)": "Empty (900 / 主)", "Fail (900 / main)": "Fail (900 / 主)",
+ "UTH-BERT v2 (retrained, seed 42)": "UTH-BERT v2（重训，seed 42）", "NICT-BERT v2 (retrained, seed 42)": "NICT-BERT v2（重训，seed 42）",
+ "UTH-BERT (original training, coverage completed)": "UTH-BERT（原训练，补齐缺失句预测）", "NICT-BERT (original training, coverage completed)": "NICT-BERT（原训练，补齐缺失句预测）",
 }}
 def tr(x):
     core = x.rstrip("\n"); return TR.get(LANG, {}).get(core, core) + x[len(core):]
@@ -73,6 +85,9 @@ FT = [("Med42-70B", "medical", "med42-70b", "med42-70b-zs", "med42-70b-zs-guided
       ("Qwen3-30B-A3B (MoE)", "general", "qwen", "qwen-zs", "qwen-zs-guided"),
       ("LLM-jp-4-32B (MoE, reasoning)", "general", "llm-jp-4-32b", "llm-jp-4-32b-zs", "llm-jp-4-32b-zs-guided"),
       ("LLM-jp-1.8B", "general", "llm-jp-1.8b", "llm-jp-1.8b-zs", "llm-jp-1.8b-zs-guided")]
+GOLD_N = json.load(open(os.path.join(STATS, "extra.json")))["per_label_med42"] if os.path.exists(os.path.join(STATS, "extra.json")) else {}
+BERT_ROWS = [("UTH-BERT v2 (retrained, seed 42)", "medical", "BERT-UTH-v2-s42"), ("NICT-BERT v2 (retrained, seed 42)", "general", "BERT-NICT-v2-s42"),
+             ("UTH-BERT (original training, coverage completed)", "medical", "BERT-UTH"), ("NICT-BERT (original training, coverage completed)", "general", "BERT-NICT")]
 def runs(stem, budget):
     first = f"{stem}-ft{budget}"
     if stem == "gemma-3-27b" and budget == "":
@@ -88,15 +103,19 @@ GLOSS = "95% CI: document-level bootstrap (36 documents, 2,000 resamples). min2/
 
 def ft_table(budget, title):
     L.append(tr(title) + "\n"); L.append(tr(GLOSS) + "\n")
-    L.append(H(["Model", "Type", "Budget", "Relaxed F1", "95% CI", "P", "R", "Strict F1", "95% CI", "min2", "min3", "Macro", "Merged", "Exact/TP", "Trunc./433"]))
+    L.append(H(["Model", "Type", "Budget", "Relaxed F1", "95% CI", "P", "R", "Strict F1", "95% CI", "min2", "min3", "Macro48", "Macro98", "Merged", "Exact/TP", "Trunc./433"]))
+    def macro_all(s):
+        pl = s["per_label_relaxed"]; v = [pl[t]["F1"] for t in GOLD_N if t in pl]; return sum(v) / len(v)
     for disp, typ, stem, _, _ in FT:
         n = runs(stem, budget)[0]; s = S(n)
         if not s: continue
         m = M(n); r, t = s["relaxed"], s["strict"]
-        L.append(f"| {disp} | {tr(typ)} | {m.get('max_new_tokens','–')} | {r['F1']:.3f} | {ci(s['relaxed_ci95'])} | {r['P']:.3f} | {r['R']:.3f} | {t['F1']:.3f} | {ci(s['strict_ci95'])} | {s['min2_F1']:.3f} | {s['min3_F1']:.3f} | {s['macro_F1']:.3f} | {s['relaxed_merged_F1']:.3f} | {s['exact_share_of_tp']:.3f} | {m.get('truncated','–')} |")
-    for disp, typ, b in [("UTH-BERT (fine-tuned)", "medical", "BERT-UTH"), ("NICT-BERT (fine-tuned)", "general", "BERT-NICT")]:
-        s = S(b); r, t = s["relaxed"], s["strict"]
-        L.append(f"| {disp} | {tr(typ)} | – | {r['F1']:.3f} | {ci(s['relaxed_ci95'])} | {r['P']:.3f} | {r['R']:.3f} | {t['F1']:.3f} | {ci(s['strict_ci95'])} | {s['min2_F1']:.3f} | {s['min3_F1']:.3f} | {s['macro_F1']:.3f} | {s['relaxed_merged_F1']:.3f} | {s['exact_share_of_tp']:.3f} | – |")
+        L.append(f"| {disp} | {tr(typ)} | {m.get('max_new_tokens','–')} | {r['F1']:.3f} | {ci(s['relaxed_ci95'])} | {r['P']:.3f} | {r['R']:.3f} | {t['F1']:.3f} | {ci(s['strict_ci95'])} | {s['min2_F1']:.3f} | {s['min3_F1']:.3f} | {s['macro_F1']:.3f} | {macro_all(s):.3f} | {s['relaxed_merged_F1']:.3f} | {s['exact_share_of_tp']:.3f} | {m.get('truncated','–')} |")
+    for disp, typ, b in BERT_ROWS:
+        s = S(b)
+        if not s: continue
+        r, t = s["relaxed"], s["strict"]
+        L.append(f"| {disp} | {tr(typ)} | – | {r['F1']:.3f} | {ci(s['relaxed_ci95'])} | {r['P']:.3f} | {r['R']:.3f} | {t['F1']:.3f} | {ci(s['strict_ci95'])} | {s['min2_F1']:.3f} | {s['min3_F1']:.3f} | {s['macro_F1']:.3f} | {macro_all(s):.3f} | {s['relaxed_merged_F1']:.3f} | {s['exact_share_of_tp']:.3f} | – |")
     L.append("")
 
 def seed_table(budget, title):
@@ -110,6 +129,13 @@ def seed_table(budget, title):
         rv = [v for v in r if v is not None]; tv = [v for v in t if v is not None]; mc = [x["macro_F1"] for x in ss if x]
         msd = lambda v: (f"{st.mean(v):.3f} ± {st.stdev(v):.3f}" if len(v) > 1 else f"{v[0]:.3f}")
         L.append(f"| {disp} | {tr(typ)} | {' / '.join(f3(v) for v in r)} | {msd(rv)} | {' / '.join(f3(v) for v in t)} | {msd(tv)} | {st.mean(mc):.3f} |")
+    if budget == "-4k":
+        for disp, typ, b in [("UTH-BERT v2 (retrained)", "medical", "BERT-UTH-v2"), ("NICT-BERT v2 (retrained)", "general", "BERT-NICT-v2")]:
+            ss = [S(f"{b}-s{k}") for k in (42, 1, 2)]
+            if not any(ss): continue
+            r = [x["relaxed"]["F1"] if x else None for x in ss]; t = [x["strict"]["F1"] if x else None for x in ss]
+            rv = [v for v in r if v is not None]; tv = [v for v in t if v is not None]; mc = [x["macro_F1"] for x in ss if x]
+            L.append(f"| {disp} | {tr(typ)} | {' / '.join(f3(v) for v in r)} | {msd(rv)} | {' / '.join(f3(v) for v in t)} | {msd(tv)} | {st.mean(mc):.3f} |")
     L.append("")
 
 ft_table("-4k", "#### Table A. Fine-tuned models, main condition (generation budget 4,096 tokens; 2,600 for the LLM-jp-3.1 family), seed 42")
@@ -153,16 +179,20 @@ for disp, cond, run in [("Qwen3.6-35B", "prompt only, reasoning off", "qwen3.6-3
 L.append("")
 # G pairs
 PAIRS = [("SIP-jmed-13B − LLM-jp-3.1-13B", "sip-jmed-13b", "llmjp-3.1-13b"), ("MedGemma-27B − Gemma-3-27B", "medgemma-27b", "gemma-3-27b"), ("Med42-70B − Llama-3.3-70B", "med42-70b", "llama-3.3-70b")]
-for budget, title in [("-4k", "#### Table G. Medical model minus its general-purpose base, same seed (paired bootstrap, relaxed F1), main condition (4,096-token budget)"), ("", "#### Table G2. Same, LAU setting (900-token budget)")]:
+def runs2k6(stem):
+    return [f"{stem}-ft-2k6", f"{stem}-s1-ft-2k6", f"{stem}-s2-ft-2k6"]
+for budget, title in [("-4k", "#### Table G. Medical model minus its general-purpose base, same seed and same generation budget (paired bootstrap, relaxed F1), main condition (4,096 tokens; the 13B pair at 2,600 tokens, the context limit of the base model)"), ("", "#### Table G2. Same, 900-token budget")]:
     L.append(tr(title) + "\n"); L.append(H(["Pair", "Seed 42", "Seed 1", "Seed 2"]))
     for name, a, b in PAIRS:
-        L.append(f"| {name} | " + " | ".join(pairdiff(x, y) for x, y in zip(runs(a, budget), runs(b, budget))) + " |")
+        ra = runs2k6(a) if (budget == "-4k" and a == "sip-jmed-13b" and S(runs2k6(a)[0])) else runs(a, budget)
+        L.append(f"| {name} | " + " | ".join(pairdiff(x, y) for x, y in zip(ra, runs(b, budget))) + " |")
     L.append("")
 # H vs BERT
 L.append(tr("#### Table H. Fine-tuned LLM minus BERT, seed 42 (paired bootstrap, relaxed F1): main condition / LAU setting") + "\n")
+BU, BN = ("BERT-UTH-v2-s42", "BERT-NICT-v2-s42") if S("BERT-UTH-v2-s42") else ("BERT-UTH", "BERT-NICT")
 L.append(H(["LLM", "vs. UTH-BERT (4,096)", "vs. NICT-BERT (4,096)", "vs. UTH-BERT (900)", "vs. NICT-BERT (900)"]))
 for disp, typ, stem, _, _ in FT:
-    L.append(f"| {disp} | {pairdiff(runs(stem, '-4k')[0], 'BERT-UTH')} | {pairdiff(runs(stem, '-4k')[0], 'BERT-NICT')} | {pairdiff(runs(stem, '')[0], 'BERT-UTH')} | {pairdiff(runs(stem, '')[0], 'BERT-NICT')} |")
+    L.append(f"| {disp} | {pairdiff(runs(stem, '-4k')[0], BU)} | {pairdiff(runs(stem, '-4k')[0], BN)} | {pairdiff(runs(stem, '')[0], BU)} | {pairdiff(runs(stem, '')[0], BN)} |")
 L.append("")
 # I truncation (900)
 e = json.load(open(os.path.join(STATS, "extra.json")))
@@ -182,6 +212,17 @@ L.append(H(["Label", "n", "P", "R", "F1 (relaxed)", "F1 (strict)", "UTH (rel. / 
 for t in ["state-patient", "clinical_test", "treatment", "drug", "PN-Negative-patient", "state-others", "device", "time_span", "value-others"]:
     v = per[t]
     L.append(f"| {t} | {v['n']} | {v['relaxed'][0]:.2f} | {v['relaxed'][1]:.2f} | {v['relaxed'][2]:.2f} | {v['strict'][2]:.2f} | {v['uth_relaxed'][2]:.2f} / {v['uth_strict'][2]:.2f} |")
+# K completeness
+rc = json.load(open(os.path.join(STATS, "raw_completeness.json"))) if os.path.exists(os.path.join(STATS, "raw_completeness.json")) else {}
+if rc:
+    L.append("\n" + tr("#### Table K. Output completeness of fine-tuned models (seed 42): 900-token budget / main condition") + "\n")
+    L.append(tr("Stop: sentences where generation ended with the end-of-sequence token; Clean: raw output is itself a valid JSON array (Harmony channel markers stripped for LLM-jp-4); Repaired: array cut off by the budget and closed at the last complete element; Continued: output continued after a complete array (parsed as the first array); Empty: parsed answer has no entities; Fail: no array could be parsed.") + "\n")
+    L.append(H(["Model", "Stop (900 / main)", "Clean (900 / main)", "Repaired (900 / main)", "Continued (900 / main)", "Empty (900 / main)", "Fail (900 / main)"]))
+    for disp, typ, stem, _, _ in FT:
+        a, b = rc.get(runs(stem, "")[0]), rc.get(runs(stem, "-4k")[0])
+        if not (a and b): continue
+        f = lambda k: f"{a[k]} / {b[k]}"
+        L.append(f"| {disp} | {f('stop')} | {f('clean_json')} | {f('repaired_after_cutoff')} | {f('continued_after_array')} | {f('empty_answer')} | {f('parse_fail')} |")
 SP = {"ja": ("ラベル頻度と relaxed F1 の Spearman 相関", "`-others` 27 種の平均 F1"), "zh": ("标签频率与 relaxed F1 的 Spearman 相关", "27 个 `-others` 标签的平均 F1"), "en": ("Spearman correlation between label frequency and relaxed F1", "The 27 `-others` labels average F1")}[LANG if LANG in ("ja", "zh") else "en"]
 L.append(f"\n{SP[0]} (Med42-70B, {sp['n_labels']} labels): ρ = {sp['rho']:.2f} (p = {sp['p']:.0e}). {SP[1]} {oth['mean_f1_med42']:.2f}.")
 print("\n".join(L))

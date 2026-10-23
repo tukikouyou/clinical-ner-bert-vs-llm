@@ -17,7 +17,7 @@ MODELS = [
     ("LLM-jp-4-32B", "汎用", "32B", "llm-jp-4-32b-ft", "llm-jp-4-32b-zs", "llm-jp-4-32b-zs-guided"),
     ("LLM-jp-1.8B", "汎用", "1.8B", "llm-jp-1.8b-ft", "llm-jp-1.8b-zs", "llm-jp-1.8b-zs-guided"),
 ]
-BERTS = [("UTH-BERT", "医療", "BERT-UTH"), ("NICT-BERT", "汎用", "BERT-NICT")]
+BERTS = [("UTH-BERT v2 (再学習, s42)", "医療", "BERT-UTH-v2-s42"), ("NICT-BERT v2 (再学習, s42)", "汎用", "BERT-NICT-v2-s42"), ("UTH-BERT (旧学習, 欠損補完)", "医療", "BERT-UTH"), ("NICT-BERT (旧学習, 欠損補完)", "汎用", "BERT-NICT")]
 
 
 def seed_runs(ft, budget):

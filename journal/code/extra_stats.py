@@ -47,7 +47,7 @@ def trunc_table(suffix):
 out["truncation"] = trunc_table("")
 out["truncation_4k"] = trunc_table("-4k")
 # UTH-BERT: same sentence split as Med42 (for reference)
-bert = bert_pred_ordered("UTH"); fin = finish_map("med42-70b-ft")
+bert = bert_pred_ordered("UTH-v2-s42"); fin = finish_map("med42-70b-ft")   # 再学習版 BERT (全文カバー, LLM と同じ分割)
 kt = [k for k in keys if fin[k] == "length"]; ks = [k for k in keys if fin[k] != "length"]
 out["truncation"]["UTH-BERT (Med42 の截断文で分割)"] = {"trunc": {m: evaluate(bert, gold, kt, "relaxed")[m] for m in ("P", "R", "F1")}, "rest": {m: evaluate(bert, gold, ks, "relaxed")[m] for m in ("P", "R", "F1")}}
 

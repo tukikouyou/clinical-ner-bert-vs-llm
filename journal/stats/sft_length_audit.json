@@ -1,0 +1,85 @@
+{
+ "n_examples": 1672,
+ "n_entities": 55589,
+ "LLM-jp-1.8B": {
+  "max_tokens": 9096,
+  "mean_tokens": 1530,
+  "n_over_4096": 15,
+  "share_over": 0.009,
+  "entities_in_over": 3668,
+  "entities_lost_est": 1226,
+  "entity_share_lost_est": 0.0221
+ },
+ "LLM-jp-3.1-13B": {
+  "max_tokens": 9096,
+  "mean_tokens": 1530,
+  "n_over_4096": 15,
+  "share_over": 0.009,
+  "entities_in_over": 3668,
+  "entities_lost_est": 1226,
+  "entity_share_lost_est": 0.0221
+ },
+ "SIP-jmed-13B": {
+  "max_tokens": 9096,
+  "mean_tokens": 1530,
+  "n_over_4096": 15,
+  "share_over": 0.009,
+  "entities_in_over": 3668,
+  "entities_lost_est": 1226,
+  "entity_share_lost_est": 0.0221
+ },
+ "Gemma-3-27B": {
+  "max_tokens": 9048,
+  "mean_tokens": 1492,
+  "n_over_4096": 14,
+  "share_over": 0.0084,
+  "entities_in_over": 3496,
+  "entities_lost_est": 1248,
+  "entity_share_lost_est": 0.0225
+ },
+ "MedGemma-27B": {
+  "max_tokens": 9048,
+  "mean_tokens": 1492,
+  "n_over_4096": 14,
+  "share_over": 0.0084,
+  "entities_in_over": 3496,
+  "entities_lost_est": 1248,
+  "entity_share_lost_est": 0.0225
+ },
+ "Qwen3-30B-A3B": {
+  "max_tokens": 9576,
+  "mean_tokens": 1510,
+  "n_over_4096": 17,
+  "share_over": 0.0102,
+  "entities_in_over": 4028,
+  "entities_lost_est": 1459,
+  "entity_share_lost_est": 0.0262
+ },
+ "LLM-jp-4-32B": {
+  "max_tokens": 9079,
+  "mean_tokens": 1554,
+  "n_over_4096": 15,
+  "share_over": 0.009,
+  "entities_in_over": 3668,
+  "entities_lost_est": 1263,
+  "entity_share_lost_est": 0.0227
+ },
+ "Llama-3.3-70B": {
+  "max_tokens": 9510,
+  "mean_tokens": 1536,
+  "n_over_4096": 17,
+  "share_over": 0.0102,
+  "entities_in_over": 4014,
+  "entities_lost_est": 1407,
+  "entity_share_lost_est": 0.0253
+ },
+ "Med42-70B": {
+  "max_tokens": 9485,
+  "mean_tokens": 1511,
+  "n_over_4096": 17,
+  "share_over": 0.0102,
+  "entities_in_over": 4014,
+  "entities_lost_est": 1381,
+  "entity_share_lost_est": 0.0248
+ }
+}

@@ -30,7 +30,7 @@ done
 echo "== 期刊版 (journal/): コード・集計指標・run メタのみ (preds/raw はコーパス断片を含むため同期しない) =="
 J="$REPO/../journal"
 mkdir -p "$REPO/journal/code" "$REPO/journal/stats" "$REPO/journal/runs" "$REPO/journal/paper/figs"
-cp "$J/code/"{eval_v2.py,parse_v2.py,reparse.py,metrics_v2.py,qlora_train_v2.py,extra_stats.py,make_tables.py,annotate_tables.py,readme_tables.py,plots.py,convert_gemma_text.py,stage.sh,run_queue2.sh,run_train_queue2.sh,chain_next.sh,chain_k4.sh,run_all_metrics.sh} "$REPO/journal/code/" 2>/dev/null || true
+cp "$J/code/"{eval_v2.py,parse_v2.py,reparse.py,metrics_v2.py,qlora_train_v2.py,extra_stats.py,make_tables.py,annotate_tables.py,readme_tables.py,plots.py,bert_train_v2.py,bert_predict_long.py,raw_completeness.py,sft_length_audit.py,convert_gemma_text.py,stage.sh,run_queue2.sh,run_train_queue2.sh,chain_next.sh,chain_k4.sh,run_all_metrics.sh} "$REPO/journal/code/" 2>/dev/null || true
 cp "$J/stats/"*.json "$J/stats/"*.md "$REPO/journal/stats/" 2>/dev/null || true
 for d in "$J"/runs/*/; do n=$(basename "$d"); [ -f "$d/meta.json" ] && { mkdir -p "$REPO/journal/runs/$n"; cp "$d/meta.json" "$REPO/journal/runs/$n/"; }; done
 cp "$J/paper/figs/"*.png "$J/paper/figs/"*.pdf "$REPO/journal/paper/figs/" 2>/dev/null || true

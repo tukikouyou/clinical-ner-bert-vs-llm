@@ -1,0 +1,515 @@
+{
+ "gemma-3-27b-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "gemma-3-27b-s1-ft": {
+  "n": 433,
+  "stop": 349,
+  "clean_json": 349,
+  "repaired_after_cutoff": 84,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "gemma-3-27b-s1-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "gemma-3-27b-s2-ft": {
+  "n": 433,
+  "stop": 350,
+  "clean_json": 350,
+  "repaired_after_cutoff": 83,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "gemma-3-27b-s2-ft-4k": {
+  "n": 433,
+  "stop": 430,
+  "clean_json": 430,
+  "repaired_after_cutoff": 3,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "gemma-3-27b-s42-ft": {
+  "n": 433,
+  "stop": 349,
+  "clean_json": 349,
+  "repaired_after_cutoff": 84,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llama-3.3-70b-ft": {
+  "n": 433,
+  "stop": 347,
+  "clean_json": 347,
+  "repaired_after_cutoff": 86,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llama-3.3-70b-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llama-3.3-70b-s1-ft": {
+  "n": 433,
+  "stop": 348,
+  "clean_json": 348,
+  "repaired_after_cutoff": 85,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llama-3.3-70b-s1-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 430,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llama-3.3-70b-s2-ft": {
+  "n": 433,
+  "stop": 346,
+  "clean_json": 347,
+  "repaired_after_cutoff": 86,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llama-3.3-70b-s2-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-1.8b-ft": {
+  "n": 433,
+  "stop": 352,
+  "clean_json": 352,
+  "repaired_after_cutoff": 80,
+  "empty_answer": 2,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-1.8b-ft-4k": {
+  "n": 433,
+  "stop": 423,
+  "clean_json": 420,
+  "repaired_after_cutoff": 10,
+  "empty_answer": 2,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-1.8b-s1-ft": {
+  "n": 433,
+  "stop": 352,
+  "clean_json": 352,
+  "repaired_after_cutoff": 80,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-1.8b-s1-ft-4k": {
+  "n": 433,
+  "stop": 424,
+  "clean_json": 423,
+  "repaired_after_cutoff": 9,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-1.8b-s2-ft": {
+  "n": 433,
+  "stop": 354,
+  "clean_json": 354,
+  "repaired_after_cutoff": 79,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-1.8b-s2-ft-4k": {
+  "n": 433,
+  "stop": 426,
+  "clean_json": 425,
+  "repaired_after_cutoff": 7,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-4-32b-ft": {
+  "n": 433,
+  "stop": 354,
+  "clean_json": 355,
+  "repaired_after_cutoff": 78,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-4-32b-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-4-32b-s1-ft": {
+  "n": 433,
+  "stop": 354,
+  "clean_json": 354,
+  "repaired_after_cutoff": 79,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-4-32b-s1-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-4-32b-s2-ft": {
+  "n": 433,
+  "stop": 357,
+  "clean_json": 357,
+  "repaired_after_cutoff": 76,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llm-jp-4-32b-s2-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llmjp-3.1-13b-ft": {
+  "n": 433,
+  "stop": 351,
+  "clean_json": 351,
+  "repaired_after_cutoff": 82,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llmjp-3.1-13b-ft-4k": {
+  "n": 433,
+  "stop": 427,
+  "clean_json": 427,
+  "repaired_after_cutoff": 6,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llmjp-3.1-13b-s1-ft": {
+  "n": 433,
+  "stop": 348,
+  "clean_json": 348,
+  "repaired_after_cutoff": 85,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llmjp-3.1-13b-s1-ft-4k": {
+  "n": 433,
+  "stop": 427,
+  "clean_json": 427,
+  "repaired_after_cutoff": 6,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llmjp-3.1-13b-s2-ft": {
+  "n": 433,
+  "stop": 350,
+  "clean_json": 352,
+  "repaired_after_cutoff": 81,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "llmjp-3.1-13b-s2-ft-4k": {
+  "n": 433,
+  "stop": 427,
+  "clean_json": 427,
+  "repaired_after_cutoff": 6,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "med42-70b-ft": {
+  "n": 433,
+  "stop": 346,
+  "clean_json": 346,
+  "repaired_after_cutoff": 87,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "med42-70b-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "med42-70b-s1-ft": {
+  "n": 433,
+  "stop": 347,
+  "clean_json": 347,
+  "repaired_after_cutoff": 86,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "med42-70b-s1-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "med42-70b-s2-ft": {
+  "n": 433,
+  "stop": 345,
+  "clean_json": 344,
+  "repaired_after_cutoff": 86,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 3
+ },
+ "med42-70b-s2-ft-4k": {
+  "n": 433,
+  "stop": 422,
+  "clean_json": 394,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 37
+ },
+ "medgemma-27b-ft": {
+  "n": 433,
+  "stop": 352,
+  "clean_json": 352,
+  "repaired_after_cutoff": 81,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "medgemma-27b-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 427,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 4
+ },
+ "medgemma-27b-s1-ft": {
+  "n": 433,
+  "stop": 351,
+  "clean_json": 351,
+  "repaired_after_cutoff": 82,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "medgemma-27b-s1-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "medgemma-27b-s2-ft": {
+  "n": 433,
+  "stop": 353,
+  "clean_json": 353,
+  "repaired_after_cutoff": 80,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "medgemma-27b-s2-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "qwen-ft": {
+  "n": 433,
+  "stop": 348,
+  "clean_json": 347,
+  "repaired_after_cutoff": 85,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "qwen-ft-4k": {
+  "n": 433,
+  "stop": 430,
+  "clean_json": 429,
+  "repaired_after_cutoff": 3,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "qwen-s1-ft": {
+  "n": 433,
+  "stop": 347,
+  "clean_json": 347,
+  "repaired_after_cutoff": 86,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "qwen-s1-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 430,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "qwen-s2-ft": {
+  "n": 433,
+  "stop": 347,
+  "clean_json": 347,
+  "repaired_after_cutoff": 86,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "qwen-s2-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "sip-jmed-13b-ft": {
+  "n": 433,
+  "stop": 349,
+  "clean_json": 351,
+  "repaired_after_cutoff": 81,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "sip-jmed-13b-ft-2k6": {
+  "n": 433,
+  "stop": 426,
+  "clean_json": 424,
+  "repaired_after_cutoff": 7,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "sip-jmed-13b-ft-4k": {
+  "n": 433,
+  "stop": 430,
+  "clean_json": 428,
+  "repaired_after_cutoff": 3,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "sip-jmed-13b-s1-ft": {
+  "n": 433,
+  "stop": 347,
+  "clean_json": 348,
+  "repaired_after_cutoff": 85,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "sip-jmed-13b-s1-ft-2k6": {
+  "n": 433,
+  "stop": 426,
+  "clean_json": 426,
+  "repaired_after_cutoff": 7,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "sip-jmed-13b-s1-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "sip-jmed-13b-s2-ft": {
+  "n": 433,
+  "stop": 349,
+  "clean_json": 349,
+  "repaired_after_cutoff": 84,
+  "empty_answer": 1,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "sip-jmed-13b-s2-ft-2k6": {
+  "n": 433,
+  "stop": 426,
+  "clean_json": 426,
+  "repaired_after_cutoff": 7,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ },
+ "sip-jmed-13b-s2-ft-4k": {
+  "n": 433,
+  "stop": 431,
+  "clean_json": 431,
+  "repaired_after_cutoff": 2,
+  "empty_answer": 0,
+  "parse_fail": 0,
+  "continued_after_array": 0
+ }
+}
