@@ -135,14 +135,16 @@
     }
   },
   "guided_backend": "xgrammar:disable-any-whitespace",
-  "max_new_tokens": 900,
-  "max_model_len": 4096,
+  "max_new_tokens": 3072,
+  "max_model_len": 8192,
   "n_sent": 433,
   "parse_fail": 0,
-  "truncated": 1,
-  "sec": 220.6,
+  "think": null,
+  "truncated": 0,
+  "sec": 190.8,
   "gpus": "2,3",
-  "date": "2026-10-05 19:26",
+  "date": "2026-10-24 14:14",
   "parse_fail_v1": 0,
-  "parse_fail_v2": 0
+  "parse_fail_v2": 0,
+  "parse_fail_v3": 0
 }

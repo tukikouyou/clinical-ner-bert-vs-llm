@@ -14,7 +14,7 @@ TR = {"ja": {
  "Model": "モデル", "Type": "種別", "Budget": "予算", "Pair": "対", "Label": "ラベル", "Condition": "条件", "Mean ± SD": "平均 ± SD", "Macro (mean)": "Macro (平均)",
  "Trunc./433": "打ち切り/433", "Merged": "統合", "Gold share": "正解の割合", "R (trunc.)": "R (打ち切り)", "R (rest)": "R (他)", "P (trunc.)": "P (打ち切り)", "P (rest)": "P (他)", "FN in trunc.": "FN の割合",
  "Fine-tuned": "FT 後", "Prompt only, parser v1": "プロンプトのみ (v1)", "Prompt only, parser v2": "プロンプトのみ (v2)", "Whole-output constraint": "整段制約", "Think, then constrain (rel. / str.)": "自由思考→制約回答 (rel. / str.)",
- "ZS+constrained rel. / str.": "ZS+制約 rel. / str.",
+ "ZS+constrained rel. / str.": "ZS+制約 rel. / str.", "Budget": "予算", "Superseded constrained runs at 900 output / 4,096 context (prompt-only run of the same model used 3,072 / 8,192; kept for reference):": "差し替え前の制約デコード (900 出力 / 4,096 文脈; 同モデルの prompt-only は 3,072 / 8,192; 参考):",
  "prompt only, reasoning off": "プロンプトのみ、思考オフ", "reasoning on + schema on answer (3,072-token budget)": "思考オン + 回答に schema (予算 3,072)", "prompt only (reasoning cannot be disabled)": "プロンプトのみ (思考は無効化不可)", "reasoning + schema on answer": "思考 + 回答に schema",
  "UTH-BERT (same split as Med42)": "UTH-BERT (Med42 と同じ分割)",
  "#### Table A. Fine-tuned models, main condition (generation budget 4,096 tokens; 2,600 for the LLM-jp-3.1 family), seed 42": "#### 表 A. ファインチューニング後・主条件 (生成予算 4,096 トークン; LLM-jp-3.1 系は 2,600)、seed 42",
@@ -23,7 +23,7 @@ TR = {"ja": {
  "#### Table B. Three QLoRA seeds (42 / 1 / 2), main condition (4,096-token budget)": "#### 表 B. QLoRA 3 seed (42 / 1 / 2)・主条件 (予算 4,096)",
  "#### Table B2. Three QLoRA seeds (42 / 1 / 2), LAU setting (900-token budget)": "#### 表 B2. QLoRA 3 seed (42 / 1 / 2)・LAU 設定 (予算 900)",
  "#### Table C. Generation-budget ablation: 900 → 4,096 tokens (seed 42; last column: three-seed means)": "#### 表 C. 生成予算アブレーション: 900 → 4,096 トークン (seed 42; 最終列は 3 seed 平均)",
- "#### Table D. Zero-shot: prompt only vs. JSON-schema constrained decoding (relaxed / strict F1; 900-token budget, 3,072 for reasoning models)": "#### 表 D. ゼロショット: プロンプトのみ vs. JSON Schema 制約デコード (relaxed / strict F1; 予算 900、思考型は 3,072)",
+ "#### Table D. Zero-shot: prompt only vs. JSON-schema constrained decoding (relaxed / strict F1; both conditions of a model use the same budget: 900 output / 4,096 context, or 3,072 / 8,192)": "#### 表 D. ゼロショット: プロンプトのみ vs. JSON Schema 制約デコード (同一モデルの 2 条件は同じ予算: 900 出力 / 4,096 文脈 または 3,072 / 8,192; relaxed / strict F1; 予算 900、思考型は 3,072)",
  "Parser v1 = the LAU-version parser (first `[` … last `]`); parser v2 = last complete JSON array (reasoning channel discarded). Fail: sentences without a parseable array. Unk.: predictions with a label outside the 109-label list. Trunc.: sentences cut off by the generation budget.": "パーサ v1 = LAU 版のパーサ (最初の `[` … 最後の `]`)、v2 = 最後の完全な JSON 配列 (思考チャネルは除外)。Fail: 配列を取り出せなかった文数。Unk.: 109 ラベル外のラベルを持つ予測数。Trunc.: 生成上限で打ち切られた文数。",
  "#### Table E. Reasoning models: four zero-shot conditions (relaxed F1)": "#### 表 E. 思考型モデルの 4 条件 (relaxed F1)",
  "#### Table F. Reference models (ollama; cannot be fine-tuned locally)": "#### 表 F. 参考モデル (ollama; ローカルでは学習不可)",
@@ -44,7 +44,7 @@ TR = {"ja": {
  "Model": "模型", "Type": "类型", "Budget": "预算", "Pair": "配对", "Label": "标签", "Condition": "条件", "Mean ± SD": "均值 ± SD", "Macro (mean)": "Macro (均值)",
  "Trunc./433": "截断/433", "Merged": "合并", "Gold share": "正解比例", "R (trunc.)": "R (截断)", "R (rest)": "R (其余)", "P (trunc.)": "P (截断)", "P (rest)": "P (其余)", "FN in trunc.": "FN 比例",
  "Fine-tuned": "微调后", "Prompt only, parser v1": "仅提示 (v1)", "Prompt only, parser v2": "仅提示 (v2)", "Whole-output constraint": "整段约束", "Think, then constrain (rel. / str.)": "自由思考→约束答案 (rel. / str.)",
- "ZS+constrained rel. / str.": "ZS+约束 rel. / str.",
+ "ZS+constrained rel. / str.": "ZS+约束 rel. / str.", "Budget": "预算", "Superseded constrained runs at 900 output / 4,096 context (prompt-only run of the same model used 3,072 / 8,192; kept for reference):": "替换前的约束解码结果（900 输出 / 4,096 上下文；同模型 prompt-only 为 3,072 / 8,192；仅供参考）：",
  "prompt only, reasoning off": "仅提示，关闭思考", "reasoning on + schema on answer (3,072-token budget)": "开启思考 + 答案加 schema（预算 3,072）", "prompt only (reasoning cannot be disabled)": "仅提示（思考无法关闭）", "reasoning + schema on answer": "思考 + 答案加 schema",
  "UTH-BERT (same split as Med42)": "UTH-BERT（与 Med42 相同划分）",
  "#### Table A. Fine-tuned models, main condition (generation budget 4,096 tokens; 2,600 for the LLM-jp-3.1 family), seed 42": "#### 表 A. 微调后·主条件（生成预算 4,096 token；LLM-jp-3.1 系为 2,600），seed 42",
@@ -53,7 +53,7 @@ TR = {"ja": {
  "#### Table B. Three QLoRA seeds (42 / 1 / 2), main condition (4,096-token budget)": "#### 表 B. QLoRA 三个 seed (42 / 1 / 2)·主条件（预算 4,096）",
  "#### Table B2. Three QLoRA seeds (42 / 1 / 2), LAU setting (900-token budget)": "#### 表 B2. QLoRA 三个 seed (42 / 1 / 2)·LAU 设置（预算 900）",
  "#### Table C. Generation-budget ablation: 900 → 4,096 tokens (seed 42; last column: three-seed means)": "#### 表 C. 生成预算消融：900 → 4,096 token（seed 42；末列为三 seed 均值）",
- "#### Table D. Zero-shot: prompt only vs. JSON-schema constrained decoding (relaxed / strict F1; 900-token budget, 3,072 for reasoning models)": "#### 表 D. 零样本：仅提示 vs. JSON Schema 约束解码（relaxed / strict F1；预算 900，思考型 3,072）",
+ "#### Table D. Zero-shot: prompt only vs. JSON-schema constrained decoding (relaxed / strict F1; both conditions of a model use the same budget: 900 output / 4,096 context, or 3,072 / 8,192)": "#### 表 D. 零样本：仅提示 vs. JSON Schema 约束解码（同一模型两条件预算相同：900 输出 / 4,096 上下文 或 3,072 / 8,192；relaxed / strict F1；预算 900，思考型 3,072）",
  "Parser v1 = the LAU-version parser (first `[` … last `]`); parser v2 = last complete JSON array (reasoning channel discarded). Fail: sentences without a parseable array. Unk.: predictions with a label outside the 109-label list. Trunc.: sentences cut off by the generation budget.": "解析器 v1 = LAU 版解析器（第一个 `[` … 最后一个 `]`），v2 = 最后一个完整 JSON 数组（丢弃思考通道）。Fail：无法取出数组的句数。Unk.：标签不在 109 个之内的预测数。Trunc.：被生成上限截断的句数。",
  "#### Table E. Reasoning models: four zero-shot conditions (relaxed F1)": "#### 表 E. 思考型模型的四种零样本条件（relaxed F1）",
  "#### Table F. Reference models (ollama; cannot be fine-tuned locally)": "#### 表 F. 参考模型（ollama；无法本地微调）",
@@ -154,13 +154,16 @@ for disp, typ, stem, _, _ in FT:
     L.append(f"| {disp} | {mb.get('max_new_tokens')} | {a['relaxed']['F1']:.3f} → {b['relaxed']['F1']:.3f} | {b['relaxed']['F1']-a['relaxed']['F1']:+.3f} | {a['strict']['F1']:.3f} → {b['strict']['F1']:.3f} | {a['relaxed']['R']:.3f} → {b['relaxed']['R']:.3f} | {a['relaxed']['P']:.3f} → {b['relaxed']['P']:.3f} | {ma.get('truncated')} → {mb.get('truncated')} | {m9} → {m4} |")
 L.append("")
 # D zero-shot
-L.append(tr("#### Table D. Zero-shot: prompt only vs. JSON-schema constrained decoding (relaxed / strict F1; 900-token budget, 3,072 for reasoning models)") + "\n")
+L.append(tr("#### Table D. Zero-shot: prompt only vs. JSON-schema constrained decoding (relaxed / strict F1; both conditions of a model use the same budget: 900 output / 4,096 context, or 3,072 / 8,192)") + "\n")
 L.append(tr("Parser v1 = the LAU-version parser (first `[` … last `]`); parser v2 = last complete JSON array (reasoning channel discarded). Fail: sentences without a parseable array. Unk.: predictions with a label outside the 109-label list. Trunc.: sentences cut off by the generation budget.") + "\n")
-L.append(H(["Model", "ZS F1 (v1)", "Fail (v1)", "Unk. (v1)", "ZS F1 (v2) rel. / str.", "Fail (v2)", "Trunc.", "ZS+constrained rel. / str.", "P / R", "Trunc.", "FT F1 (main, s42)"]))
+L.append(H(["Model", "Budget", "ZS F1 (v1)", "Fail (v1)", "Unk. (v1)", "ZS F1 (v2) rel. / str.", "Fail (v2)", "Trunc.", "ZS+constrained rel. / str.", "P / R", "Trunc.", "FT F1 (main, s42)"]))
 for disp, typ, stem, zs, zg in FT:
     if not zs: continue
     a, b, c = S(zs), S(zg), S(runs(stem, "-4k")[0]); a2 = S(zs + "@v2") or a; ma, mb = M(zs), M(zg)
-    L.append(f"| {disp} | {a['relaxed']['F1']:.3f} | {ma.get('parse_fail','–')} | {a['n_unknown_label_pred']} | {a2['relaxed']['F1']:.3f} / {a2['strict']['F1']:.3f} | {ma.get('parse_fail_v2', ma.get('parse_fail','–'))} | {ma.get('truncated','–')} | {b['relaxed']['F1']:.3f} / {b['strict']['F1']:.3f} | {b['relaxed']['P']:.3f} / {b['relaxed']['R']:.3f} | {mb.get('truncated','–')} | {c['relaxed']['F1']:.3f} |")
+    L.append(f"| {disp} | {ma.get('max_new_tokens')} / {ma.get('max_model_len')} | {a['relaxed']['F1']:.3f} | {ma.get('parse_fail','–')} | {a['n_unknown_label_pred']} | {a2['relaxed']['F1']:.3f} / {a2['strict']['F1']:.3f} | {ma.get('parse_fail_v2', ma.get('parse_fail','–'))} | {ma.get('truncated','–')} | {b['relaxed']['F1']:.3f} / {b['strict']['F1']:.3f} | {b['relaxed']['P']:.3f} / {b['relaxed']['R']:.3f} | {mb.get('truncated','–')} | {c['relaxed']['F1']:.3f} |")
+old = [(disp, S(zg + "-900"), M(zg + "-900")) for disp, typ, stem, zs, zg in FT if zg and S(zg + "-900")]
+if old:
+    L.append("\n" + tr("Superseded constrained runs at 900 output / 4,096 context (prompt-only run of the same model used 3,072 / 8,192; kept for reference):") + " " + "; ".join(f"{d} {o['relaxed']['F1']:.3f} / {o['strict']['F1']:.3f} (trunc. {m.get('truncated')})" for d, o, m in old))
 L.append("")
 # E reasoning
 L.append(tr("#### Table E. Reasoning models: four zero-shot conditions (relaxed F1)") + "\n")

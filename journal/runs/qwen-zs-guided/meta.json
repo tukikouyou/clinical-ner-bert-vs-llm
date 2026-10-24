@@ -1,6 +1,6 @@
 {
   "name": "qwen-zs-guided",
-  "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+  "model": "/opt/llm/stage/Qwen--Qwen3-30B-A3B-Instruct-2507",
   "lora": null,
   "tp": 2,
   "guided": true,
@@ -135,14 +135,16 @@
     }
   },
   "guided_backend": "xgrammar:disable-any-whitespace",
-  "max_new_tokens": 900,
-  "max_model_len": 4096,
+  "max_new_tokens": 3072,
+  "max_model_len": 8192,
   "n_sent": 433,
   "parse_fail": 0,
-  "truncated": 46,
-  "sec": 213.0,
+  "think": null,
+  "truncated": 25,
+  "sec": 330.6,
   "gpus": "2,3",
-  "date": "2026-10-05 18:02",
+  "date": "2026-10-24 13:59",
   "parse_fail_v1": 0,
-  "parse_fail_v2": 0
+  "parse_fail_v2": 0,
+  "parse_fail_v3": 0
 }

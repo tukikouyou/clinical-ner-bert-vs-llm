@@ -114,8 +114,8 @@ for disp, typ, size, ft, zs, zg in MODELS:
 
 # ---- 表: ゼロショット prompt-only vs constrained ----
 md.append("\n## ゼロショット: prompt のみ vs JSON Schema 制約デコード (test36; 予算 900 / 思考型 3072)\n")
-md.append("| モデル | 種別 | ZS F1 | ZS strict | parse失敗 | 截断 | 未知ラベル | ZS F1 (parser v2) | parse失敗 v2 | 制約 F1 | 制約 strict | 制約 P | 制約 R | 截断 | FT F1 (4k) |")
-md.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+md.append("| モデル | 種別 | 予算 (出力/文脈) | ZS F1 | ZS strict | parse失敗 | 截断 | 未知ラベル | ZS F1 (parser v2) | parse失敗 v2 | 制約 F1 | 制約 strict | 制約 P | 制約 R | 截断 | FT F1 (4k) |")
+md.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
 tex.append("% ZS table\n\\begin{tabular}{llcccccccccc}\\toprule\nModel & Type & ZS F1 & Strict & Parse fail & Trunc. & Constr. F1 & Strict & P & R & Trunc. & FT F1\\\\\\midrule")
 for disp, typ, size, ft, zs, zg in MODELS:
     a, b, c = S(zs), S(zg), S(seed_runs(ft, "-4k")[0])
@@ -123,7 +123,7 @@ for disp, typ, size, ft, zs, zg in MODELS:
         continue
     ma, mb = M(zs), M(zg)
     a2 = S(zs + "@v2") if zs else None
-    row = [disp, typ,
+    row = [disp, typ, f"{ma.get('max_new_tokens')}/{ma.get('max_model_len')}",
            f"{a['relaxed']['F1']:.3f}" if a else "-", f"{a['strict']['F1']:.3f}" if a else "-",
            str(ma.get("parse_fail", "-")), str(ma.get("truncated", "-")), str(a["n_unknown_label_pred"]) if a else "-",
            f"{a2['relaxed']['F1']:.3f}" if a2 else "-", str(ma.get("parse_fail_v2", "-")),
@@ -131,7 +131,7 @@ for disp, typ, size, ft, zs, zg in MODELS:
            f"{b['relaxed']['P']:.3f}" if b else "-", f"{b['relaxed']['R']:.3f}" if b else "-", str(mb.get("truncated", "-")),
            f"{c['relaxed']['F1']:.3f}" if c else "-"]
     md.append("| " + " | ".join(row) + " |")
-    tex.append(" & ".join(row[:6] + row[9:]) + "\\\\")
+    tex.append(" & ".join(row[:2] + row[3:7] + row[10:]) + "\\\\")
 tex.append("\\bottomrule\\end{tabular}\n")
 
 # ---- 表: 思考型の ZS 4 条件 + 参考モデル ----

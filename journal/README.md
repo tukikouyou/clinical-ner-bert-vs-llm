@@ -22,7 +22,7 @@ distributed for research use by its authors and is **not** included here.
 | `bert_preds/` | token-level predictions of the two fine-tuned BERT models on the fold-0 test set (source of `stats/BERT-*.json`) |
 | `lau_original/` | copies of the LAU-16 materials: Japanese paper, reviewer reports and responses, LAU-phase scores |
 
-Run names: `<model>-zs` (prompt only), `<model>-zs-guided` (constrained decoding),
+Run names: `<model>-zs` (prompt only), `<model>-zs-guided` (constrained decoding, same budget as `-zs`; `-zs-guided-900` = superseded 900-token runs of three models),
 `<model>-zs-think-guided` (two-pass), `<model>-ft` (QLoRA seed 42), `<model>-s1-ft` / `-s2-ft`
 (seeds 1, 2) under the 900-token budget of the LAU paper; `<model>-ft-4k`, `-s1-ft-4k`, `-s2-ft-4k`
 (**main condition**: 4,096-token generation budget; 2,600 for the two LLM-jp-3.1 models); `sip-jmed-13b*-ft-2k6` (SIP-jmed at the 2,600-token budget of its base model, for the budget-matched pair); `*-guided-ws`

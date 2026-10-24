@@ -47,12 +47,12 @@ axes[0].set_ylabel("F1 (micro)"); h, l = axes[0].get_legend_handles_labels()
 fig.legend(h, l, loc="lower center", ncol=3, frameon=False, bbox_to_anchor=(0.5, -0.01), fontsize=7)
 fig.tight_layout(rect=(0, 0.13, 1, 1)); fig.savefig(os.path.join(FIG, "fig_overview.pdf")); fig.savefig(os.path.join(FIG, "fig_overview.png"), dpi=300); plt.close(fig)
 
-# ---- Fig 2: base-aligned pairs per seed (main budget 4k)
+# ---- Fig 2: base-aligned pairs per seed, equal budgets (4k; 13B pair both at 2,600: SIP runs -2k6, base -4k is 2,600 by its context limit)
 PAIRS = [("13B pair", "sip-jmed-13b", "llmjp-3.1-13b"), ("27B pair", "medgemma-27b", "gemma-3-27b"), ("70B pair", "med42-70b", "llama-3.3-70b")]
 fig, axes = plt.subplots(1, 2, figsize=(170 * mm, 58 * mm))
 for ax, mode in zip(axes, ["relaxed", "strict"]):
     for i, (name, med, base) in enumerate(PAIRS):
-        m = [s[mode]["F1"] if s else None for s in seeds(med, "-4k")]; b = [s[mode]["F1"] if s else None for s in seeds(base, "-4k")]
+        m = [s[mode]["F1"] if s else None for s in seeds(med, "-2k6" if med == "sip-jmed-13b" else "-4k")]; b = [s[mode]["F1"] if s else None for s in seeds(base, "-4k")]
         for sm, sb in zip(m, b):
             if sm is None or sb is None:
                 continue

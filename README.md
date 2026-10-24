@@ -140,26 +140,28 @@ Generated from `journal/stats/` by `journal/code/readme_tables.py` (also [`journ
 | LLM-jp-4-32B (MoE, reasoning) | 4096 | 0.813 → 0.881 | +0.068 | 0.772 → 0.835 | 0.738 → 0.873 | 0.904 → 0.888 | 79 → 2 | 0.817 → 0.888 |
 | LLM-jp-1.8B | 2600 | 0.777 → 0.830 | +0.053 | 0.730 → 0.776 | 0.695 → 0.800 | 0.880 → 0.863 | 81 → 10 | 0.778 → 0.831 |
 
-#### Table D. Zero-shot: prompt only vs. JSON-schema constrained decoding (relaxed / strict F1; 900-token budget, 3,072 for reasoning models)
+#### Table D. Zero-shot: prompt only vs. JSON-schema constrained decoding (relaxed / strict F1; both conditions of a model use the same budget: 900 output / 4,096 context, or 3,072 / 8,192)
 
 Parser v1 = the LAU-version parser (first `[` … last `]`); parser v2 = last complete JSON array (reasoning channel discarded). Fail: sentences without a parseable array. Unk.: predictions with a label outside the 109-label list. Trunc.: sentences cut off by the generation budget.
 
-| Model | ZS F1 (v1) | Fail (v1) | Unk. (v1) | ZS F1 (v2) rel. / str. | Fail (v2) | Trunc. | ZS+constrained rel. / str. | P / R | Trunc. | FT F1 (main, s42) |
-|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Med42-70B | 0.136 | 10 | 581 | 0.136 / 0.044 | 6 | 1 | 0.146 / 0.044 | 0.345 / 0.093 | 0 | 0.905 |
-| Llama-3.3-70B | 0.276 | 0 | 188 | 0.276 / 0.160 | 0 | 2 | 0.265 / 0.157 | 0.508 / 0.179 | 3 | 0.909 |
-| MedGemma-27B | 0.320 | 0 | 197 | 0.320 / 0.209 | 0 | 40 | 0.316 / 0.205 | 0.452 / 0.243 | 28 | 0.899 |
-| SIP-jmed-13B | 0.010 | 322 | 47 | 0.025 / 0.014 | 92 | 147 | 0.015 / 0.003 | 0.043 / 0.009 | 108 | 0.894 |
-| Qwen3-30B-A3B (MoE) | 0.235 | 3 | 236 | 0.235 / 0.139 | 3 | 24 | 0.224 / 0.133 | 0.332 / 0.169 | 46 | 0.884 |
-| LLM-jp-4-32B (MoE, reasoning) | 0.092 | 261 | 95 | 0.150 / 0.068 | 17 | 35 | 0.000 / 0.000 | 0.000 / 0.000 | 1 | 0.881 |
-| LLM-jp-1.8B | 0.027 | 3 | 195 | 0.027 / 0.001 | 3 | 427 | 0.019 / 0.001 | 0.044 / 0.013 | 343 | 0.830 |
+| Model | Budget | ZS F1 (v1) | Fail (v1) | Unk. (v1) | ZS F1 (v2) rel. / str. | Fail (v2) | Trunc. | ZS+constrained rel. / str. | P / R | Trunc. | FT F1 (main, s42) |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Med42-70B | 900 / 4096 | 0.136 | 10 | 581 | 0.136 / 0.044 | 6 | 1 | 0.146 / 0.044 | 0.345 / 0.093 | 0 | 0.905 |
+| Llama-3.3-70B | 900 / 4096 | 0.276 | 0 | 188 | 0.276 / 0.160 | 0 | 2 | 0.265 / 0.157 | 0.508 / 0.179 | 3 | 0.909 |
+| MedGemma-27B | 900 / 4096 | 0.320 | 0 | 197 | 0.320 / 0.209 | 0 | 40 | 0.316 / 0.205 | 0.452 / 0.243 | 28 | 0.899 |
+| SIP-jmed-13B | 3072 / 8192 | 0.010 | 322 | 47 | 0.025 / 0.014 | 92 | 147 | 0.016 / 0.003 | 0.039 / 0.010 | 99 | 0.894 |
+| Qwen3-30B-A3B (MoE) | 3072 / 8192 | 0.235 | 3 | 236 | 0.235 / 0.139 | 3 | 24 | 0.243 / 0.141 | 0.319 / 0.196 | 25 | 0.884 |
+| LLM-jp-4-32B (MoE, reasoning) | 3072 / 8192 | 0.092 | 261 | 95 | 0.150 / 0.068 | 17 | 35 | 0.000 / 0.000 | 0.000 / 0.000 | 0 | 0.881 |
+| LLM-jp-1.8B | 900 / 4096 | 0.027 | 3 | 195 | 0.027 / 0.001 | 3 | 427 | 0.019 / 0.001 | 0.044 / 0.013 | 343 | 0.830 |
+
+Superseded constrained runs at 900 output / 4,096 context (prompt-only run of the same model used 3,072 / 8,192; kept for reference): SIP-jmed-13B 0.015 / 0.003 (trunc. 108); Qwen3-30B-A3B (MoE) 0.224 / 0.133 (trunc. 46); LLM-jp-4-32B (MoE, reasoning) 0.000 / 0.000 (trunc. 1)
 
 #### Table E. Reasoning models: four zero-shot conditions (relaxed F1)
 
 | Model | Prompt only, parser v1 | Prompt only, parser v2 | Whole-output constraint | Think, then constrain (rel. / str.) | Fine-tuned |
 |---|:-:|:-:|:-:|:-:|:-:|
 | LLM-jp-4-32B | 0.092 (fail 261) | 0.150 (fail 17) | 0.000 | 0.172 / 0.081 | 0.881 |
-| SIP-jmed-13B | 0.010 (fail 322) | 0.025 (fail 92) | 0.015 | 0.048 / 0.023 | 0.894 |
+| SIP-jmed-13B | 0.010 (fail 322) | 0.025 (fail 92) | 0.016 | 0.048 / 0.023 | 0.894 |
 
 #### Table F. Reference models (ollama; cannot be fine-tuned locally)
 
@@ -248,7 +250,6 @@ Stop: sentences where generation ended with the end-of-sequence token; Clean: ra
 | LLM-jp-1.8B | 352 / 423 | 352 / 420 | 80 / 10 | 0 / 0 | 2 / 2 | 0 / 0 |
 
 Spearman correlation between label frequency and relaxed F1 (Med42-70B, 98 labels): ρ = 0.43 (p = 1e-05). The 27 `-others` labels average F1 0.23.
-
 
 </details>
 

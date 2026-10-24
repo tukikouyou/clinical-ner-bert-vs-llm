@@ -162,6 +162,11 @@ K4S) # 生成予算アブレーション seed 1/2 (主表を大予算にする�
   for sd in 1 2; do run llama-3.3-70b-s$sd-ft-4k $LLAMA $EXT 4 0,1,2,3 4096 6400 $FJ/llama-3.3-70b-s$sd --max_num_seqs 16; done
   for sd in 1 2; do run med42-70b-s$sd-ft-4k /media/user/Elements/models/med42-70b $OPT 4 0,1,2,3 4096 6400 $FJ/med42-70b-s$sd --max_num_seqs 16; done
   ;;
+ZG) # ZS+C を prompt-only と同じ予算 (3072 / 8192) に揃える (旧 900/4096 の結果は runs/<name>-900)。tp1→GPU0 は最後
+  run qwen-zs-guided         $QWEN $EXT 2 2,3 3072 8192 "" --guided
+  run llm-jp-4-32b-zs-guided $LJ4  $EXT 2 2,3 3072 8192 "" --guided
+  run sip-jmed-13b-zs-guided $SIP  $EXT 1 0   3072 8192 "" --guided
+  ;;
 K26) # 13B 対の予算を揃える: SIP-jmed を基盤と同じ 2600 トークン予算で 3 seed (runs/sip-jmed-13b*-ft-2k6)
   FJ=/media/user/Elements/ft-journal
   run sip-jmed-13b-ft-2k6     $SIP $EXT 1 0 2600 4096 $FT/sip-jmed-13b
