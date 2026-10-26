@@ -185,10 +185,10 @@ Stop: sentences where generation ended with the end-of-sequence token; Clean: ra
 | Llama-3.3-70B | 347 / 431 | 347 / 431 | 86 / 2 | 0 / 0 | 0 / 0 | 0 / 0 |
 | MedGemma-27B | 352 / 431 | 352 / 427 | 81 / 2 | 0 / 4 | 0 / 0 | 0 / 0 |
 | Gemma-3-27B (base of MedGemma) | 349 / 431 | 349 / 431 | 84 / 2 | 0 / 0 | 0 / 0 | 0 / 0 |
-| SIP-jmed-13B | 349 / 430 | 351 / 428 | 81 / 3 | 0 / 0 | 0 / 1 | 0 / 0 |
+| SIP-jmed-13B | 349 / 430 | 351 / 428 | 82 / 4 | 0 / 0 | 0 / 0 | 0 / 1 |
 | LLM-jp-3.1-13B (base of SIP-jmed) | 351 / 427 | 351 / 427 | 82 / 6 | 0 / 0 | 0 / 0 | 0 / 0 |
-| Qwen3-30B-A3B (MoE) | 348 / 430 | 347 / 429 | 85 / 3 | 0 / 0 | 1 / 1 | 0 / 0 |
+| Qwen3-30B-A3B (MoE) | 348 / 430 | 347 / 429 | 85 / 3 | 0 / 0 | 0 / 0 | 1 / 1 |
 | LLM-jp-4-32B (MoE, reasoning) | 354 / 431 | 355 / 431 | 78 / 2 | 0 / 0 | 0 / 0 | 0 / 0 |
-| LLM-jp-1.8B | 352 / 423 | 352 / 420 | 80 / 10 | 0 / 0 | 2 / 2 | 0 / 0 |
+| LLM-jp-1.8B | 352 / 423 | 352 / 420 | 79 / 11 | 0 / 0 | 0 / 0 | 2 / 2 |
 
 Spearman correlation between label frequency and relaxed F1 (Med42-70B, 98 labels): ρ = 0.43 (p = 1e-05). The 27 `-others` labels average F1 0.23.
