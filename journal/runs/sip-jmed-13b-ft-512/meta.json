@@ -1,0 +1,21 @@
+{
+  "name": "sip-jmed-13b-ft-512",
+  "model": "/opt/llm/stage/SIP-med-LLM--SIP-jmed-llm-3-13b-OP-32k-R0.1",
+  "lora": "/media/user/Elements/ft/sip-jmed-13b",
+  "tp": 1,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 512,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 0,
+  "think": null,
+  "truncated": 171,
+  "sec": 266.7,
+  "gpus": "1",
+  "date": "2026-10-26 16:23",
+  "parse_fail_v1": 0,
+  "parse_fail_v2": 0,
+  "parse_fail_v3": 0
+}

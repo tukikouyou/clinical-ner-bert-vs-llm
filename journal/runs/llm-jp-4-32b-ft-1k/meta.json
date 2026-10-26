@@ -1,0 +1,21 @@
+{
+  "name": "llm-jp-4-32b-ft-1k",
+  "model": "/opt/llm/stage/llm-jp-4-32b-ft",
+  "lora": null,
+  "tp": 2,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 1024,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 0,
+  "think": null,
+  "truncated": 62,
+  "sec": 921.4,
+  "gpus": "2,3",
+  "date": "2026-10-26 23:43",
+  "parse_fail_v1": 0,
+  "parse_fail_v2": 0,
+  "parse_fail_v3": 0
+}

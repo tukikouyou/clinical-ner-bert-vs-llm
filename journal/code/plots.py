@@ -89,3 +89,19 @@ ax.set_xticks(x); ax.set_xticklabels(names, rotation=35, ha="right"); ax.set_yla
 ax.legend(frameon=False, loc="upper left", fontsize=6.8)
 fig.tight_layout(); fig.savefig(os.path.join(FIG, "fig_trunc.pdf")); fig.savefig(os.path.join(FIG, "fig_trunc.png"), dpi=300); plt.close(fig)
 print("figs written")
+
+# ---- Fig 5: generation-budget curve (seed 42): relaxed F1 and truncated sentences vs. output budget
+BC = json.load(open(os.path.join(STATS, "budget_curve.json")))
+fig, axes = plt.subplots(1, 2, figsize=(170 * mm, 62 * mm))
+cols = plt.cm.tab10(range(10))
+for i, (name, row) in enumerate(BC.items()):
+    xs = [v["budget"] for v in row.values()]; f = [v["F1"] for v in row.values()]; t = [v["trunc"] for v in row.values()]
+    o = sorted(range(len(xs)), key=lambda k: xs[k]); xs = [xs[k] for k in o]; f = [f[k] for k in o]; t = [t[k] for k in o]
+    axes[0].plot(xs, f, marker="o", ms=3, lw=0.9, color=cols[i], label=name); axes[1].plot(xs, t, marker="o", ms=3, lw=0.9, color=cols[i])
+for ax in axes:
+    ax.set_xscale("log", base=2); ax.set_xticks([512, 900, 1024, 2048, 4096]); ax.set_xticklabels(["512", "900", "1,024", "2,048", "4,096"], fontsize=7); ax.set_xlabel("Generation budget (output tokens)"); ax.grid(lw=0.4, alpha=0.5)
+axes[0].set_ylabel("Relaxed F1 (seed 42)"); axes[1].set_ylabel("Sentences cut off (of 433)")
+for b, lab in ((0.836, "UTH-BERT"), (0.841, "NICT-BERT")):
+    axes[0].axhline(b, ls="--", lw=0.7, color="0.4"); axes[0].text(4096, b + 0.003, lab, fontsize=6, ha="right", color="0.3")
+axes[0].legend(fontsize=6, frameon=False, ncol=2, loc="lower right")
+fig.tight_layout(); fig.savefig(os.path.join(FIG, "fig_budget_curve.pdf")); fig.savefig(os.path.join(FIG, "fig_budget_curve.png"), dpi=300); plt.close(fig)

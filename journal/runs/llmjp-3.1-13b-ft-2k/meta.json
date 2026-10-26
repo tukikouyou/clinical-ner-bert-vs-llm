@@ -1,0 +1,21 @@
+{
+  "name": "llmjp-3.1-13b-ft-2k",
+  "model": "/opt/llm/stage/llm-jp--llm-jp-3.1-13b-instruct4",
+  "lora": "/media/user/Elements/ft-journal/llmjp-3.1-13b-s42",
+  "tp": 1,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 2048,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 0,
+  "think": null,
+  "truncated": 11,
+  "sec": 970.6,
+  "gpus": "0",
+  "date": "2026-10-26 16:58",
+  "parse_fail_v1": 0,
+  "parse_fail_v2": 0,
+  "parse_fail_v3": 0
+}

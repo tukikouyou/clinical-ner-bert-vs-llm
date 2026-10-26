@@ -1,0 +1,21 @@
+{
+  "name": "qwen-ft-512",
+  "model": "/opt/llm/stage/qwen-ft",
+  "lora": null,
+  "tp": 2,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 512,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 1,
+  "think": null,
+  "truncated": 171,
+  "sec": 871.4,
+  "gpus": "2,3",
+  "date": "2026-10-26 22:17",
+  "parse_fail_v1": 1,
+  "parse_fail_v2": 1,
+  "parse_fail_v3": 1
+}

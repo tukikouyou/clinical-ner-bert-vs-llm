@@ -162,6 +162,61 @@ K4S) # 生成予算アブレーション seed 1/2 (主表を大予算にする�
   for sd in 1 2; do run llama-3.3-70b-s$sd-ft-4k $LLAMA $EXT 4 0,1,2,3 4096 6400 $FJ/llama-3.3-70b-s$sd --max_num_seqs 16; done
   for sd in 1 2; do run med42-70b-s$sd-ft-4k /media/user/Elements/models/med42-70b $OPT 4 0,1,2,3 4096 6400 $FJ/med42-70b-s$sd --max_num_seqs 16; done
   ;;
+BC) # 生成予算曲線: seed42 の FT 推論を 512 / 1024 / 2048 トークンで (runs/<name>-512, -1k, -2k)。900 と 4k/2k6 は既存。70B は最後
+  FJ=/media/user/Elements/ft-journal; GT=/media/user/Elements/models/gemma-3-27b-text-it; MGT=/media/user/Elements/models/medgemma-27b-text
+  for bud in 512 1024 2048; do
+    case $bud in 512) sfx=512; ctx=4096;; 1024) sfx=1k; ctx=4096;; 2048) sfx=2k; ctx=6400;; esac
+    run llm-jp-1.8b-ft-$sfx   $LJ18 $OPT 1 0 $bud 4096 $FT/llmjp-1.8b-3ep
+    run llmjp-3.1-13b-ft-$sfx llm-jp/llm-jp-3.1-13b-instruct4 $EXT 1 0 $bud 4096 $FJ/llmjp-3.1-13b-s42
+    run sip-jmed-13b-ft-$sfx  $SIP  $EXT 1 0 $bud $ctx $FT/sip-jmed-13b
+    run medgemma-27b-ft-$sfx  $MGT $OPT 2 2,3 $bud $ctx $FTL/medgemma-27b --max_num_seqs 8
+    run gemma-3-27b-ft-$sfx   $GT  $EXT 2 2,3 $bud $ctx $FJ/gemma-3-27b-s42 --max_num_seqs 8
+  done
+  for bud in 512 1024 2048; do
+    case $bud in 512) sfx=512; ctx=4096;; 1024) sfx=1k; ctx=4096;; 2048) sfx=2k; ctx=6400;; esac
+    if merge qwen-ft $QWEN $FT/qwen3-30b-a3b $EXT; then run qwen-ft-$sfx $MG/qwen-ft $EXT 2 2,3 $bud $ctx "" --max_num_seqs 8; fi
+    if merge llm-jp-4-32b-ft $LJ4 $FT/llmjp-4-32b $EXT; then run llm-jp-4-32b-ft-$sfx $MG/llm-jp-4-32b-ft $EXT 2 2,3 $bud $ctx "" --max_num_seqs 8; fi
+  done
+  rm -rf $MG/qwen-ft $MG/llm-jp-4-32b-ft
+  while [ "$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 1)" -gt 2000 ]; do echo "[BC] waiting for GPU1 (busy)" >> $LOG; sleep 600; done
+  for bud in 512 1024 2048; do
+    case $bud in 512) sfx=512; ctx=4096;; 1024) sfx=1k; ctx=4096;; 2048) sfx=2k; ctx=6400;; esac
+    run llama-3.3-70b-ft-$sfx $LLAMA $EXT 4 0,1,2,3 $bud $ctx $FT/llama-3.3-70b --max_num_seqs 16
+    run med42-70b-ft-$sfx     /media/user/Elements/models/med42-70b $OPT 4 0,1,2,3 $bud $ctx $FTL/med42-70b --max_num_seqs 16
+  done
+  ;;
+BC1) # 予算曲線 worker GPU0 (tp1): LLM-jp-3.1 系
+  FJ=/media/user/Elements/ft-journal
+  for bud in 512 1024 2048; do case $bud in 512) sfx=512;; 1024) sfx=1k;; 2048) sfx=2k;; esac
+    run llm-jp-1.8b-ft-$sfx   $LJ18 $OPT 1 0 $bud 4096 $FT/llmjp-1.8b-3ep
+    run llmjp-3.1-13b-ft-$sfx llm-jp/llm-jp-3.1-13b-instruct4 $EXT 1 0 $bud 4096 $FJ/llmjp-3.1-13b-s42
+  done
+  ;;
+BC1B) # 予算曲線 worker GPU1 (tp1): SIP-jmed
+  for bud in 512 1024 2048; do case $bud in 512) sfx=512; ctx=4096;; 1024) sfx=1k; ctx=4096;; 2048) sfx=2k; ctx=6400;; esac
+    run sip-jmed-13b-ft-$sfx  $SIP  $EXT 1 1 $bud $ctx $FT/sip-jmed-13b
+  done
+  ;;
+BC2) # 予算曲線 worker GPU2,3 (tp2): 27B ×2, MoE ×2 (merge は GPU2,3)
+  FJ=/media/user/Elements/ft-journal; GT=/media/user/Elements/models/gemma-3-27b-text-it; MGT=/media/user/Elements/models/medgemma-27b-text
+  for bud in 512 1024 2048; do case $bud in 512) sfx=512; ctx=4096;; 1024) sfx=1k; ctx=4096;; 2048) sfx=2k; ctx=6400;; esac
+    run medgemma-27b-ft-$sfx  $MGT $OPT 2 2,3 $bud $ctx $FTL/medgemma-27b --max_num_seqs 8
+    run gemma-3-27b-ft-$sfx   $GT  $EXT 2 2,3 $bud $ctx $FJ/gemma-3-27b-s42 --max_num_seqs 8
+  done
+  if merge qwen-ft $QWEN $FT/qwen3-30b-a3b $EXT; then
+    for bud in 512 1024 2048; do case $bud in 512) sfx=512; ctx=4096;; 1024) sfx=1k; ctx=4096;; 2048) sfx=2k; ctx=6400;; esac
+      run qwen-ft-$sfx $MG/qwen-ft $EXT 2 2,3 $bud $ctx "" --max_num_seqs 8; done; rm -rf $MG/qwen-ft; fi
+  if merge llm-jp-4-32b-ft $LJ4 $FT/llmjp-4-32b $EXT; then
+    for bud in 512 1024 2048; do case $bud in 512) sfx=512; ctx=4096;; 1024) sfx=1k; ctx=4096;; 2048) sfx=2k; ctx=6400;; esac
+      run llm-jp-4-32b-ft-$sfx $MG/llm-jp-4-32b-ft $EXT 2 2,3 $bud $ctx "" --max_num_seqs 8; done; rm -rf $MG/llm-jp-4-32b-ft; fi
+  ;;
+BC70) # 予算曲線 70B (tp4, 4 GPU): 他 worker 終了後
+  while [ "$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i 1)" -gt 2000 ]; do echo "[BC70] waiting for GPU1 (busy)" >> $LOG; sleep 600; done
+  for bud in 512 1024 2048; do case $bud in 512) sfx=512; ctx=4096;; 1024) sfx=1k; ctx=4096;; 2048) sfx=2k; ctx=6400;; esac
+    run llama-3.3-70b-ft-$sfx $LLAMA $EXT 4 0,1,2,3 $bud $ctx $FT/llama-3.3-70b --max_num_seqs 16
+    run med42-70b-ft-$sfx     /media/user/Elements/models/med42-70b $OPT 4 0,1,2,3 $bud $ctx $FTL/med42-70b --max_num_seqs 16
+  done
+  ;;
 ZG) # ZS+C を prompt-only と同じ予算 (3072 / 8192) に揃える (旧 900/4096 の結果は runs/<name>-900)。tp1→GPU0 は最後
   run qwen-zs-guided         $QWEN $EXT 2 2,3 3072 8192 "" --guided
   run llm-jp-4-32b-zs-guided $LJ4  $EXT 2 2,3 3072 8192 "" --guided

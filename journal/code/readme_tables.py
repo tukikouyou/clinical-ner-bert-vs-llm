@@ -14,7 +14,7 @@ TR = {"ja": {
  "Model": "モデル", "Type": "種別", "Budget": "予算", "Pair": "対", "Label": "ラベル", "Condition": "条件", "Mean ± SD": "平均 ± SD", "Macro (mean)": "Macro (平均)",
  "Trunc./433": "打ち切り/433", "Merged": "統合", "Gold share": "正解の割合", "R (trunc.)": "R (打ち切り)", "R (rest)": "R (他)", "P (trunc.)": "P (打ち切り)", "P (rest)": "P (他)", "FN in trunc.": "FN の割合",
  "Fine-tuned": "FT 後", "Prompt only, parser v1": "プロンプトのみ (v1)", "Prompt only, parser v2": "プロンプトのみ (v2)", "Whole-output constraint": "整段制約", "Think, then constrain (rel. / str.)": "自由思考→制約回答 (rel. / str.)",
- "ZS+constrained rel. / str.": "ZS+制約 rel. / str.", "Budget": "予算", "Superseded constrained runs at 900 output / 4,096 context (prompt-only run of the same model used 3,072 / 8,192; kept for reference):": "差し替え前の制約デコード (900 出力 / 4,096 文脈; 同モデルの prompt-only は 3,072 / 8,192; 参考):",
+ "ZS+constrained rel. / str.": "ZS+制約 rel. / str.", "Budget": "予算", "Relaxed (main)": "relaxed (主)", "#### Table M. Generation-budget curve (seed 42): relaxed F1 / sentences cut off / mean output tokens per budget (4,096 column is 2,600 for the LLM-jp-3.1 models)": "#### 表 M. 生成予算曲線 (seed 42): 予算ごとの relaxed F1 / 打ち切り文数 / 平均出力トークン (4,096 列は LLM-jp-3.1 系では 2,600)", "Relaxed (mention)": "relaxed (提及)", "Strict (main)": "strict (主)", "Strict (mention)": "strict (提及)", "Pred. mentions (s42)": "予測提及数 (s42)", "#### Table L. Mention-level scoring (repeated mentions within a sentence not collapsed): main vs. mention-level F1, three-seed means (4,096-token budget; 2,600 for LLM-jp-3.1 models)": "#### 表 L. 提及レベル採点 (文内の重複提及を潰さない): 主採点 vs. 提及レベル F1, 3 seed 平均 (予算 4,096; LLM-jp-3.1 系は 2,600)", "The test set has 15,119 gold mentions by character offsets; the main scores collapse them to 12,919 (type, surface) pairs (14.6% collapsed, 248 sentences). Mention-level: gold counted per occurrence, predictions per occurrence in the output (per BIO segment for BERT), same greedy matching.": "テスト集合の正解提及は文字オフセットで 15,119; 主採点は文内の同一 (型, 表層) を 1 個に集約し 12,919 組 (14.6% が折り畳み, 248 文)。提及レベル: 正解は出現ごと、予測は出力中の出現ごと (BERT は BIO 片ごと) に数え、同じ貪欲対応。", "Superseded constrained runs at 900 output / 4,096 context (prompt-only run of the same model used 3,072 / 8,192; kept for reference):": "差し替え前の制約デコード (900 出力 / 4,096 文脈; 同モデルの prompt-only は 3,072 / 8,192; 参考):",
  "prompt only, reasoning off": "プロンプトのみ、思考オフ", "reasoning on + schema on answer (3,072-token budget)": "思考オン + 回答に schema (予算 3,072)", "prompt only (reasoning cannot be disabled)": "プロンプトのみ (思考は無効化不可)", "reasoning + schema on answer": "思考 + 回答に schema",
  "UTH-BERT (same split as Med42)": "UTH-BERT (Med42 と同じ分割)",
  "#### Table A. Fine-tuned models, main condition (generation budget 4,096 tokens; 2,600 for the LLM-jp-3.1 family), seed 42": "#### 表 A. ファインチューニング後・主条件 (生成予算 4,096 トークン; LLM-jp-3.1 系は 2,600)、seed 42",
@@ -44,7 +44,7 @@ TR = {"ja": {
  "Model": "模型", "Type": "类型", "Budget": "预算", "Pair": "配对", "Label": "标签", "Condition": "条件", "Mean ± SD": "均值 ± SD", "Macro (mean)": "Macro (均值)",
  "Trunc./433": "截断/433", "Merged": "合并", "Gold share": "正解比例", "R (trunc.)": "R (截断)", "R (rest)": "R (其余)", "P (trunc.)": "P (截断)", "P (rest)": "P (其余)", "FN in trunc.": "FN 比例",
  "Fine-tuned": "微调后", "Prompt only, parser v1": "仅提示 (v1)", "Prompt only, parser v2": "仅提示 (v2)", "Whole-output constraint": "整段约束", "Think, then constrain (rel. / str.)": "自由思考→约束答案 (rel. / str.)",
- "ZS+constrained rel. / str.": "ZS+约束 rel. / str.", "Budget": "预算", "Superseded constrained runs at 900 output / 4,096 context (prompt-only run of the same model used 3,072 / 8,192; kept for reference):": "替换前的约束解码结果（900 输出 / 4,096 上下文；同模型 prompt-only 为 3,072 / 8,192；仅供参考）：",
+ "ZS+constrained rel. / str.": "ZS+约束 rel. / str.", "Budget": "预算", "Relaxed (main)": "relaxed（主）", "#### Table M. Generation-budget curve (seed 42): relaxed F1 / sentences cut off / mean output tokens per budget (4,096 column is 2,600 for the LLM-jp-3.1 models)": "#### 表 M. 生成预算曲线（seed 42）：各预算下的 relaxed F1 / 截断句数 / 平均输出 token（4,096 列对 LLM-jp-3.1 系为 2,600）", "Relaxed (mention)": "relaxed（提及级）", "Strict (main)": "strict（主）", "Strict (mention)": "strict（提及级）", "Pred. mentions (s42)": "预测提及数 (s42)", "#### Table L. Mention-level scoring (repeated mentions within a sentence not collapsed): main vs. mention-level F1, three-seed means (4,096-token budget; 2,600 for LLM-jp-3.1 models)": "#### 表 L. 提及级评价（不折叠句内重复提及）：主评价 vs. 提及级 F1，三 seed 均值（预算 4,096；LLM-jp-3.1 系为 2,600）", "The test set has 15,119 gold mentions by character offsets; the main scores collapse them to 12,919 (type, surface) pairs (14.6% collapsed, 248 sentences). Mention-level: gold counted per occurrence, predictions per occurrence in the output (per BIO segment for BERT), same greedy matching.": "测试集按字符偏移有 15,119 个正解提及；主评价将句内相同（类型, 表层）折叠为 12,919 对（14.6% 被折叠，涉及 248 句）。提及级：正解按每次出现计数，预测按输出中的出现次数计数（BERT 按 BIO 片段），同一贪心匹配。", "Superseded constrained runs at 900 output / 4,096 context (prompt-only run of the same model used 3,072 / 8,192; kept for reference):": "替换前的约束解码结果（900 输出 / 4,096 上下文；同模型 prompt-only 为 3,072 / 8,192；仅供参考）：",
  "prompt only, reasoning off": "仅提示，关闭思考", "reasoning on + schema on answer (3,072-token budget)": "开启思考 + 答案加 schema（预算 3,072）", "prompt only (reasoning cannot be disabled)": "仅提示（思考无法关闭）", "reasoning + schema on answer": "思考 + 答案加 schema",
  "UTH-BERT (same split as Med42)": "UTH-BERT（与 Med42 相同划分）",
  "#### Table A. Fine-tuned models, main condition (generation budget 4,096 tokens; 2,600 for the LLM-jp-3.1 family), seed 42": "#### 表 A. 微调后·主条件（生成预算 4,096 token；LLM-jp-3.1 系为 2,600），seed 42",
@@ -215,6 +215,29 @@ L.append(H(["Label", "n", "P", "R", "F1 (relaxed)", "F1 (strict)", "UTH (rel. / 
 for t in ["state-patient", "clinical_test", "treatment", "drug", "PN-Negative-patient", "state-others", "device", "time_span", "value-others"]:
     v = per[t]
     L.append(f"| {t} | {v['n']} | {v['relaxed'][0]:.2f} | {v['relaxed'][1]:.2f} | {v['relaxed'][2]:.2f} | {v['strict'][2]:.2f} | {v['uth_relaxed'][2]:.2f} / {v['uth_strict'][2]:.2f} |")
+# L mention-level
+ML = json.load(open(os.path.join(STATS, "mention_level.json")))["runs"] if os.path.exists(os.path.join(STATS, "mention_level.json")) else {}
+if ML:
+    L.append(tr("#### Table L. Mention-level scoring (repeated mentions within a sentence not collapsed): main vs. mention-level F1, three-seed means (4,096-token budget; 2,600 for LLM-jp-3.1 models)") + "\n")
+    L.append(tr("The test set has 15,119 gold mentions by character offsets; the main scores collapse them to 12,919 (type, surface) pairs (14.6% collapsed, 248 sentences). Mention-level: gold counted per occurrence, predictions per occurrence in the output (per BIO segment for BERT), same greedy matching.") + "\n")
+    L.append(H(["Model", "Relaxed (main)", "Relaxed (mention)", "Strict (main)", "Strict (mention)", "Pred. mentions (s42)"]))
+    for disp, typ, stem, zs, zg in FT:
+        rs = runs(stem, "-4k"); a = [S(r) for r in rs]; b = [ML.get(r) for r in rs]
+        if not all(a) or not all(b): continue
+        L.append(f"| {disp} | {st.mean(x['relaxed']['F1'] for x in a):.3f} | {st.mean(x['relaxed']['F1'] for x in b):.3f} | {st.mean(x['strict']['F1'] for x in a):.3f} | {st.mean(x['strict']['F1'] for x in b):.3f} | {b[0]['n_pred_mentions']} |")
+    for disp, stem in [("UTH-BERT v2 (retrained, seed 42)", "UTH-v2"), ("NICT-BERT v2 (retrained, seed 42)", "NICT-v2")]:
+        rs = [f"{stem}-s42", f"{stem}-s1", f"{stem}-s2"]; a = [S("BERT-" + r) for r in rs]; b = [ML.get("BERT-" + r) for r in rs]
+        if not all(a) or not all(b): continue
+        L.append(f"| {tr(disp)} | {st.mean(x['relaxed']['F1'] for x in a):.3f} | {st.mean(x['relaxed']['F1'] for x in b):.3f} | {st.mean(x['strict']['F1'] for x in a):.3f} | {st.mean(x['strict']['F1'] for x in b):.3f} | {b[0]['n_pred_mentions']} |")
+    L.append("")
+# M budget curve
+BCJ = json.load(open(os.path.join(STATS, "budget_curve.json"))) if os.path.exists(os.path.join(STATS, "budget_curve.json")) else {}
+if BCJ:
+    L.append(tr("#### Table M. Generation-budget curve (seed 42): relaxed F1 / sentences cut off / mean output tokens per budget (4,096 column is 2,600 for the LLM-jp-3.1 models)") + "\n")
+    L.append(H(["Model", "512", "900", "1,024", "2,048", "4,096"]))
+    for d, row in BCJ.items():
+        L.append(f"| {d} | " + " | ".join(f"{row[k]['F1']:.3f} / {row[k]['trunc']} / {row[k]['mean_out_tokens']}" for k in ("512", "900", "1k", "2k", "4k") if k in row) + " |")
+    L.append("")
 # K completeness
 rc = json.load(open(os.path.join(STATS, "raw_completeness.json"))) if os.path.exists(os.path.join(STATS, "raw_completeness.json")) else {}
 if rc:

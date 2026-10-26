@@ -1,0 +1,21 @@
+{
+  "name": "llama-3.3-70b-ft-1k",
+  "model": "/opt/llm/stage/Llama-3.3-70B-Instruct",
+  "lora": "/media/user/Elements/ft/llama-3.3-70b",
+  "tp": 4,
+  "guided": false,
+  "schema": null,
+  "guided_backend": null,
+  "max_new_tokens": 1024,
+  "max_model_len": 4096,
+  "n_sent": 433,
+  "parse_fail": 0,
+  "think": null,
+  "truncated": 65,
+  "sec": 1832.9,
+  "gpus": "0,1,2,3",
+  "date": "2026-10-27 02:37",
+  "parse_fail_v1": 0,
+  "parse_fail_v2": 0,
+  "parse_fail_v3": 0
+}
